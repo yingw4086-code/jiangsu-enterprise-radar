@@ -1,0 +1,30 @@
+[
+  {
+    "name": "海门区政府网站-批准服务",
+    "base_url": "https://www.haimen.gov.cn/",
+    "list_urls": [
+      "https://www.haimen.gov.cn/hmsrmzf/pzfw/pzfw.html"
+    ],
+    "keywords": [
+      "建设项目",
+      "重大项目",
+      "项目备案",
+      "备案",
+      "批准服务",
+      "建设用地规划许可证",
+      "建设工程规划许可证",
+      "审批",
+      "批复",
+      "许可",
+      "公示",
+      "新建",
+      "扩建",
+      "技改",
+      "厂房",
+      "生产项目"
+    ],
+    "max_items": 80,
+    "verify_ssl": false,
+    "enabled": true
+  }
+]

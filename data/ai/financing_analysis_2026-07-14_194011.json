@@ -1,0 +1,305 @@
+﻿{
+  "generated_at": "2026-07-14 19:40:23",
+  "model": "deepseek-chat",
+  "items": [
+    {
+      "index": 1,
+      "enterprise_name": "江苏金叶煊纺织品有限公司",
+      "project_name": "南通市海门区数据局关于江苏金叶煊纺织品有限公司年产高性能纤维丝2.8万吨、2万吨高性能纤维面料研发及制造项目的备案",
+      "approval_item": "备案",
+      "date": "2026-07-01",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/08dd14de-9481-426d-8fd3-749c52026123.html",
+      "source_title": "南通市海门区数据局关于江苏金叶煊纺织品有限公司年产高性能纤维丝2.8万吨、2万吨高性能纤维面料研发及制造项目的备案",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "固定资产贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "主动对接企业，提供项目贷款及设备融资方案，抢占优质客户。",
+        "reason": "项目规模大，涉及高性能纤维研发制造，符合产业政策，有较大融资需求。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 2,
+      "enterprise_name": "南通跨播云链纺织品有限公司",
+      "project_name": "南通市海门区数据局关于南通跨播云链纺织品有限公司跨播云链年产200万套家纺用品生产项目的备案",
+      "approval_item": "备案",
+      "date": "2026-03-30",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/0411d6da-991f-419a-946c-2d86c9d8ba31.html",
+      "source_title": "南通市海门区数据局关于南通跨播云链纺织品有限公司跨播云链年产200万套家纺用品生产项目的备案",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "流动资金贷款"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "了解企业具体投资规模，提供项目贷款及后续流动资金支持。",
+        "reason": "新建生产项目，有固定资产投资和运营资金需求。",
+        "confidence": 0.8
+      }
+    },
+    {
+      "index": 3,
+      "enterprise_name": "江苏裕森福弹性元件有限公司",
+      "project_name": "南通市海门区数据局关于江苏裕森福弹性元件有限公司年产5万吨柔性材料及弹性元件研发、制造项目的备案",
+      "approval_item": "备案",
+      "date": "2025-12-31",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/c5792c66-eac5-466d-b015-65ee3c9a736f.html",
+      "source_title": "南通市海门区数据局关于江苏裕森福弹性元件有限公司年产5万吨柔性材料及弹性元件研发、制造项目的备案",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "固定资产贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "重点营销，提供项目贷款及设备融资，争取成为主办行。",
+        "reason": "项目规模大，属于新材料领域，有较强融资需求。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 4,
+      "enterprise_name": "南通嘉富泰电气科技有限公司",
+      "project_name": "南通嘉富泰电气科技有限公司特高压电气设备生产项目",
+      "approval_item": "项目备案",
+      "date": "2025-09-30",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/641dddd2-2ce5-41d1-86e3-58a419b34d84.html",
+      "source_title": "区数据局关于南通嘉富泰电气科技有限公司特高压电气设备生产项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "固定资产贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "特高压是国家重点领域，尽快对接，提供项目贷款及设备融资。",
+        "reason": "特高压设备生产项目，技术含量高，投资大，融资需求明确。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 5,
+      "enterprise_name": "南通恒科体育用品有限公司",
+      "project_name": "南通恒科体育用品有限公司年产篮球内胆100万个新建项目",
+      "approval_item": "项目备案",
+      "date": "2025-07-01",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/d96c26ff-be17-4b32-8ced-5b88fd230670.html",
+      "source_title": "区数据局关于南通恒科体育用品有限公司年产篮球内胆100万个新建项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "了解项目总投资，提供项目贷款及设备融资。",
+        "reason": "新建项目，有固定资产投资需求。",
+        "confidence": 0.7
+      }
+    },
+    {
+      "index": 6,
+      "enterprise_name": "派纳特矿业（江苏）有限公司",
+      "project_name": "派纳特矿业（江苏）有限公司选矿设备制造和服务产业化项目",
+      "approval_item": "项目备案",
+      "date": "2025-03-21",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/2ec32a92-ba09-4f48-b244-9cb92b5fa64c.html",
+      "source_title": "区数据局关于派纳特矿业（江苏）有限公司选矿设备制造和服务产业化项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "固定资产贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "积极营销，提供项目贷款及设备融资，关注其产业化前景。",
+        "reason": "项目为产业化项目，投资规模可能较大，有融资需求。",
+        "confidence": 0.8
+      }
+    },
+    {
+      "index": 7,
+      "enterprise_name": "南通画溪服装衬布有限公司",
+      "project_name": "南通画溪服装衬布有限公司年产服装辅料5000万米、服装面辅料基布1000吨项目",
+      "approval_item": "项目备案",
+      "date": "2024-12-18",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/1d25a274-3630-474b-bb44-c1b993c58de2.html",
+      "source_title": "区数据局关于南通画溪服装衬布有限公司年产服装辅料5000万米、服装面辅料基布1000吨项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "了解项目投资规模，提供项目贷款及设备融资。",
+        "reason": "新建项目，有固定资产投资需求。",
+        "confidence": 0.7
+      }
+    },
+    {
+      "index": 8,
+      "enterprise_name": "南通海门亦诺纺织科技有限公司",
+      "project_name": "南通海门亦诺纺织科技有限公司年产50万套床上用品新建项目",
+      "approval_item": "项目备案",
+      "date": "2024-09-14",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/b92e3313-0b3e-4f5a-b6bf-8f85d4ff6c2d.html",
+      "source_title": "区数据局关于南通海门亦诺纺织科技有限公司年产50万套床上用品新建项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "了解项目投资规模，提供项目贷款及设备融资。",
+        "reason": "新建项目，有固定资产投资需求。",
+        "confidence": 0.7
+      }
+    },
+    {
+      "index": 9,
+      "enterprise_name": "未识别",
+      "project_name": "区数据局关于南通市海门区粮食安全和应急储备库项目（二期)项目可行性研究报告的批复",
+      "approval_item": "审批",
+      "date": "2024-06-05",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/87aea9f9-1975-4e73-a4bb-9c4f8d324f03.html",
+      "source_title": "区数据局关于南通市海门区粮食安全和应急储备库项目（二期)项目可行性研究报告的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "对接政府相关部门，提供项目贷款支持。",
+        "reason": "政府项目，有可行性研究报告批复，融资需求明确。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 10,
+      "enterprise_name": "希诺股份有限公司",
+      "project_name": "希诺股份有限公司希诺现代杯壶艺术文化展示中心项目",
+      "approval_item": "项目备案",
+      "date": "2024-04-09",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/a5c664f9-b291-41f7-ba94-415bf376508a.html",
+      "source_title": "区行政审批局关于希诺股份有限公司希诺现代杯壶艺术文化展示中心项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "了解项目投资规模，提供项目贷款。",
+        "reason": "新建展示中心，有固定资产投资需求。",
+        "confidence": 0.7
+      }
+    },
+    {
+      "index": 11,
+      "enterprise_name": "南通沧海生物科技有限公司",
+      "project_name": "南通沧海生物科技有限公司年产2.8亿件高端医疗器械新建项目",
+      "approval_item": "项目备案",
+      "date": "2024-01-11",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/34de11ed-0167-46f4-80f1-8c27a409e2d0.html",
+      "source_title": "区行政审批局关于南通沧海生物科技有限公司年产2.8亿件高端医疗器械新建项目备案的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款",
+          "固定资产贷款",
+          "设备融资"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "高端医疗器械项目，重点营销，提供项目贷款及设备融资。",
+        "reason": "项目规模大，属于高端制造，融资需求强。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 12,
+      "enterprise_name": "未识别",
+      "project_name": "区行政审批局关于南通市海门区海门港新区港西大道快速化改造工程项目可行性研究报告的批复",
+      "approval_item": "审批",
+      "date": "2023-11-17",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/1e4c1e55-c374-4759-9e39-1623196376ae.html",
+      "source_title": "区行政审批局关于南通市海门区海门港新区港西大道快速化改造工程项目可行性研究报告的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "对接政府平台公司，提供项目贷款。",
+        "reason": "政府基础设施项目，融资需求明确。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 13,
+      "enterprise_name": "未识别",
+      "project_name": "区行政审批局关于南通市海门港新区数字生态绿港建设工程项目可行性研究报告的批复",
+      "approval_item": "审批",
+      "date": "2023-08-10",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/ddcade4f-497d-4c3e-92f4-50b144eb4a40.html",
+      "source_title": "区行政审批局关于南通市海门港新区数字生态绿港建设工程项目可行性研究报告的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "对接政府平台公司，提供项目贷款。",
+        "reason": "政府基础设施项目，融资需求明确。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 14,
+      "enterprise_name": "未识别",
+      "project_name": "区行政审批局关于南通市海门区粮食安全和应急储备库项目（一期）可行性研究报告的批复",
+      "approval_item": "审批",
+      "date": "2023-05-16",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/5fe136b8-077e-494d-a844-a67d4370ef58.html",
+      "source_title": "区行政审批局关于南通市海门区粮食安全和应急储备库项目（一期）可行性研究报告的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "对接政府相关部门，提供项目贷款支持。",
+        "reason": "政府项目，有可行性研究报告批复，融资需求明确。",
+        "confidence": 0.9
+      }
+    },
+    {
+      "index": 15,
+      "enterprise_name": "海门区三厂",
+      "project_name": "海门区三厂弘謇新村安置房项目",
+      "approval_item": "审批",
+      "date": "2023-02-24",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/4c78f338-2c86-4060-963f-c3fb4db8189f.html",
+      "source_title": "区行政审批局关于海门区三厂弘謇新村安置房项目核准的批复",
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "项目贷款"
+        ],
+        "customer_value_level": "A",
+        "marketing_advice": "对接政府或开发商，提供项目贷款。",
+        "reason": "安置房项目，有核准批复，融资需求明确。",
+        "confidence": 0.9
+      }
+    }
+  ]
+}
