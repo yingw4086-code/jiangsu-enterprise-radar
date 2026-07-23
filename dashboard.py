@@ -30,7 +30,7 @@ from app.official_permit_data import (
     summarize_official_permits,
 )
 from app.permit_ownership import owner_category_label
-from app.permit_data import (
+from app.permit_data_runtime import (
     OWNER_FILTER_OPTIONS,
     PermitDataset,
     effective_permit_date,

@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from app.permit_data import (
+    OWNER_FILTER_OPTIONS,
     effective_permit_date,
     filter_planning_permits,
     load_planning_permit_dataset,
@@ -14,12 +15,24 @@ from app.permit_data import (
     summarize_homepage_permits,
     summarize_planning_permits,
 )
+from app.permit_data_runtime import (
+    OWNER_FILTER_OPTIONS as RUNTIME_OWNER_FILTER_OPTIONS,
+    select_homepage_opportunities as runtime_select_homepage_opportunities,
+)
 from database.storage import save_permit_ai_analysis
 from database.storage import upsert_planning_construction_permits
 from tests.test_planning_permit_storage import permit_record
 
 
 class PermitDataTest(unittest.TestCase):
+    def test_runtime_exports_match_permit_data(self):
+        self.assertEqual(RUNTIME_OWNER_FILTER_OPTIONS, OWNER_FILTER_OPTIONS)
+        self.assertEqual(
+            runtime_select_homepage_opportunities.__name__,
+            select_homepage_opportunities.__name__,
+        )
+        self.assertTrue(callable(runtime_select_homepage_opportunities))
+
     def test_sqlite_has_priority_over_cloud_json(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
