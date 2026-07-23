@@ -63,6 +63,18 @@ def summarize(records: list[DashboardRecord], today: date | None = None) -> dict
     target_day = today or date.today()
     today_records = [record for record in records if _parse_date(record.discovery_time) == target_day]
     a_records = [record for record in records if record.customer_level == "A"]
+    construction_project_records = [record for record in today_records if _is_construction_license_record(record)]
+    construction_permit_records = [record for record in today_records if "建设工程施工许可证" in _record_text(record)]
+    planning_permit_records = [
+        record
+        for record in today_records
+        if "建设用地规划许可证" in _record_text(record) or "建设工程规划许可证" in _record_text(record)
+    ]
+    high_value_records = [
+        record
+        for record in records
+        if record.customer_level == "A" or _record_score(record) >= 70
+    ]
     focus_enterprises = {
         record.enterprise_name
         for record in records
@@ -75,6 +87,10 @@ def summarize(records: list[DashboardRecord], today: date | None = None) -> dict
         "estimated_financing_amount_yuan": amount,
         "focus_enterprise_count": len(focus_enterprises),
         "total_count": len(records),
+        "today_construction_project_count": len(construction_project_records),
+        "new_construction_permit_count": len(construction_permit_records),
+        "new_planning_permit_count": len(planning_permit_records),
+        "high_value_loan_opportunity_count": len(high_value_records),
     }
 
 
@@ -237,6 +253,27 @@ def infer_financing_opportunities(record: DashboardRecord) -> dict[str, bool]:
         "开户机会": record.customer_level in {"A", "B"} and record.financing_need == "存在",
         "工资代发机会": any(key in text for key in ["新建", "扩建", "生产", "厂房", "制造"]),
     }
+
+
+def _is_construction_license_record(record: DashboardRecord) -> bool:
+    return any(
+        keyword in _record_text(record)
+        for keyword in ["建设用地规划许可证", "建设工程规划许可证", "建设工程施工许可证"]
+    )
+
+
+def _record_text(record: DashboardRecord) -> str:
+    return f"{record.approval_item} {record.project_name} {record.source_title} {record.data_source}"
+
+
+def _record_score(record: DashboardRecord) -> float:
+    raw_score = record.raw.get("opportunity_score")
+    if raw_score is None:
+        raw_score = record.raw.get("loan_opportunity_score")
+    try:
+        return float(raw_score)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def _load_file(file_path: Path) -> list[DashboardRecord]:

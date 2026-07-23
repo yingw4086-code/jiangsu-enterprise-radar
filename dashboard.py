@@ -24,10 +24,22 @@ from app.dashboard_data import (
     summarize,
 )
 from app.enterprise_map import render_enterprise_map
+from app.permit_data import (
+    PermitDataset,
+    filter_planning_permits,
+    load_planning_permit_dataset,
+    summarize_planning_permits,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 AI_DATA_DIR = PROJECT_ROOT / "data" / "ai"
+DATABASE_PATH = PROJECT_ROOT / "database" / "enterprise.db"
+CLOUD_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "planning_construction_permits.json"
+PLANNING_SOURCE_URL = (
+    "http://zrzy.jiangsu.gov.cn/elsearch/search/index?"
+    "areaCode=320684&content=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81"
+)
 
 
 st.set_page_config(
@@ -41,13 +53,22 @@ def main() -> None:
     inject_styles()
     records = load_records(AI_DATA_DIR)
     files = latest_json_files(AI_DATA_DIR)
+    permit_dataset = load_planning_permit_dataset(DATABASE_PATH, CLOUD_PERMIT_PATH)
 
     with st.sidebar:
         st.markdown("## 海门企业雷达")
         st.caption("区域企业融资机会驾驶舱")
         page = st.radio(
             "导航",
-            ["首页 Dashboard", "今日营销任务", "产业地图", "企业机会列表", "企业详情", "风险提示"],
+            [
+                "首页 Dashboard",
+                "海门建设工程规划许可证",
+                "今日营销任务",
+                "产业地图",
+                "企业机会列表",
+                "企业详情",
+                "风险提示",
+            ],
             label_visibility="collapsed",
         )
         st.divider()
@@ -60,6 +81,10 @@ def main() -> None:
 
     st.markdown('<div class="app-title">海门企业雷达</div>', unsafe_allow_html=True)
     st.markdown('<div class="app-subtitle">面向银行客户经理的区域企业融资机会监测系统</div>', unsafe_allow_html=True)
+
+    if page == "海门建设工程规划许可证":
+        render_planning_construction_permits(permit_dataset)
+        return
 
     if not records:
         render_empty_state(has_files=bool(files))
@@ -83,10 +108,10 @@ def render_dashboard(records: list[DashboardRecord]) -> None:
     summary = summarize(records)
     st.markdown("### 今日概览")
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("今日新增项目数量", summary["today_new_projects"])
-    col2.metric("A级潜在客户数量", summary["a_level_count"])
-    col3.metric("预计融资金额", format_yuan(summary["estimated_financing_amount_yuan"]))
-    col4.metric("重点关注企业数量", summary["focus_enterprise_count"])
+    col1.metric("今日新增建设项目数量", summary["today_construction_project_count"])
+    col2.metric("新增施工许可证数量", summary["new_construction_permit_count"])
+    col3.metric("新增规划许可证数量", summary["new_planning_permit_count"])
+    col4.metric("高价值贷款机会数量", summary["high_value_loan_opportunity_count"])
 
     st.markdown("### 重点机会")
     top_records = sorted(records, key=lambda record: (record.customer_level, -record.confidence))
@@ -116,6 +141,84 @@ def render_dashboard(records: list[DashboardRecord]) -> None:
             .sort_values("数量", ascending=False)
         )
         st.bar_chart(industry_df, x="行业", y="数量", use_container_width=True)
+
+
+def render_planning_construction_permits(dataset: PermitDataset) -> None:
+    st.markdown("### 海门建设工程规划许可证")
+    st.markdown(f"官方数据来源：[江苏自然资源政务信息检索服务]({PLANNING_SOURCE_URL})")
+    st.caption(f"最后更新时间：{dataset.last_updated}　数据读取：{dataset.storage_source}")
+
+    summary = summarize_planning_permits(dataset.items)
+    col1, col2, col3 = st.columns(3)
+    col1.metric("总记录数", summary["total_count"])
+    col2.metric("最近90天", summary["recent_90_days_count"])
+    col3.metric("最近30天", summary["recent_30_days_count"])
+
+    if dataset.items:
+        filter_col1, filter_col2 = st.columns([2, 1])
+        with filter_col1:
+            ai_level = st.segmented_control(
+                "AI机会等级",
+                ["全部", "A", "B", "C"],
+                default="全部",
+                key="planning_permit_ai_level",
+            )
+        with filter_col2:
+            recent_30_only = st.toggle(
+                "仅显示最近30天",
+                value=False,
+                key="planning_permit_recent_30",
+            )
+        filtered_items = filter_planning_permits(
+            dataset.items,
+            ai_level=ai_level or "全部",
+            recent_days=30 if recent_30_only else None,
+        )
+        st.caption(f"当前显示 {len(filtered_items)} 条，按发证日期或发布日期倒序。")
+        rows = []
+        for item in filtered_items:
+            company_name = item.get("company_name") or "未披露"
+            permit_date = item.get("permit_date") or "未披露"
+            publish_date = item.get("publish_date") or "未披露"
+            recommended_products = item.get("recommended_products") or []
+            rows.append(
+                {
+                    "企业或建设单位": company_name,
+                    "项目名称": item.get("project_name") or "未披露",
+                    "许可证编号": item.get("permit_number") or "未披露",
+                    "发证日期": permit_date,
+                    "发布日期": publish_date,
+                    "项目地址": item.get("project_address") or "未披露",
+                    "fresh_score": int(item.get("fresh_score") or 0),
+                    "AI机会等级": item.get("ai_opportunity_level") or "待分析",
+                    "融资需求": item.get("financing_need") or "待分析",
+                    "推荐产品": "、".join(recommended_products) if recommended_products else "待分析",
+                    "营销判断": item.get("marketing_summary") or "待分析",
+                    "拜访建议": item.get("visit_suggestion") or "待分析",
+                    "置信度": item.get("confidence"),
+                    "风险提示": item.get("risk_notice") or "待分析",
+                    "官方来源链接": item.get("source_url") or "",
+                }
+            )
+        if rows:
+            st.dataframe(
+                pd.DataFrame(rows),
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "fresh_score": st.column_config.NumberColumn("fresh_score", min_value=0, max_value=100),
+                    "置信度": st.column_config.NumberColumn("置信度", min_value=0, max_value=100),
+                    "官方来源链接": st.column_config.LinkColumn("官方来源链接", display_text="查看原文"),
+                },
+            )
+        else:
+            st.info("当前筛选条件下没有许可证记录。")
+    else:
+        st.info("建设工程规划许可证正式数据尚未导入。")
+
+    st.info("建设用地规划许可证：数据源验证中，暂未纳入V1版本。")
+    st.info("建设工程施工许可证：数据源验证中，暂未纳入V1版本。")
+    st.caption("数据来源于政府公开信息，AI分析仅用于营销线索筛选，不作为授信审批依据。")
 
 
 def render_marketing_tasks(records: list[DashboardRecord]) -> None:

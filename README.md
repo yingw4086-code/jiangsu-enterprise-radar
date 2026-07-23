@@ -218,3 +218,177 @@ powershell -ExecutionPolicy Bypass -File .\run_once_with_ai.ps1
 
 ??? Streamlit Cloud ??????[`STREAMLIT_CLOUD.md`](./STREAMLIT_CLOUD.md)?
 
+## GitHub Actions 每日后台采集
+
+部署到 Streamlit Cloud 后，网页本身不会一直在后台运行。每日自动采集由 GitHub Actions 负责。
+
+当前后台链路：
+
+```text
+政府公开网站
+↓
+crawler/run_daily.py
+↓
+database/enterprise.db
+↓
+导出 data/ai/financing_analysis_daily_*.json
+↓
+Streamlit 页面继续读取展示
+```
+
+当前每日任务只使用已经接入的江苏自然资源真实检索接口，不新增其他数据源。
+
+### 手动运行一次采集
+
+在项目根目录运行：
+
+```powershell
+python -m crawler.run_daily
+```
+
+也可以指定采集数量：
+
+```powershell
+python -m crawler.run_daily --limit 60
+```
+
+运行后会生成或更新：
+
+```text
+database/enterprise.db
+logs/crawler.log
+data/opportunities/enterprise_opportunities_daily_*.json
+data/ai/financing_analysis_daily_*.json
+```
+
+### 查看数据库
+
+方式一：使用 Python 查看总数。
+
+```powershell
+python -c "import sqlite3; db='database/enterprise.db'; con=sqlite3.connect(db); print(con.execute('select count(*) from enterprise_opportunities').fetchone()[0]); con.close()"
+```
+
+方式二：如果电脑安装了 sqlite3 命令行：
+
+```powershell
+sqlite3 database/enterprise.db ".tables"
+sqlite3 database/enterprise.db "select enterprise_name, project_name, opportunity_level, event_time from enterprise_opportunities limit 10;"
+```
+
+方式三：使用 DB Browser for SQLite 打开：
+
+```text
+database/enterprise.db
+```
+
+### 修改每天执行时间
+
+编辑：
+
+```text
+.github/workflows/daily_crawler.yml
+```
+
+当前配置：
+
+```yaml
+- cron: "0 18 * * *"
+```
+
+GitHub Actions 使用 UTC 时间。北京时间凌晨 2 点等于 UTC 前一天 18 点，所以这里写 `0 18 * * *`。
+
+例如想改成北京时间早上 8 点运行，应改为：
+
+```yaml
+- cron: "0 0 * * *"
+```
+
+保存并推送到 GitHub 后，新的定时规则会自动生效。
+
+### 建设项目许可证专项采集
+
+许可证专项模块位于：
+
+```text
+data_source/jiangsu_license.py
+```
+
+重点采集三类审批：
+
+```text
+建设用地规划许可证
+建设工程规划许可证
+建设工程施工许可证
+```
+
+手动运行：
+
+```powershell
+python -m crawler.run_license --limit 80
+```
+
+先测试接口：
+
+```powershell
+python -m crawler.run_license --test
+```
+
+正式采集输出会写入：
+
+```text
+database/enterprise.db
+data/licenses/construction_permits_*.json
+data/ai/financing_analysis_license_*.json
+```
+
+专表名称：
+
+```text
+construction_permits
+```
+
+查看最近许可证数据：
+
+```powershell
+python -c "import sqlite3; con=sqlite3.connect('database/enterprise.db'); rows=con.execute('select company_name, permit_type, permit_date, score from construction_permits order by permit_date desc limit 20').fetchall(); [print(r) for r in rows]; con.close()"
+```
+
+### 海门建设工程规划许可证 V1
+
+启动可见浏览器，只验证官网前 3 页，不写数据库：
+
+```powershell
+python -m crawler.run_license --browser-validate-planning-construction
+```
+
+正式导入：
+
+```powershell
+python -m crawler.run_license --import-planning-construction
+```
+
+正式导入优先使用江苏自然资源公开检索接口。接口结果总数不大于 50、没有真实许可证、分页不完整或最新日期异常时，自动切换到 Playwright Edge Chromium，按官网页面正常翻页采集。
+
+导出 Streamlit Cloud 公开展示数据：
+
+```powershell
+python -m crawler.export_cloud_data
+```
+
+分析最近30天、最多20条建设工程规划许可证营销机会：
+
+```powershell
+python -m crawler.analyze_recent_permits --days 30 --limit 20
+```
+
+分析结果写入 SQLite 独立表 `permit_ai_analyses`。项目主要字段未变化时会直接使用缓存，不会重复调用 DeepSeek。Dashboard 只读取 SQLite 或公开 JSON，打开页面不会自动调用 AI API。
+
+数据库为空时，导出命令不会创建空 JSON，也不会覆盖已有文件。成功输出路径：
+
+```text
+data/cloud/planning_construction_permits.json
+```
+
+浏览器样本和异常接口响应保存在 `debug/`，该目录已加入 `.gitignore`。
+
