@@ -7,9 +7,37 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
+from app.permit_ownership import (
+    FOREIGN_ENTERPRISE,
+    GOVERNMENT_AGENCY,
+    MIXED_OWNERSHIP,
+    PRIVATE_ENTERPRISE,
+    PUBLIC_INSTITUTION,
+    STATE_OWNED_COMMERCIAL,
+    UNKNOWN_OWNERSHIP,
+)
+
 
 PLANNING_PERMIT_TYPE = "建设工程规划许可证"
 UNKNOWN = "未披露"
+AI_LEVEL_SORT_ORDER = {"A": 0, "B": 1, "C": 2}
+OWNER_VIEW_ELIGIBLE = "可营销企业"
+OWNER_FILTER_OPTIONS = (
+    OWNER_VIEW_ELIGIBLE,
+    "只看民营企业",
+    "民营及外资企业",
+    "国有商业企业",
+    "待核验",
+    "已排除政府公益项目",
+    "全部",
+)
+OWNER_CATEGORY_SORT_ORDER = {
+    PRIVATE_ENTERPRISE: 0,
+    FOREIGN_ENTERPRISE: 0,
+    STATE_OWNED_COMMERCIAL: 1,
+    MIXED_OWNERSHIP: 2,
+}
+MARKETING_PRIORITY_SORT_ORDER = {"A": 0, "B": 1}
 
 
 @dataclass(frozen=True)
@@ -17,6 +45,7 @@ class PermitDataset:
     items: list[dict[str, Any]]
     storage_source: str
     last_updated: str
+    source_path: str
 
 
 def load_planning_permit_dataset(db_path: Path, cloud_json_path: Path) -> PermitDataset:
@@ -26,12 +55,14 @@ def load_planning_permit_dataset(db_path: Path, cloud_json_path: Path) -> Permit
             items=sqlite_items,
             storage_source="本地SQLite",
             last_updated=_latest_seen(sqlite_items),
+            source_path=_display_path(db_path),
         )
     cloud_items = _load_cloud_json(cloud_json_path)
     return PermitDataset(
         items=cloud_items,
         storage_source="Streamlit Cloud JSON" if cloud_items else "暂无正式数据",
         last_updated=_latest_seen(cloud_items),
+        source_path=_display_path(cloud_json_path),
     )
 
 
@@ -45,6 +76,146 @@ def summarize_planning_permits(
         "recent_90_days_count": sum(_within_days(item, 90, current_day) for item in items),
         "recent_30_days_count": sum(_within_days(item, 30, current_day) for item in items),
     }
+
+
+def summarize_homepage_permits(
+    items: list[dict[str, Any]],
+    today: date | None = None,
+) -> dict[str, Any]:
+    current_day = today or date.today()
+    dated_items = [
+        (item, effective_permit_date(item))
+        for item in items
+    ]
+    valid_dates = [item_date for _, item_date in dated_items if item_date is not None]
+    return {
+        "today_count": sum(item_date == current_day for _, item_date in dated_items),
+        "recent_30_days_count": sum(
+            _date_within_days(item_date, 30, current_day)
+            for _, item_date in dated_items
+        ),
+        "recent_90_days_count": sum(
+            _date_within_days(item_date, 90, current_day)
+            for _, item_date in dated_items
+        ),
+        "total_count": len(items),
+        "latest_date": max(valid_dates).isoformat() if valid_dates else UNKNOWN,
+    }
+
+
+def select_homepage_opportunities(
+    items: list[dict[str, Any]],
+    *,
+    recent_days: int = 90,
+    limit: int = 15,
+    today: date | None = None,
+    ownership_view: str = OWNER_VIEW_ELIGIBLE,
+) -> list[dict[str, Any]]:
+    current_day = today or date.today()
+    candidates = [
+        item
+        for item in filter_permits_by_ownership(items, ownership_view)
+        if _date_within_days(effective_permit_date(item), recent_days, current_day)
+    ]
+    return sorted(
+        candidates,
+        key=lambda item: (
+            OWNER_CATEGORY_SORT_ORDER.get(str(item.get("owner_category") or ""), 99),
+            MARKETING_PRIORITY_SORT_ORDER.get(
+                str(item.get("marketing_priority") or ""),
+                99,
+            ),
+            0
+            if _date_within_days(effective_permit_date(item), 30, current_day)
+            else 1,
+            -(effective_permit_date(item) or date.min).toordinal(),
+            -_integer(item.get("fresh_score")),
+            AI_LEVEL_SORT_ORDER.get(str(item.get("ai_opportunity_level") or ""), 99),
+            str(item.get("project_name") or ""),
+        ),
+    )[: max(0, limit)]
+
+
+def summarize_ownership_permits(
+    items: list[dict[str, Any]],
+    today: date | None = None,
+) -> dict[str, int]:
+    current_day = today or date.today()
+    categories = [str(item.get("owner_category") or UNKNOWN_OWNERSHIP) for item in items]
+    return {
+        "private_count": categories.count(PRIVATE_ENTERPRISE),
+        "state_owned_count": categories.count(STATE_OWNED_COMMERCIAL),
+        "government_public_count": sum(
+            category in {GOVERNMENT_AGENCY, PUBLIC_INSTITUTION}
+            for category in categories
+        ),
+        "unknown_count": categories.count(UNKNOWN_OWNERSHIP),
+        "recent_30_private_count": sum(
+            str(item.get("owner_category") or "") == PRIVATE_ENTERPRISE
+            and _date_within_days(effective_permit_date(item), 30, current_day)
+            for item in items
+        ),
+        "recent_30_marketing_eligible_count": sum(
+            _boolean(item.get("marketing_eligible"))
+            and _date_within_days(effective_permit_date(item), 30, current_day)
+            for item in items
+        ),
+    }
+
+
+def filter_permits_by_ownership(
+    items: list[dict[str, Any]],
+    ownership_view: str,
+) -> list[dict[str, Any]]:
+    if ownership_view == "全部":
+        return list(items)
+    if ownership_view == OWNER_VIEW_ELIGIBLE:
+        return [item for item in items if _boolean(item.get("marketing_eligible"))]
+    if ownership_view == "只看民营企业":
+        categories = {PRIVATE_ENTERPRISE}
+    elif ownership_view == "民营及外资企业":
+        categories = {PRIVATE_ENTERPRISE, FOREIGN_ENTERPRISE}
+    elif ownership_view == "国有商业企业":
+        categories = {STATE_OWNED_COMMERCIAL}
+    elif ownership_view == "待核验":
+        categories = {UNKNOWN_OWNERSHIP}
+    elif ownership_view == "已排除政府公益项目":
+        categories = {GOVERNMENT_AGENCY, PUBLIC_INSTITUTION}
+    else:
+        return []
+    return [
+        item
+        for item in items
+        if str(item.get("owner_category") or UNKNOWN_OWNERSHIP) in categories
+    ]
+
+
+def sort_classified_opportunities(
+    items: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    return sorted(
+        items,
+        key=lambda item: (
+            OWNER_CATEGORY_SORT_ORDER.get(
+                str(item.get("owner_category") or UNKNOWN_OWNERSHIP),
+                99,
+            ),
+            MARKETING_PRIORITY_SORT_ORDER.get(
+                str(item.get("marketing_priority") or ""),
+                99,
+            ),
+            -(effective_permit_date(item) or date.min).toordinal(),
+            -_integer(item.get("fresh_score")),
+            str(item.get("project_name") or ""),
+        ),
+    )
+
+
+def effective_permit_date(item: dict[str, Any]) -> date | None:
+    value = str(item.get("permit_date") or "")
+    if not value or value == UNKNOWN:
+        value = str(item.get("publish_date") or "")
+    return _parse_date(value)
 
 
 def filter_planning_permits(
@@ -141,6 +312,16 @@ def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
                 permits.fresh_score,
                 permits.first_seen_at,
                 permits.last_seen_at,
+                permits.owner_name,
+                permits.owner_category,
+                permits.ownership_type,
+                permits.ownership_confidence,
+                permits.ownership_basis,
+                permits.marketing_eligible,
+                permits.marketing_priority,
+                permits.exclusion_reason,
+                permits.manual_review_required,
+                permits.classification_updated_at,
                 {ai_fields}
             FROM construction_permits AS permits
             {ai_join}
@@ -181,7 +362,7 @@ def _latest_seen(items: list[dict[str, Any]]) -> str:
 
 
 def _within_days(item: dict[str, Any], days: int, today: date) -> bool:
-    parsed = _effective_date(item)
+    parsed = effective_permit_date(item)
     if not parsed:
         return False
     age = (today - parsed).days
@@ -189,10 +370,7 @@ def _within_days(item: dict[str, Any], days: int, today: date) -> bool:
 
 
 def _effective_date(item: dict[str, Any]) -> date | None:
-    value = str(item.get("permit_date") or "")
-    if not value or value == UNKNOWN:
-        value = str(item.get("publish_date") or "")
-    return _parse_date(value)
+    return effective_permit_date(item)
 
 
 def _normalize_item(item: dict[str, Any]) -> dict[str, Any]:
@@ -208,6 +386,37 @@ def _normalize_item(item: dict[str, Any]) -> dict[str, Any]:
     normalized["recommended_products"] = [
         str(product).strip() for product in products if str(product).strip()
     ]
+    company_name = str(normalized.get("company_name") or "").strip()
+    normalized["owner_name"] = str(normalized.get("owner_name") or company_name or UNKNOWN)
+    normalized["owner_category"] = str(
+        normalized.get("owner_category") or UNKNOWN_OWNERSHIP
+    )
+    normalized["ownership_type"] = str(
+        normalized.get("ownership_type") or normalized["owner_category"]
+    )
+    normalized["ownership_confidence"] = _integer(
+        normalized.get("ownership_confidence")
+    )
+    normalized["ownership_basis"] = str(
+        normalized.get("ownership_basis")
+        or "建设单位信息不足，无法判断所有制"
+    )
+    normalized["marketing_eligible"] = _boolean(
+        normalized.get("marketing_eligible")
+    )
+    normalized["marketing_priority"] = str(
+        normalized.get("marketing_priority") or "待核验"
+    )
+    normalized["exclusion_reason"] = str(
+        normalized.get("exclusion_reason") or ""
+    )
+    normalized["manual_review_required"] = _boolean(
+        normalized.get("manual_review_required"),
+        default=True,
+    )
+    normalized["classification_updated_at"] = str(
+        normalized.get("classification_updated_at") or ""
+    )
     return normalized
 
 
@@ -218,3 +427,43 @@ def _parse_date(value: str) -> date | None:
         except ValueError:
             continue
     return None
+
+
+def _date_within_days(
+    value: date | None,
+    days: int,
+    today: date,
+) -> bool:
+    if value is None:
+        return False
+    age = (today - value).days
+    return 0 <= age <= days
+
+
+def _integer(value: Any) -> int:
+    try:
+        return int(value or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
+def _boolean(value: Any, *, default: bool = False) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return bool(value)
+    text = str(value or "").strip().lower()
+    if text in {"true", "1", "yes", "y", "是"}:
+        return True
+    if text in {"false", "0", "no", "n", "否"}:
+        return False
+    return default
+
+
+def _display_path(path: Path) -> str:
+    normalized = path.resolve()
+    parts = list(normalized.parts)
+    for marker in ("database", "data"):
+        if marker in parts:
+            return Path(*parts[parts.index(marker):]).as_posix()
+    return normalized.name

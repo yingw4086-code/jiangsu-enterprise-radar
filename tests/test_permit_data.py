@@ -7,8 +7,11 @@ from datetime import date
 from pathlib import Path
 
 from app.permit_data import (
+    effective_permit_date,
     filter_planning_permits,
     load_planning_permit_dataset,
+    select_homepage_opportunities,
+    summarize_homepage_permits,
     summarize_planning_permits,
 )
 from database.storage import save_permit_ai_analysis
@@ -31,6 +34,7 @@ class PermitDataTest(unittest.TestCase):
             dataset = load_planning_permit_dataset(db_path, json_path)
 
             self.assertEqual(dataset.storage_source, "本地SQLite")
+            self.assertEqual(dataset.source_path, "enterprise.db")
             self.assertEqual(dataset.items[0]["project_name"], "SQLite项目")
 
     def test_empty_sqlite_falls_back_to_cloud_json(self):
@@ -47,6 +51,7 @@ class PermitDataTest(unittest.TestCase):
             dataset = load_planning_permit_dataset(db_path, json_path)
 
             self.assertEqual(dataset.storage_source, "Streamlit Cloud JSON")
+            self.assertEqual(dataset.source_path, "permits.json")
             self.assertEqual(dataset.items[0]["project_name"], "云端项目")
 
     def test_recent_counts_prefer_permit_date(self):
@@ -93,6 +98,68 @@ class PermitDataTest(unittest.TestCase):
             self.assertEqual(filtered[0]["confidence"], 85)
             self.assertEqual(filter_planning_permits(dataset.items, ai_level="B"), [])
 
+    def test_homepage_uses_real_v1_cloud_dataset(self):
+        project_root = Path(__file__).resolve().parents[1]
+        cloud_path = project_root / "data" / "cloud" / "planning_construction_permits.json"
+        dataset = load_planning_permit_dataset(
+            project_root / "database" / "missing-for-cloud-test.db",
+            cloud_path,
+        )
+
+        summary = summarize_homepage_permits(dataset.items, today=date(2026, 7, 23))
+        top_items = select_homepage_opportunities(
+            dataset.items,
+            recent_days=90,
+            limit=10,
+            today=date(2026, 7, 23),
+            ownership_view="全部",
+        )
+        project_names = {str(item.get("project_name") or "") for item in top_items}
+
+        self.assertEqual(dataset.storage_source, "Streamlit Cloud JSON")
+        self.assertEqual(dataset.source_path, "data/cloud/planning_construction_permits.json")
+        self.assertEqual(summary["total_count"], 205)
+        self.assertEqual(summary["recent_30_days_count"], 10)
+        self.assertEqual(summary["recent_90_days_count"], 25)
+        self.assertEqual(summary["latest_date"], "2026-07-20")
+        self.assertEqual(len(top_items), 10)
+        self.assertIn("冬泽特医食品生产基地新建项目", project_names)
+        self.assertIn("立新小区九期", project_names)
+        self.assertTrue(any("平谦现代产业园" in name for name in project_names))
+        self.assertTrue(
+            all((effective_permit_date(item) or date.min).year == 2026 for item in top_items)
+        )
+        self.assertTrue(
+            all(item.get("source_name") != "海门区政府网站" for item in top_items)
+        )
+
+    def test_homepage_sort_uses_date_then_freshness_then_ai_level(self):
+        items = [
+            self._cloud_item("较旧A级", permit_date="2026-07-19") | {
+                "fresh_score": 100,
+                "ai_opportunity_level": "A",
+            },
+            self._cloud_item("较新B级", permit_date="2026-07-20") | {
+                "fresh_score": 80,
+                "ai_opportunity_level": "B",
+            },
+            self._cloud_item("较新A级", permit_date="2026-07-20") | {
+                "fresh_score": 80,
+                "ai_opportunity_level": "A",
+            },
+        ]
+
+        selected = select_homepage_opportunities(
+            items,
+            limit=3,
+            today=date(2026, 7, 23),
+        )
+
+        self.assertEqual(
+            [item["project_name"] for item in selected],
+            ["较新A级", "较新B级", "较旧A级"],
+        )
+
     @staticmethod
     def _cloud_item(project_name: str, permit_date: str = "2026-07-20", publish_date: str = "2026-07-21"):
         return {
@@ -111,6 +178,16 @@ class PermitDataTest(unittest.TestCase):
             "fresh_score": 100,
             "first_seen_at": "2026-07-22 10:00:00",
             "last_seen_at": "2026-07-22 10:00:00",
+            "owner_name": "示例公司",
+            "owner_category": "private_enterprise",
+            "ownership_type": "private_enterprise",
+            "ownership_confidence": 100,
+            "ownership_basis": "测试人工确认",
+            "marketing_eligible": True,
+            "marketing_priority": "A",
+            "exclusion_reason": "",
+            "manual_review_required": False,
+            "classification_updated_at": "2026-07-22 10:00:00",
         }
 
 

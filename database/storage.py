@@ -12,7 +12,7 @@ from typing import Any, Iterable
 from data_source.base import OpportunityRecord, UNKNOWN
 
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 PLANNING_CONSTRUCTION_PERMIT_TYPE = "建设工程规划许可证"
 
 
@@ -138,6 +138,16 @@ def init_db(db_path: Path) -> None:
                 "fresh_score": "INTEGER NOT NULL DEFAULT 0",
                 "first_seen_at": "TEXT NOT NULL DEFAULT ''",
                 "last_seen_at": "TEXT NOT NULL DEFAULT ''",
+                "owner_name": "TEXT NOT NULL DEFAULT '未披露'",
+                "owner_category": "TEXT NOT NULL DEFAULT 'unknown'",
+                "ownership_type": "TEXT NOT NULL DEFAULT 'unknown'",
+                "ownership_confidence": "INTEGER NOT NULL DEFAULT 0",
+                "ownership_basis": "TEXT NOT NULL DEFAULT '建设单位信息不足，无法判断所有制'",
+                "marketing_eligible": "INTEGER NOT NULL DEFAULT 0",
+                "marketing_priority": "TEXT NOT NULL DEFAULT '待核验'",
+                "exclusion_reason": "TEXT NOT NULL DEFAULT ''",
+                "manual_review_required": "INTEGER NOT NULL DEFAULT 1",
+                "classification_updated_at": "TEXT NOT NULL DEFAULT ''",
             },
         )
         conn.execute(
@@ -173,6 +183,8 @@ def init_db(db_path: Path) -> None:
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_score ON construction_permits(score)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_number ON construction_permits(permit_number)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_source_url ON construction_permits(source_url)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_owner_category ON construction_permits(owner_category)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_marketing_eligible ON construction_permits(marketing_eligible)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_ai_level ON permit_ai_analyses(ai_opportunity_level)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_ai_input_hash ON permit_ai_analyses(input_hash)")
 
@@ -704,6 +716,16 @@ def load_public_planning_construction_permits(db_path: Path) -> list[dict[str, A
                 fresh_score,
                 first_seen_at,
                 last_seen_at,
+                owner_name,
+                owner_category,
+                ownership_type,
+                ownership_confidence,
+                ownership_basis,
+                marketing_eligible,
+                marketing_priority,
+                exclusion_reason,
+                manual_review_required,
+                classification_updated_at,
                 analyses.ai_opportunity_level,
                 analyses.financing_need,
                 analyses.recommended_products_json,

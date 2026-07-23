@@ -384,6 +384,25 @@ python -m crawler.analyze_recent_permits --days 30 --limit 20
 
 分析结果写入 SQLite 独立表 `permit_ai_analyses`。项目主要字段未变化时会直接使用缓存，不会重复调用 DeepSeek。Dashboard 只读取 SQLite 或公开 JSON，打开页面不会自动调用 AI API。
 
+项目主体性质分类不调用大语言模型，只使用明确名称规则和人工覆盖表：
+
+```powershell
+python -m crawler.classify_permit_owners
+python -m crawler.export_cloud_data
+```
+
+人工确认结果填写在：
+
+```text
+data/reference/enterprise_ownership_overrides.csv
+```
+
+人工覆盖优先于自动规则。普通“有限公司”不会自动判定为民营企业，证据不足的主体进入待核验。分类报告输出到：
+
+```text
+data/reports/ownership_classification_report.csv
+```
+
 数据库为空时，导出命令不会创建空 JSON，也不会覆盖已有文件。成功输出路径：
 
 ```text

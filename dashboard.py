@@ -21,13 +21,26 @@ from app.dashboard_data import (
     marketing_priority_stars,
     sort_marketing_tasks,
     suggest_visit_time,
-    summarize,
 )
 from app.enterprise_map import render_enterprise_map
+from app.official_permit_data import (
+    OfficialPermitDataset,
+    load_official_permit_dataset,
+    sort_official_permits,
+    summarize_official_permits,
+)
+from app.permit_ownership import owner_category_label
 from app.permit_data import (
+    OWNER_FILTER_OPTIONS,
     PermitDataset,
+    effective_permit_date,
+    filter_permits_by_ownership,
     filter_planning_permits,
     load_planning_permit_dataset,
+    select_homepage_opportunities,
+    sort_classified_opportunities,
+    summarize_homepage_permits,
+    summarize_ownership_permits,
     summarize_planning_permits,
 )
 
@@ -36,10 +49,16 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 AI_DATA_DIR = PROJECT_ROOT / "data" / "ai"
 DATABASE_PATH = PROJECT_ROOT / "database" / "enterprise.db"
 CLOUD_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "planning_construction_permits.json"
+CLOUD_LAND_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "planning_land_permits.json"
+CLOUD_START_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "construction_start_permits.json"
 PLANNING_SOURCE_URL = (
     "http://zrzy.jiangsu.gov.cn/elsearch/search/index?"
     "areaCode=320684&content=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81"
 )
+LAND_PERMIT_TYPE = "建设用地规划许可证"
+LAND_SOURCE_URL = "https://www.haimen.gov.cn/hmsgtj/xzxk/xzxk.html"
+START_PERMIT_TYPE = "建设工程施工许可证"
+START_SOURCE_URL = "https://shuju.nantong.gov.cn/ntsxzspj/pzjg/pzjg.html"
 
 
 st.set_page_config(
@@ -54,6 +73,16 @@ def main() -> None:
     records = load_records(AI_DATA_DIR)
     files = latest_json_files(AI_DATA_DIR)
     permit_dataset = load_planning_permit_dataset(DATABASE_PATH, CLOUD_PERMIT_PATH)
+    land_permit_dataset = load_official_permit_dataset(
+        DATABASE_PATH,
+        CLOUD_LAND_PERMIT_PATH,
+        permit_type=LAND_PERMIT_TYPE,
+    )
+    start_permit_dataset = load_official_permit_dataset(
+        DATABASE_PATH,
+        CLOUD_START_PERMIT_PATH,
+        permit_type=START_PERMIT_TYPE,
+    )
 
     with st.sidebar:
         st.markdown("## 海门企业雷达")
@@ -63,84 +92,352 @@ def main() -> None:
             [
                 "首页 Dashboard",
                 "海门建设工程规划许可证",
+                "海门建设用地规划许可证",
+                "海门建设工程施工许可证",
                 "今日营销任务",
                 "产业地图",
                 "企业机会列表",
                 "企业详情",
                 "风险提示",
+                "政府公益项目",
+                "旧版项目数据",
             ],
             label_visibility="collapsed",
         )
         st.divider()
-        st.caption("最近读取的 AI JSON")
+        st.caption("旧版项目数据文件")
         if files:
             for file_path in files:
                 st.caption(file_path.name)
         else:
-            st.caption("尚未发现 data/ai 下的 JSON 文件")
+            st.caption("尚未发现旧版JSON文件")
 
     st.markdown('<div class="app-title">海门企业雷达</div>', unsafe_allow_html=True)
     st.markdown('<div class="app-subtitle">面向银行客户经理的区域企业融资机会监测系统</div>', unsafe_allow_html=True)
 
+    if page == "首页 Dashboard":
+        render_dashboard(permit_dataset)
+        return
     if page == "海门建设工程规划许可证":
         render_planning_construction_permits(permit_dataset)
+        return
+    if page == "海门建设用地规划许可证":
+        render_official_permit_page(
+            land_permit_dataset,
+            page_title="海门建设用地规划许可证",
+            source_name="海门区自然资源局行政许可",
+            source_url=LAND_SOURCE_URL,
+            source_note="海门区官方行政许可栏目中的建设用地规划许可证记录。",
+        )
+        return
+    if page == "海门建设工程施工许可证":
+        render_official_permit_page(
+            start_permit_dataset,
+            page_title="海门建设工程施工许可证",
+            source_name="南通市数据局批准结果",
+            source_url=START_SOURCE_URL,
+            source_note="仅展示详情页能以高置信度确认属于海门区的施工许可记录。",
+        )
+        return
+    if page == "旧版项目数据":
+        render_legacy_data(records, files)
+        return
+    if page == "政府公益项目":
+        render_government_public_projects(permit_dataset)
+        return
+    if page == "企业机会列表":
+        render_classified_opportunity_list(permit_dataset)
         return
 
     if not records:
         render_empty_state(has_files=bool(files))
         return
 
-    if page == "首页 Dashboard":
-        render_dashboard(records)
-    elif page == "今日营销任务":
+    if page == "今日营销任务":
         render_marketing_tasks(records)
     elif page == "产业地图":
         render_enterprise_map(records)
-    elif page == "企业机会列表":
-        render_opportunity_list(records)
     elif page == "企业详情":
         render_company_detail(records)
     else:
         render_risk_page(records)
 
 
-def render_dashboard(records: list[DashboardRecord]) -> None:
-    summary = summarize(records)
-    st.markdown("### 今日概览")
+def render_dashboard(dataset: PermitDataset) -> None:
+    summary = summarize_homepage_permits(dataset.items)
+    ownership_summary = summarize_ownership_permits(dataset.items)
+    st.markdown("### 真实许可证概览")
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("今日新增建设项目数量", summary["today_construction_project_count"])
-    col2.metric("新增施工许可证数量", summary["new_construction_permit_count"])
-    col3.metric("新增规划许可证数量", summary["new_planning_permit_count"])
-    col4.metric("高价值贷款机会数量", summary["high_value_loan_opportunity_count"])
+    col1.metric("今日新增许可证数量", summary["today_count"])
+    col2.metric("最近30天新增许可证数量", summary["recent_30_days_count"])
+    col3.metric("最近90天新增许可证数量", summary["recent_90_days_count"])
+    col4.metric("当前真实许可证总数", summary["total_count"])
+
+    st.markdown("### 项目主体性质")
+    owner_col1, owner_col2, owner_col3 = st.columns(3)
+    owner_col1.metric("民营企业项目数", ownership_summary["private_count"])
+    owner_col2.metric("国有商业企业项目数", ownership_summary["state_owned_count"])
+    owner_col3.metric("政府公益项目数", ownership_summary["government_public_count"])
+    owner_col4, owner_col5 = st.columns(2)
+    owner_col4.metric("待核验项目数", ownership_summary["unknown_count"])
+    owner_col5.metric(
+        "最近30天民营企业项目数",
+        ownership_summary["recent_30_private_count"],
+    )
 
     st.markdown("### 重点机会")
-    top_records = sorted(records, key=lambda record: (record.customer_level, -record.confidence))
-    top_records = [record for record in top_records if record.customer_level in {"A", "B"}][:10]
+    ownership_view = st.selectbox(
+        "主体性质筛选",
+        OWNER_FILTER_OPTIONS,
+        index=0,
+        key="homepage_owner_filter",
+    )
+    top_items = select_homepage_opportunities(
+        dataset.items,
+        recent_days=90,
+        limit=15,
+        ownership_view=ownership_view,
+    )
+    if top_items:
+        rows = []
+        for item in top_items:
+            products = item.get("recommended_products") or []
+            if isinstance(products, str):
+                products = [products] if products.strip() else []
+            effective_date = effective_permit_date(item)
+            rows.append(
+                {
+                    "企业或建设单位": _homepage_company_name(
+                        item.get("owner_name") or item.get("company_name")
+                    ),
+                    "项目名称": item.get("project_name") or "项目名称暂未披露",
+                    "主体性质": owner_category_label(item.get("owner_category")),
+                    "营销优先级": item.get("marketing_priority") or "待核验",
+                    "许可证类型": item.get("permit_type") or "建设工程规划许可证",
+                    "许可证编号": item.get("permit_number") or "未披露",
+                    "发现时间": effective_date.isoformat() if effective_date else "未披露",
+                    "数据来源": item.get("source_name") or "政府公开信息",
+                    "官方来源": item.get("source_url") or "",
+                    "新鲜度": int(item.get("fresh_score") or 0),
+                    "AI机会等级": item.get("ai_opportunity_level") or "待分析",
+                    "推荐产品": "、".join(products) if products else "待分析",
+                }
+            )
+        st.caption(
+            f"当前筛选：{ownership_view}。仅展示最近90天真实许可证，"
+            "按主体性质、营销优先级、近期程度、日期、新鲜度和AI机会等级排序。"
+        )
+        st.dataframe(
+            pd.DataFrame(rows),
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "官方来源": st.column_config.LinkColumn(
+                    "官方来源",
+                    display_text="查看原文",
+                ),
+                "新鲜度": st.column_config.NumberColumn(
+                    "新鲜度",
+                    min_value=0,
+                    max_value=100,
+                ),
+            },
+        )
+    else:
+        st.info(f"最近90天没有符合“{ownership_view}”条件的许可证记录。")
+
+    with st.expander("数据诊断", expanded=False):
+        diagnostics = {
+            "当前数据源": dataset.storage_source,
+            "实际读取文件": dataset.source_path,
+            "实际读取记录数": summary["total_count"],
+            "最新记录日期": summary["latest_date"],
+            "最近30天数量": summary["recent_30_days_count"],
+            "最近90天数量": summary["recent_90_days_count"],
+            "可营销企业项目数": sum(
+                bool(item.get("marketing_eligible")) for item in dataset.items
+            ),
+            "最近30天可营销企业数": ownership_summary[
+                "recent_30_marketing_eligible_count"
+            ],
+        }
+        st.dataframe(
+            pd.DataFrame(
+                [{"诊断项": key, "结果": str(value)} for key, value in diagnostics.items()]
+            ),
+            use_container_width=True,
+            hide_index=True,
+        )
+    st.caption("数据来源于政府公开信息，AI分析仅用于营销线索筛选，不作为授信审批依据。")
+
+
+def render_government_public_projects(dataset: PermitDataset) -> None:
+    st.markdown("### 政府公益项目")
+    st.caption("政府机关和事业单位项目仅用于审计，不进入首页默认重点机会。")
+    items = filter_permits_by_ownership(dataset.items, "已排除政府公益项目")
+    items = sorted(
+        items,
+        key=lambda item: effective_permit_date(item) or date.min,
+        reverse=True,
+    )
+    government_count = sum(
+        str(item.get("owner_category") or "") == "government_agency"
+        for item in items
+    )
+    public_count = sum(
+        str(item.get("owner_category") or "") == "public_institution"
+        for item in items
+    )
+    col1, col2, col3 = st.columns(3)
+    col1.metric("政府机关项目", government_count)
+    col2.metric("事业单位项目", public_count)
+    col3.metric("审计记录总数", len(items))
+
+    rows = []
+    for item in items:
+        effective_date = effective_permit_date(item)
+        rows.append(
+            {
+                "建设单位": _homepage_company_name(
+                    item.get("owner_name") or item.get("company_name")
+                ),
+                "项目名称": item.get("project_name") or "项目名称暂未披露",
+                "主体性质": owner_category_label(item.get("owner_category")),
+                "许可证日期": effective_date.isoformat() if effective_date else "未披露",
+                "排除原因": item.get("exclusion_reason") or "政府公益项目",
+                "判断依据": item.get("ownership_basis") or "待核验",
+                "置信度": int(item.get("ownership_confidence") or 0),
+                "官方来源": item.get("source_url") or "",
+            }
+        )
+    if rows:
+        st.dataframe(
+            pd.DataFrame(rows),
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "置信度": st.column_config.NumberColumn(
+                    "置信度",
+                    min_value=0,
+                    max_value=100,
+                ),
+                "官方来源": st.column_config.LinkColumn(
+                    "官方来源",
+                    display_text="查看原文",
+                ),
+            },
+        )
+    else:
+        st.info("当前没有已识别的政府机关或事业单位项目。")
+    st.caption("原始许可证记录未删除，分类结果可通过人工覆盖表修正。")
+
+
+def render_classified_opportunity_list(dataset: PermitDataset) -> None:
+    st.markdown("### 企业机会列表")
+    st.caption("列表使用真实建设工程规划许可证，并按项目主体性质筛选营销机会。")
+
+    filter_col1, filter_col2, filter_col3 = st.columns([1.2, 1, 1.5])
+    with filter_col1:
+        ownership_view = st.selectbox(
+            "主体性质",
+            OWNER_FILTER_OPTIONS,
+            index=0,
+            key="opportunity_owner_filter",
+        )
+    with filter_col2:
+        date_scope = st.segmented_control(
+            "日期范围",
+            ["最近30天", "最近90天", "全部"],
+            default="最近90天",
+            key="opportunity_date_scope",
+        )
+    with filter_col3:
+        search = st.text_input(
+            "搜索企业或项目",
+            placeholder="输入建设单位或项目名称",
+            key="opportunity_search",
+        ).strip()
+
+    recent_days = 30 if date_scope == "最近30天" else 90 if date_scope == "最近90天" else None
+    filtered = filter_permits_by_ownership(dataset.items, ownership_view)
+    filtered = filter_planning_permits(
+        filtered,
+        ai_level="全部",
+        recent_days=recent_days,
+    )
+    if search:
+        keyword = search.casefold()
+        filtered = [
+            item
+            for item in filtered
+            if keyword
+            in " ".join(
+                [
+                    str(item.get("owner_name") or item.get("company_name") or ""),
+                    str(item.get("project_name") or ""),
+                    str(item.get("permit_number") or ""),
+                ]
+            ).casefold()
+        ]
+    filtered = sort_classified_opportunities(filtered)
+
+    st.metric("当前筛选项目数", len(filtered))
+    rows = []
+    for item in filtered:
+        effective_date = effective_permit_date(item)
+        rows.append(
+            {
+                "企业或建设单位": _homepage_company_name(
+                    item.get("owner_name") or item.get("company_name")
+                ),
+                "项目名称": item.get("project_name") or "项目名称暂未披露",
+                "主体性质": owner_category_label(item.get("owner_category")),
+                "营销优先级": item.get("marketing_priority") or "待核验",
+                "许可证编号": item.get("permit_number") or "未披露",
+                "许可证日期": effective_date.isoformat() if effective_date else "未披露",
+                "数据来源": item.get("source_name") or "政府公开信息",
+                "人工核验": "是" if item.get("manual_review_required") else "否",
+                "官方来源": item.get("source_url") or "",
+            }
+        )
+    if rows:
+        st.dataframe(
+            pd.DataFrame(rows),
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "官方来源": st.column_config.LinkColumn(
+                    "官方来源",
+                    display_text="查看原文",
+                ),
+            },
+        )
+    else:
+        st.info("当前筛选条件下没有真实许可证项目。")
+    st.caption("数据来源于政府公开信息，仅用于营销线索筛选，不作为授信审批依据。")
+
+
+def render_legacy_data(records: list[DashboardRecord], files: list[Path]) -> None:
+    st.markdown("### 旧版项目数据")
+    st.caption("以下内容来自旧版融资分析JSON，仅作历史查询，不参与首页统计和重点机会排序。")
+    if files:
+        st.caption("实际读取文件：" + "、".join(file_path.name for file_path in files))
+    if not records:
+        st.info("暂无旧版项目数据。")
+        return
+    rows = [record.to_table_row() for record in records]
     st.dataframe(
-        pd.DataFrame([record.to_table_row() for record in top_records]),
+        pd.DataFrame(rows),
         use_container_width=True,
         hide_index=True,
     )
 
-    col_left, col_right = st.columns([1, 1])
-    with col_left:
-        st.markdown("### 客户等级分布")
-        level_df = (
-            pd.DataFrame([{"等级": record.customer_level, "数量": 1} for record in records])
-            .groupby("等级", as_index=False)
-            .sum()
-            .sort_values("等级")
-        )
-        st.bar_chart(level_df, x="等级", y="数量", use_container_width=True)
-    with col_right:
-        st.markdown("### 行业分布")
-        industry_df = (
-            pd.DataFrame([{"行业": record.industry, "数量": 1} for record in records])
-            .groupby("行业", as_index=False)
-            .sum()
-            .sort_values("数量", ascending=False)
-        )
-        st.bar_chart(industry_df, x="行业", y="数量", use_container_width=True)
+
+def _homepage_company_name(value: object) -> str:
+    text = str(value or "").strip()
+    if not text or text in {"未披露", "未识别"}:
+        return "建设单位暂未披露"
+    return text
 
 
 def render_planning_construction_permits(dataset: PermitDataset) -> None:
@@ -177,7 +474,9 @@ def render_planning_construction_permits(dataset: PermitDataset) -> None:
         st.caption(f"当前显示 {len(filtered_items)} 条，按发证日期或发布日期倒序。")
         rows = []
         for item in filtered_items:
-            company_name = item.get("company_name") or "未披露"
+            company_name = _homepage_company_name(
+                item.get("owner_name") or item.get("company_name")
+            )
             permit_date = item.get("permit_date") or "未披露"
             publish_date = item.get("publish_date") or "未披露"
             recommended_products = item.get("recommended_products") or []
@@ -185,6 +484,12 @@ def render_planning_construction_permits(dataset: PermitDataset) -> None:
                 {
                     "企业或建设单位": company_name,
                     "项目名称": item.get("project_name") or "未披露",
+                    "主体性质": owner_category_label(item.get("owner_category")),
+                    "营销优先级": item.get("marketing_priority") or "待核验",
+                    "分类置信度": int(item.get("ownership_confidence") or 0),
+                    "人工核验": (
+                        "是" if item.get("manual_review_required") else "否"
+                    ),
                     "许可证编号": item.get("permit_number") or "未披露",
                     "发证日期": permit_date,
                     "发布日期": publish_date,
@@ -207,6 +512,11 @@ def render_planning_construction_permits(dataset: PermitDataset) -> None:
                 hide_index=True,
                 column_config={
                     "fresh_score": st.column_config.NumberColumn("fresh_score", min_value=0, max_value=100),
+                    "分类置信度": st.column_config.NumberColumn(
+                        "分类置信度",
+                        min_value=0,
+                        max_value=100,
+                    ),
                     "置信度": st.column_config.NumberColumn("置信度", min_value=0, max_value=100),
                     "官方来源链接": st.column_config.LinkColumn("官方来源链接", display_text="查看原文"),
                 },
@@ -216,9 +526,66 @@ def render_planning_construction_permits(dataset: PermitDataset) -> None:
     else:
         st.info("建设工程规划许可证正式数据尚未导入。")
 
-    st.info("建设用地规划许可证：数据源验证中，暂未纳入V1版本。")
-    st.info("建设工程施工许可证：数据源验证中，暂未纳入V1版本。")
+    st.caption("建设用地规划许可证和建设工程施工许可证已在独立标签页展示。")
     st.caption("数据来源于政府公开信息，AI分析仅用于营销线索筛选，不作为授信审批依据。")
+
+
+def render_official_permit_page(
+    dataset: OfficialPermitDataset,
+    *,
+    page_title: str,
+    source_name: str,
+    source_url: str,
+    source_note: str,
+) -> None:
+    st.markdown(f"### {page_title}")
+    st.markdown(f"官方数据来源：[{source_name}]({source_url})")
+    st.caption(f"最后更新时间：{dataset.last_updated}　数据读取：{dataset.storage_source}")
+    st.caption(source_note)
+
+    summary = summarize_official_permits(dataset.items)
+    col1, col2, col3 = st.columns(3)
+    col1.metric("总记录数", summary["total_count"])
+    col2.metric("最近90天", summary["recent_90_days_count"])
+    col3.metric("最近30天", summary["recent_30_days_count"])
+
+    rows = []
+    for item in sort_official_permits(dataset.items):
+        rows.append(
+            {
+                "企业或建设单位": item.get("company_name") or "未披露",
+                "项目名称": item.get("project_name") or "未披露",
+                "许可证编号": item.get("permit_number") or "未披露",
+                "发证日期": item.get("permit_date") or "未披露",
+                "发布日期": item.get("publish_date") or "未披露",
+                "项目地址": item.get("project_address") or "未披露",
+                "发证机关": item.get("issuing_authority") or "未披露",
+                "fresh_score": int(item.get("fresh_score") or 0),
+                "官方来源链接": item.get("source_url") or "",
+            }
+        )
+
+    if rows:
+        st.dataframe(
+            pd.DataFrame(rows),
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "fresh_score": st.column_config.NumberColumn(
+                    "fresh_score",
+                    min_value=0,
+                    max_value=100,
+                ),
+                "官方来源链接": st.column_config.LinkColumn(
+                    "官方来源链接",
+                    display_text="查看原文",
+                ),
+            },
+        )
+    else:
+        st.info("当前没有通过海门归属核验的正式记录。")
+
+    st.caption("数据来源于政府公开信息，仅用于营销线索筛选，不作为授信审批依据。")
 
 
 def render_marketing_tasks(records: list[DashboardRecord]) -> None:
