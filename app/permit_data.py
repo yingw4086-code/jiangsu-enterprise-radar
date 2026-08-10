@@ -19,7 +19,14 @@ from app.permit_ownership import (
 
 
 PLANNING_PERMIT_TYPE = "建设工程规划许可证"
+DEFAULT_REGION_KEY = "320684"
 UNKNOWN = "未披露"
+PROJECT_TYPE_FILTER_OPTIONS = ("企业项目", "政府项目", "全部")
+PROJECT_TYPE_FILTER_VALUES = {
+    "企业项目": "enterprise",
+    "政府项目": "government",
+}
+CLASSIFICATION_CONFIDENCE_SORT_ORDER = {"high": 0, "medium": 1, "low": 2}
 AI_LEVEL_SORT_ORDER = {"A": 0, "B": 1, "C": 2}
 OWNER_VIEW_ELIGIBLE = "可营销企业"
 OWNER_FILTER_OPTIONS = (
@@ -48,8 +55,62 @@ class PermitDataset:
     source_path: str
 
 
-def load_planning_permit_dataset(db_path: Path, cloud_json_path: Path) -> PermitDataset:
-    sqlite_items = _load_sqlite(db_path)
+def summarize_region_opportunities(items: list[dict[str, Any]]) -> dict[str, int]:
+    project_types = [str(item.get("project_type") or "unknown") for item in items]
+    return {
+        "total_count": len(items),
+        "enterprise_count": project_types.count("enterprise"),
+        "government_count": project_types.count("government"),
+        "high_confidence_opportunity_count": sum(
+            project_type == "enterprise"
+            and str(item.get("classification_confidence") or "low") == "high"
+            for item, project_type in zip(items, project_types, strict=True)
+        ),
+    }
+
+
+def filter_permits_by_project_type(
+    items: list[dict[str, Any]],
+    project_type_view: str,
+) -> list[dict[str, Any]]:
+    if project_type_view == "全部":
+        return list(items)
+    project_type = PROJECT_TYPE_FILTER_VALUES.get(project_type_view)
+    if project_type is None:
+        return []
+    return [
+        item
+        for item in items
+        if str(item.get("project_type") or "unknown") == project_type
+    ]
+
+
+def select_priority_enterprise_opportunities(
+    items: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    enterprise_items = filter_permits_by_project_type(items, "企业项目")
+    return sorted(
+        enterprise_items,
+        key=lambda item: (
+            CLASSIFICATION_CONFIDENCE_SORT_ORDER.get(
+                str(item.get("classification_confidence") or "low"),
+                99,
+            ),
+            -(_publish_date(item) or date.min).toordinal(),
+            str(item.get("company_name") or ""),
+            str(item.get("project_name") or ""),
+        ),
+    )
+
+
+def load_planning_permit_dataset(
+    db_path: Path,
+    cloud_json_path: Path,
+    *,
+    region_key: str = DEFAULT_REGION_KEY,
+) -> PermitDataset:
+    selected_region = _validated_region_key(region_key)
+    sqlite_items = _load_sqlite(db_path, selected_region)
     if sqlite_items:
         return PermitDataset(
             items=sqlite_items,
@@ -57,7 +118,7 @@ def load_planning_permit_dataset(db_path: Path, cloud_json_path: Path) -> Permit
             last_updated=_latest_seen(sqlite_items),
             source_path=_display_path(db_path),
         )
-    cloud_items = _load_cloud_json(cloud_json_path)
+    cloud_items = _load_cloud_json(cloud_json_path, selected_region)
     return PermitDataset(
         items=cloud_items,
         storage_source="Streamlit Cloud JSON" if cloud_items else "暂无正式数据",
@@ -240,7 +301,7 @@ def filter_planning_permits(
     )
 
 
-def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
+def _load_sqlite(db_path: Path, region_key: str) -> list[dict[str, Any]]:
     if not db_path.exists():
         return []
     conn: sqlite3.Connection | None = None
@@ -259,8 +320,14 @@ def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
             "issuing_authority",
             "district",
             "district_code",
+            "province",
+            "city",
+            "region_key",
+            "area_code",
             "source_url",
             "source_name",
+            "source_region",
+            "source_time",
             "fresh_score",
             "first_seen_at",
             "last_seen_at",
@@ -294,10 +361,38 @@ def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
                 NULL AS risk_notice
             """
             ai_join = ""
+        project_type_field = (
+            "permits.project_type"
+            if "project_type" in columns
+            else "'unknown' AS project_type"
+        )
+        classification_confidence_field = (
+            "permits.classification_confidence"
+            if "classification_confidence" in columns
+            else "'low' AS classification_confidence"
+        )
+        profile_fields = {
+            field: (
+                f"permits.{field}"
+                if field in columns
+                else f"'{UNKNOWN}' AS {field}"
+            )
+            for field in (
+                "investment",
+                "project_scale",
+                "project_stage",
+                "legal_person",
+                "registered_capital",
+                "establish_date",
+                "company_address",
+                "company_scale",
+            )
+        }
         rows = conn.execute(
             f"""
             SELECT
                 permits.company_name,
+                permits.construction_unit,
                 permits.project_name,
                 permits.permit_type,
                 permits.permit_number,
@@ -307,8 +402,23 @@ def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
                 permits.issuing_authority,
                 permits.district,
                 permits.district_code,
+                permits.province,
+                permits.city,
+                permits.region_key,
+                permits.area_code,
+                permits.industry,
+                {profile_fields["investment"]},
+                {profile_fields["project_scale"]},
+                {profile_fields["project_stage"]},
+                {profile_fields["legal_person"]},
+                {profile_fields["registered_capital"]},
+                {profile_fields["establish_date"]},
+                {profile_fields["company_address"]},
+                {profile_fields["company_scale"]},
                 permits.source_url,
                 permits.source_name,
+                permits.source_region,
+                permits.source_time,
                 permits.fresh_score,
                 permits.first_seen_at,
                 permits.last_seen_at,
@@ -322,13 +432,15 @@ def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
                 permits.exclusion_reason,
                 permits.manual_review_required,
                 permits.classification_updated_at,
+                {project_type_field},
+                {classification_confidence_field},
                 {ai_fields}
             FROM construction_permits AS permits
             {ai_join}
-            WHERE permits.permit_type = ?
+            WHERE permits.permit_type = ? AND permits.region_key = ?
             ORDER BY CASE WHEN permits.permit_date <> ? THEN permits.permit_date ELSE permits.publish_date END DESC
             """,
-            (PLANNING_PERMIT_TYPE, UNKNOWN),
+            (PLANNING_PERMIT_TYPE, region_key, UNKNOWN),
         ).fetchall()
         return [_normalize_item(dict(row)) for row in rows]
     except (OSError, sqlite3.Error):
@@ -338,7 +450,7 @@ def _load_sqlite(db_path: Path) -> list[dict[str, Any]]:
             conn.close()
 
 
-def _load_cloud_json(path: Path) -> list[dict[str, Any]]:
+def _load_cloud_json(path: Path, region_key: str) -> list[dict[str, Any]]:
     if not path.exists():
         return []
     try:
@@ -352,8 +464,24 @@ def _load_cloud_json(path: Path) -> list[dict[str, Any]]:
         for item in payload
         if isinstance(item, dict)
         and item.get("permit_type") == PLANNING_PERMIT_TYPE
-        and item.get("district_code") == "320684"
+        and _item_region_key(item) == region_key
     ]
+
+
+def _validated_region_key(region_key: str) -> str:
+    value = str(region_key or "").strip()
+    if not value:
+        raise ValueError("region_key 不能为空")
+    return value
+
+
+def _item_region_key(item: dict[str, Any]) -> str:
+    return str(
+        item.get("region_key")
+        or item.get("area_code")
+        or item.get("district_code")
+        or ""
+    ).strip()
 
 
 def _latest_seen(items: list[dict[str, Any]]) -> str:
@@ -375,6 +503,11 @@ def _effective_date(item: dict[str, Any]) -> date | None:
 
 def _normalize_item(item: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(item)
+    normalized["project_type"] = str(normalized.get("project_type") or "unknown")
+    normalized["classification_confidence"] = str(
+        normalized.get("classification_confidence") or "low"
+    )
+    normalized["industry"] = str(normalized.get("industry") or UNKNOWN)
     products = normalized.pop("recommended_products_json", normalized.get("recommended_products", []))
     if isinstance(products, str):
         try:
@@ -427,6 +560,10 @@ def _parse_date(value: str) -> date | None:
         except ValueError:
             continue
     return None
+
+
+def _publish_date(item: dict[str, Any]) -> date | None:
+    return _parse_date(str(item.get("publish_date") or ""))
 
 
 def _date_within_days(

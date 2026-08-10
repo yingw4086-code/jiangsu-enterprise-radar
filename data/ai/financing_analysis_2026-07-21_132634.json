@@ -1,0 +1,4029 @@
+﻿{
+  "generated_at": "2026-07-21 13:26:34",
+  "model": "multi_source_rule_scoring",
+  "items": [
+    {
+      "index": 1,
+      "enterprise_name": "未披露",
+      "project_name": "总投资30亿元艾郎风电三期项目签约",
+      "industry": "新能源",
+      "investment_amount": "30.00亿元",
+      "project_address": "南通市海门区",
+      "date": "2026-03-11",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/4ecb8ea7-1cf7-4c9d-bd8c-09422ec3733b.html",
+      "source_title": "总投资30亿元艾郎风电三期项目签约",
+      "publish_time": "2026-03-11",
+      "update_time": "2026-03-11",
+      "fresh_score": 40,
+      "opportunity_score": 75.0,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "绿色金融",
+          "银团贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分75.0，时间新鲜度40分，阶段为投资备案阶段，行业为新能源，金额为30.00亿元。",
+        "confidence": 0.75,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在较大固定资产或项目贷款需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "绿色金融",
+          "银团贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 2,
+      "enterprise_name": "南通江海港建设工程有限公司",
+      "project_name": "同意南通江海港建设工程有限公司汇成苑西区的行政许可 2026-07-15",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-07-15",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/2299174a-ebc4-4862-acf5-4f8d8e244a08.html",
+      "source_title": "关于同意南通江海港建设工程有限公司汇成苑西区的行政许可 2026-07-15",
+      "publish_time": "2026-07-15",
+      "update_time": "2026-07-15",
+      "fresh_score": 100,
+      "opportunity_score": 69.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通江海港建设工程有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分69.5，时间新鲜度100分，阶段为施工许可/开工阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.69,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通江海港建设工程有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 3,
+      "enterprise_name": "未披露",
+      "project_name": "总投资50亿元省重大项目施工正酣",
+      "industry": "未披露",
+      "investment_amount": "50.00亿元",
+      "project_address": "南通市海门区",
+      "date": "2026-04-29",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/033fd43e-00e7-40a5-98e3-bd69312f4e59.html",
+      "source_title": "总投资50亿元省重大项目施工正酣",
+      "publish_time": "2026-04-29",
+      "update_time": "2026-04-29",
+      "fresh_score": 60,
+      "opportunity_score": 69.0,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "银团贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分69.0，时间新鲜度60分，阶段为投资备案阶段，行业为未披露，金额为50.00亿元。",
+        "confidence": 0.69,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在较大固定资产或项目贷款需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "银团贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 4,
+      "enterprise_name": "南通沧海生物科技有限公司",
+      "project_name": "南通沧海生物科技有限公司年产2.8亿件高端医疗器械新建项目",
+      "industry": "生物医药",
+      "investment_amount": "2.80亿元",
+      "project_address": "南通市海门区",
+      "date": "2024-01-11",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/34de11ed-0167-46f4-80f1-8c27a409e2d0.html",
+      "source_title": "区行政审批局关于南通沧海生物科技有限公司年产2.8亿件高端医疗器械新建项目备案的批复",
+      "publish_time": "2024-01-11",
+      "update_time": "2024-01-11",
+      "fresh_score": 20,
+      "opportunity_score": 65.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "银团贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通沧海生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分65.5，时间新鲜度20分，阶段为投资备案阶段，行业为生物医药，金额为2.80亿元。",
+        "confidence": 0.66,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在较大固定资产或项目贷款需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "银团贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通沧海生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 5,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]8号 2026-07-14",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-07-14",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/9c4f9586-6fdb-4de0-9d25-a132a983fab1.html",
+      "source_title": "海门网挂[2026]8号 2026-07-14",
+      "publish_time": "2026-07-14",
+      "update_time": "2026-07-14",
+      "fresh_score": 100,
+      "opportunity_score": 64.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分64.5，时间新鲜度100分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.65,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 6,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]7号 2026-07-14",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-07-14",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/c4beb943-4558-41fc-855b-3f1381815685.html",
+      "source_title": "海门网挂[2026]7号 2026-07-14",
+      "publish_time": "2026-07-14",
+      "update_time": "2026-07-14",
+      "fresh_score": 100,
+      "opportunity_score": 64.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分64.5，时间新鲜度100分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.65,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 7,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]6号 2026-07-14",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-07-14",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/f24b43db-f672-4945-90f7-41316671844f.html",
+      "source_title": "海门网挂[2026]6号 2026-07-14",
+      "publish_time": "2026-07-14",
+      "update_time": "2026-07-14",
+      "fresh_score": 100,
+      "opportunity_score": 64.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分64.5，时间新鲜度100分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.65,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 8,
+      "enterprise_name": "江苏金叶煊纺织品有限公司",
+      "project_name": "南通市海门区数据局关于江苏金叶煊纺织品有限公司年产高性能纤维丝2.8万吨、2万吨高性能纤维面料研发及制造项目的备案",
+      "industry": "新材料",
+      "investment_amount": "3万元",
+      "project_address": "海门区数据局关于江苏金叶煊纺织品有限公司年产高性能纤维丝2.8万吨、2万吨高性能纤维面料研发及制造项目的备案 南通市海门区数据局关于江苏金叶煊纺织品有限公司年产高性能",
+      "date": "2026-07-01",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/08dd14de-9481-426d-8fd3-749c52026123.html",
+      "source_title": "南通市海门区数据局关于江苏金叶煊纺织品有限公司年产高性能纤维丝2.8万吨、2万吨高性能纤维面料研发及制造项目的备案",
+      "publish_time": "2026-07-01",
+      "update_time": "2026-07-01",
+      "fresh_score": 80,
+      "opportunity_score": 64.0,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系江苏金叶煊纺织品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分64.0，时间新鲜度80分，阶段为投资备案阶段，行业为新材料，金额为3万元。",
+        "confidence": 0.64,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系江苏金叶煊纺织品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 9,
+      "enterprise_name": "欧派智能装备（南通）有限公司",
+      "project_name": "同意欧派智能装备（南通）有限公司模具智能装备制造项目的行政许可 2026-06-05",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-06-05",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/e3bd9699-8b8b-4a30-ab9d-4d5bd801c787.html",
+      "source_title": "关于同意欧派智能装备（南通）有限公司模具智能装备制造项目的行政许可 2026-06-05",
+      "publish_time": "2026-06-05",
+      "update_time": "2026-06-05",
+      "fresh_score": 60,
+      "opportunity_score": 61.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系欧派智能装备（南通）有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分61.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.61,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系欧派智能装备（南通）有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 10,
+      "enterprise_name": "未披露",
+      "project_name": "三厂电子元件专用薄膜材料项目开工",
+      "industry": "电子",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-05-14",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/25f71e9a-af19-4393-828a-221a23f29878.html",
+      "source_title": "三厂电子元件专用薄膜材料项目开工",
+      "publish_time": "2026-05-14",
+      "update_time": "2026-05-14",
+      "fresh_score": 60,
+      "opportunity_score": 60.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分60.5，时间新鲜度60分，阶段为投资备案阶段，行业为电子，金额为未披露。",
+        "confidence": 0.6,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 11,
+      "enterprise_name": "未披露",
+      "project_name": "恒金新能源汽车用高端铝合金板带箔智能化项目开工",
+      "industry": "新能源",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-05-07",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/24451239-ba43-4d25-8ec1-67caefbd21bd.html",
+      "source_title": "恒金新能源汽车用高端铝合金板带箔智能化项目开工",
+      "publish_time": "2026-05-07",
+      "update_time": "2026-05-07",
+      "fresh_score": 60,
+      "opportunity_score": 60.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分60.5，时间新鲜度60分，阶段为投资备案阶段，行业为新能源，金额为未披露。",
+        "confidence": 0.6,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 12,
+      "enterprise_name": "未披露",
+      "project_name": "瀚思瑞半导体二期项目签约",
+      "industry": "电子",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-04-23",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/2d46bbb7-99ba-488a-935f-0306da09d11e.html",
+      "source_title": "瀚思瑞半导体二期项目签约",
+      "publish_time": "2026-04-23",
+      "update_time": "2026-04-23",
+      "fresh_score": 60,
+      "opportunity_score": 60.5,
+      "ai_analysis": {
+        "has_financing_need": true,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "customer_value_level": "B",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分60.5，时间新鲜度60分，阶段为投资备案阶段，行业为电子，金额为未披露。",
+        "confidence": 0.6,
+        "是否值得拜访": "是",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 13,
+      "enterprise_name": "金呢股份检测技术中心",
+      "project_name": "金呢股份检测技术中心投运",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-07-17",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/a30b7f15-9050-48be-bf66-50fcf581cbd0.html",
+      "source_title": "金呢股份检测技术中心投运",
+      "publish_time": "2026-07-17",
+      "update_time": "2026-07-17",
+      "fresh_score": 100,
+      "opportunity_score": 59.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系金呢股份检测技术中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分59.5，时间新鲜度100分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.59,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系金呢股份检测技术中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 14,
+      "enterprise_name": "中天钢铁集团（南通）有限公司",
+      "project_name": "同意中天钢铁集团（南通）有限公司海关监管区项目的行政许可 2026-07-01",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-07-01",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/ade9bb76-2a8a-4d0a-9241-e0823d4e8576.html",
+      "source_title": "关于同意中天钢铁集团（南通）有限公司海关监管区项目的行政许可 2026-07-01",
+      "publish_time": "2026-07-01",
+      "update_time": "2026-07-01",
+      "fresh_score": 80,
+      "opportunity_score": 59.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系中天钢铁集团（南通）有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分59.5，时间新鲜度80分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.59,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系中天钢铁集团（南通）有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 15,
+      "enterprise_name": "南通市海门常鸿建设开发有限公司",
+      "project_name": "同意南通市海门常鸿建设开发有限公司玉竹南苑的行政许可 2026-06-23",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-06-23",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/11d9ff31-a9ee-4443-af57-03c7d0212193.html",
+      "source_title": "关于同意南通市海门常鸿建设开发有限公司玉竹南苑的行政许可 2026-06-23",
+      "publish_time": "2026-06-23",
+      "update_time": "2026-06-23",
+      "fresh_score": 80,
+      "opportunity_score": 59.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门常鸿建设开发有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分59.5，时间新鲜度80分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.59,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门常鸿建设开发有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 16,
+      "enterprise_name": "未披露",
+      "project_name": "2026年南通市海门区档案馆数字档案馆软件项目维保服务实行单一来源采购方式的公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区档案馆数字档案馆软件项目维保服务实行单一来源采购方式的公示",
+      "date": "2026-07-10",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/c1aa9fb8-6fd6-409d-a0e4-9b8c5df28db2.html",
+      "source_title": "2026年南通市海门区档案馆数字档案馆软件项目维保服务实行单一来源采购方式的公示",
+      "publish_time": "2026-07-10",
+      "update_time": "2026-07-10",
+      "fresh_score": 80,
+      "opportunity_score": 57.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分57.0，时间新鲜度80分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.57,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 17,
+      "enterprise_name": "南通市海门区农业技术推广中心",
+      "project_name": "南通市海门区农业技术推广中心采购2026年度水稻重大病虫疫情防控物资项目采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业技术推广中心采购2026年度水稻重大病虫疫情防控物资项目采购公告",
+      "date": "2026-07-01",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/b63f4cb1-0b48-4e6b-9fb5-50d661f1af6f.html",
+      "source_title": "南通市海门区农业技术推广中心采购2026年度水稻重大病虫疫情防控物资项目采购公告",
+      "publish_time": "2026-07-01",
+      "update_time": "2026-07-01",
+      "fresh_score": 80,
+      "opportunity_score": 57.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分57.0，时间新鲜度80分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.57,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 18,
+      "enterprise_name": "南通市海门区行政中心",
+      "project_name": "南通市海门区行政中心食堂物资采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区行政中心食堂物资采购公告",
+      "date": "2026-06-22",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/d2856047-5cff-49c4-8dcf-6998be9239a4.html",
+      "source_title": "南通市海门区行政中心食堂物资采购公告",
+      "publish_time": "2026-06-22",
+      "update_time": "2026-06-22",
+      "fresh_score": 80,
+      "opportunity_score": 57.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分57.0，时间新鲜度80分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.57,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 19,
+      "enterprise_name": "南通画溪服装衬布有限公司",
+      "project_name": "南通画溪服装衬布有限公司年产服装辅料5000万米、服装面辅料基布1000吨项目",
+      "industry": "纺织服装",
+      "investment_amount": "5000万元",
+      "project_address": "南通市海门区",
+      "date": "2024-12-18",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/1d25a274-3630-474b-bb44-c1b993c58de2.html",
+      "source_title": "区数据局关于南通画溪服装衬布有限公司年产服装辅料5000万米、服装面辅料基布1000吨项目备案的批复",
+      "publish_time": "2024-12-18",
+      "update_time": "2024-12-18",
+      "fresh_score": 20,
+      "opportunity_score": 57.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通画溪服装衬布有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分57.0，时间新鲜度20分，阶段为投资备案阶段，行业为纺织服装，金额为5000万元。",
+        "confidence": 0.57,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在项目建设和流动资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通画溪服装衬布有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 20,
+      "enterprise_name": "【拟批准公示】南通利扬汽车零部件有限公司",
+      "project_name": "【拟批准公示】南通利扬汽车零部件有限公司年产2000万个汽车用橡胶制品新建项目",
+      "industry": "设备制造",
+      "investment_amount": "2000万元",
+      "project_address": "南通市海门区",
+      "date": "2025-03-10",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/4f8f225d-15a5-4040-8e17-08f83bf9eece.html",
+      "source_title": "【拟批准公示】南通利扬汽车零部件有限公司年产2000万个汽车用橡胶制品新建项目",
+      "publish_time": "2025-03-10",
+      "update_time": "2025-03-10",
+      "fresh_score": 20,
+      "opportunity_score": 56.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通利扬汽车零部件有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分56.0，时间新鲜度20分，阶段为环评审批阶段，行业为设备制造，金额为2000万元。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在项目建设和流动资金需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通利扬汽车零部件有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 21,
+      "enterprise_name": "未披露",
+      "project_name": "通盈船用特种新材料项目开工",
+      "industry": "新材料",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-03-30",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/eac71529-509b-42ee-ae69-5a7de1cca34d.html",
+      "source_title": "通盈船用特种新材料项目开工",
+      "publish_time": "2026-03-30",
+      "update_time": "2026-03-30",
+      "fresh_score": 40,
+      "opportunity_score": 55.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分55.5，时间新鲜度40分，阶段为投资备案阶段，行业为新材料，金额为未披露。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 22,
+      "enterprise_name": "【拟批准公示】江苏欣力智能电子有限公司",
+      "project_name": "【拟批准公示】江苏欣力智能电子有限公司豪华汽车中控总成及精密零部件智能化生产技改项目",
+      "industry": "电子",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-03-17",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/9d321d49-95ad-40a7-9c53-9ea875ea7cba.html",
+      "source_title": "【拟批准公示】江苏欣力智能电子有限公司豪华汽车中控总成及精密零部件智能化生产技改项目",
+      "publish_time": "2025-03-17",
+      "update_time": "2025-03-17",
+      "fresh_score": 20,
+      "opportunity_score": 55.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏欣力智能电子有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分55.5，时间新鲜度20分，阶段为环评审批阶段，行业为电子，金额为未披露。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏欣力智能电子有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 23,
+      "enterprise_name": "【拟批准公示】南通振余建设工程有限公司",
+      "project_name": "【拟批准公示】南通振余建设工程有限公司升浩WPC生态木地板及复合木地板项目",
+      "industry": "新材料",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-02-25",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/6b0fa4e1-302a-4704-afb8-0992ed73f8ea.html",
+      "source_title": "【拟批准公示】南通振余建设工程有限公司升浩WPC生态木地板及复合木地板项目",
+      "publish_time": "2025-02-25",
+      "update_time": "2025-02-25",
+      "fresh_score": 20,
+      "opportunity_score": 55.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通振余建设工程有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分55.5，时间新鲜度20分，阶段为环评审批阶段，行业为新材料，金额为未披露。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通振余建设工程有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 24,
+      "enterprise_name": "【拟批准公示】南通牧昆生物科技有限公司",
+      "project_name": "【拟批准公示】南通牧昆生物科技有限公司年产10000吨香料新建项目",
+      "industry": "生物医药",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-27",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/3cb81fe1-78c8-482c-a75c-ce3e7ce3fdda.html",
+      "source_title": "【拟批准公示】南通牧昆生物科技有限公司年产10000吨香料新建项目",
+      "publish_time": "2025-01-27",
+      "update_time": "2025-01-27",
+      "fresh_score": 20,
+      "opportunity_score": 55.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通牧昆生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分55.5，时间新鲜度20分，阶段为环评审批阶段，行业为生物医药，金额为未披露。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通牧昆生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 25,
+      "enterprise_name": "【拟批准公示】南通吕翔新材料科技有限公司",
+      "project_name": "【拟批准公示】南通吕翔新材料科技有限公司年产覆膜砂10000T、再生砂10000T迁建项目",
+      "industry": "新材料",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-14",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/5d901130-75eb-4db9-98e5-ea208efdc4b0.html",
+      "source_title": "【拟批准公示】南通吕翔新材料科技有限公司年产覆膜砂10000T、再生砂10000T迁建项目",
+      "publish_time": "2025-01-14",
+      "update_time": "2025-01-14",
+      "fresh_score": 20,
+      "opportunity_score": 55.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通吕翔新材料科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分55.5，时间新鲜度20分，阶段为环评审批阶段，行业为新材料，金额为未披露。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通吕翔新材料科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 26,
+      "enterprise_name": "【拟批准公示】南通夏克塑料包装有限公司",
+      "project_name": "【拟批准公示】南通夏克塑料包装有限公司年产300吨塑料薄膜、900吨薄膜袋、400吨印刷薄膜袋和300吨复合膜袋迁建项目",
+      "industry": "新材料",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2024-12-16",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/2552b7b0-2a4f-4fca-87d3-8b2f300ebb6f.html",
+      "source_title": "【拟批准公示】南通夏克塑料包装有限公司年产300吨塑料薄膜、900吨薄膜袋、400吨印刷薄膜袋和300吨复合膜袋迁建项目",
+      "publish_time": "2024-12-16",
+      "update_time": "2024-12-16",
+      "fresh_score": 20,
+      "opportunity_score": 55.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通夏克塑料包装有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分55.5，时间新鲜度20分，阶段为环评审批阶段，行业为新材料，金额为未披露。",
+        "confidence": 0.56,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通夏克塑料包装有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 27,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局城区零星绿化的行政许可 2026-06-09",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局城区零星绿化的行政许可 2026-06-09",
+      "date": "2026-06-09",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/89e61fe5-eae8-4fe3-8f91-8c55e559d8c2.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局城区零星绿化的行政许可 2026-06-09",
+      "publish_time": "2026-06-09",
+      "update_time": "2026-06-09",
+      "fresh_score": 60,
+      "opportunity_score": 54.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.55,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 28,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局十三号横河两侧绿化的行政许可 2026-06-02",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局十三号横河两侧绿化的行政许可 2026-06-02",
+      "date": "2026-06-02",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/ae6ec84b-b04d-4f1d-a325-c30db61252b4.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局十三号横河两侧绿化的行政许可 2026-06-02",
+      "publish_time": "2026-06-02",
+      "update_time": "2026-06-02",
+      "fresh_score": 60,
+      "opportunity_score": 54.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.55,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 29,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局口袋公园的行政许可 2026-06-02",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局口袋公园的行政许可 2026-06-02",
+      "date": "2026-06-02",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/544944e0-fab0-45f0-b8a5-1b8435499b47.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局口袋公园的行政许可 2026-06-02",
+      "publish_time": "2026-06-02",
+      "update_time": "2026-06-02",
+      "fresh_score": 60,
+      "opportunity_score": 54.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.55,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 30,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局珠江路绿化的行政许可 2026-05-06",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局珠江路绿化的行政许可 2026-05-06",
+      "date": "2026-05-06",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/0afeb594-1c07-4514-95f8-e433dfd7b340.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局珠江路绿化的行政许可 2026-05-06",
+      "publish_time": "2026-05-06",
+      "update_time": "2026-05-06",
+      "fresh_score": 60,
+      "opportunity_score": 54.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.55,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 31,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局狮山北路绿化的行政许可 2026-05-06",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局狮山北路绿化的行政许可 2026-05-06",
+      "date": "2026-05-06",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/86b4b9f9-8cd8-4047-bf9b-51fb16c40ecf.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局狮山北路绿化的行政许可 2026-05-06",
+      "publish_time": "2026-05-06",
+      "update_time": "2026-05-06",
+      "fresh_score": 60,
+      "opportunity_score": 54.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.55,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 32,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局聚贤路两侧绿化的行政许可 2026-05-06",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局聚贤路两侧绿化的行政许可 2026-05-06",
+      "date": "2026-05-06",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/b46d4f68-5f51-466d-a854-6644e07a23fe.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局聚贤路两侧绿化的行政许可 2026-05-06",
+      "publish_time": "2026-05-06",
+      "update_time": "2026-05-06",
+      "fresh_score": 60,
+      "opportunity_score": 54.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.5，时间新鲜度60分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.55,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 33,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业综合执法大队报废农业机械处置成交公示",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业综合执法大队报废农业机械处置成交公示",
+      "date": "2026-03-31",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/6fb2dede-4553-488e-a125-4e642d0135a1.html",
+      "source_title": "南通市海门区农业综合执法大队报废农业机械处置成交公示",
+      "publish_time": "2026-03-31",
+      "update_time": "2026-03-31",
+      "fresh_score": 40,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 34,
+      "enterprise_name": "【拟批准公示】南通禾月塘生物科技有限公司",
+      "project_name": "【拟批准公示】南通禾月塘生物科技有限公司年产300吨蚯蚓和12万吨营养土项目",
+      "industry": "生物医药",
+      "investment_amount": "12万元",
+      "project_address": "南通市海门区",
+      "date": "2025-03-11",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/c25fad51-3e92-4e5d-a89e-9b58c19ec1cf.html",
+      "source_title": "【拟批准公示】南通禾月塘生物科技有限公司年产300吨蚯蚓和12万吨营养土项目",
+      "publish_time": "2025-03-11",
+      "update_time": "2025-03-11",
+      "fresh_score": 20,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通禾月塘生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度20分，阶段为环评审批阶段，行业为生物医药，金额为12万元。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通禾月塘生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 35,
+      "enterprise_name": "【拟批准公示】南通禾月塘生物科技有限公司",
+      "project_name": "【拟批准公示】南通禾月塘生物科技有限公司年产300吨蚯蚓和12万吨营养土项目",
+      "industry": "生物医药",
+      "investment_amount": "12万元",
+      "project_address": "南通市海门区",
+      "date": "2025-02-08",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/57042310-6227-480c-b1fc-0d48142051ca.html",
+      "source_title": "【拟批准公示】南通禾月塘生物科技有限公司年产300吨蚯蚓和12万吨营养土项目",
+      "publish_time": "2025-02-08",
+      "update_time": "2025-02-08",
+      "fresh_score": 20,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通禾月塘生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度20分，阶段为环评审批阶段，行业为生物医药，金额为12万元。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通禾月塘生物科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 36,
+      "enterprise_name": "【拟批准公示】南通至顺新材料科技有限公司",
+      "project_name": "【拟批准公示】南通至顺新材料科技有限公司年产4万套矿用驱动轮项目",
+      "industry": "新材料",
+      "investment_amount": "4万元",
+      "project_address": "南通市海门区",
+      "date": "2025-01-16",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/a31bf5ff-9418-4275-9ceb-ae912c9cdf23.html",
+      "source_title": "【拟批准公示】南通至顺新材料科技有限公司年产4万套矿用驱动轮项目",
+      "publish_time": "2025-01-16",
+      "update_time": "2025-01-16",
+      "fresh_score": 20,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通至顺新材料科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度20分，阶段为环评审批阶段，行业为新材料，金额为4万元。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通至顺新材料科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 37,
+      "enterprise_name": "【拟批准公示】江苏海贝思电子科技有限公司",
+      "project_name": "【拟批准公示】江苏海贝思电子科技有限公司年产150万套开关电源新建项目",
+      "industry": "电子",
+      "investment_amount": "150万元",
+      "project_address": "南通市海门区",
+      "date": "2025-01-14",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/468ffae1-06d6-4e2c-815c-d82a1a37294b.html",
+      "source_title": "【拟批准公示】江苏海贝思电子科技有限公司年产150万套开关电源新建项目",
+      "publish_time": "2025-01-14",
+      "update_time": "2025-01-14",
+      "fresh_score": 20,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏海贝思电子科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度20分，阶段为环评审批阶段，行业为电子，金额为150万元。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏海贝思电子科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 38,
+      "enterprise_name": "【拟批准公示】江苏振江铸造科技有限公司",
+      "project_name": "【拟批准公示】江苏振江铸造科技有限公司年产20万吨风电核心零部件绿色智能铸造项目",
+      "industry": "新能源",
+      "investment_amount": "20万元",
+      "project_address": "南通市海门区",
+      "date": "2024-12-13",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/f6484696-6c9e-4787-ae79-6fc4eee72a79.html",
+      "source_title": "【拟批准公示】江苏振江铸造科技有限公司年产20万吨风电核心零部件绿色智能铸造项目",
+      "publish_time": "2024-12-13",
+      "update_time": "2024-12-13",
+      "fresh_score": 20,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏振江铸造科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度20分，阶段为环评审批阶段，行业为新能源，金额为20万元。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏振江铸造科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 39,
+      "enterprise_name": "【拟批准公示】江苏宏沃高分子材料有限公司",
+      "project_name": "【拟批准公示】江苏宏沃高分子材料有限公司年产浮床、浮椅、游泳棒、游泳板凳等100万套新建项目",
+      "industry": "新材料",
+      "investment_amount": "100万元",
+      "project_address": "南通市海门区",
+      "date": "2024-12-06",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/97ffd511-04c5-475a-9870-ed9100771af3.html",
+      "source_title": "【拟批准公示】江苏宏沃高分子材料有限公司年产浮床、浮椅、游泳棒、游泳板凳等100万套新建项目",
+      "publish_time": "2024-12-06",
+      "update_time": "2024-12-06",
+      "fresh_score": 20,
+      "opportunity_score": 54.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏宏沃高分子材料有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分54.0，时间新鲜度20分，阶段为环评审批阶段，行业为新材料，金额为100万元。",
+        "confidence": 0.54,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏宏沃高分子材料有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 40,
+      "enterprise_name": "南通市海门区行政中心",
+      "project_name": "南通市海门区行政中心食堂物资采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区行政中心食堂物资采购公告",
+      "date": "2026-05-22",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/605814ae-56fc-4381-a9bd-5f90cc06b5f5.html",
+      "source_title": "南通市海门区行政中心食堂物资采购公告",
+      "publish_time": "2026-05-22",
+      "update_time": "2026-05-22",
+      "fresh_score": 60,
+      "opportunity_score": 52.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分52.0，时间新鲜度60分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 41,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业科学研究所采购实验室CMA资质认定咨询服务项目招标公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业科学研究所采购实验室CMA资质认定咨询服务项目招标公告",
+      "date": "2026-05-14",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/4911fce4-721d-4203-bc17-65a1ef6ebbe5.html",
+      "source_title": "南通市海门区农业科学研究所采购实验室CMA资质认定咨询服务项目招标公告",
+      "publish_time": "2026-05-14",
+      "update_time": "2026-05-14",
+      "fresh_score": 60,
+      "opportunity_score": 52.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分52.0，时间新鲜度60分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 42,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区人民政府办公室计算机维保服务项目中标结果公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区人民政府办公室计算机维保服务项目中标结果公告",
+      "date": "2026-04-29",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/36b7c119-15f9-4816-bb8d-d5dcbd6e134a.html",
+      "source_title": "南通市海门区人民政府办公室计算机维保服务项目中标结果公告",
+      "publish_time": "2026-04-29",
+      "update_time": "2026-04-29",
+      "fresh_score": 60,
+      "opportunity_score": 52.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分52.0，时间新鲜度60分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 43,
+      "enterprise_name": "未披露",
+      "project_name": "海宏高技术船舶及海工装备智能装配基地项目签约",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-03-24",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/16fb71b5-5b38-40da-9591-1c0d6e2bcb50.html",
+      "source_title": "海宏高技术船舶及海工装备智能装配基地项目签约",
+      "publish_time": "2026-03-24",
+      "update_time": "2026-03-24",
+      "fresh_score": 40,
+      "opportunity_score": 51.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分51.5，时间新鲜度40分，阶段为投资备案阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 44,
+      "enterprise_name": "【拟批准公示】南通富飞尔机械科技有限公司",
+      "project_name": "【拟批准公示】南通富飞尔机械科技有限公司年产自行车配件10000吨项目",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-03-11",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/a8d72fbc-a519-4c21-bde9-300c3ce7ae24.html",
+      "source_title": "【拟批准公示】南通富飞尔机械科技有限公司年产自行车配件10000吨项目",
+      "publish_time": "2025-03-11",
+      "update_time": "2025-03-11",
+      "fresh_score": 20,
+      "opportunity_score": 51.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通富飞尔机械科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分51.5，时间新鲜度20分，阶段为环评审批阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通富飞尔机械科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 45,
+      "enterprise_name": "【拟批准公示】江苏通光海洋光电科技有限公司",
+      "project_name": "【拟批准公示】江苏通光海洋光电科技有限公司高端海洋装备生产线改造项目",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-14",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/e6ec7de4-6429-45c8-86ab-8987b2b1320f.html",
+      "source_title": "【拟批准公示】江苏通光海洋光电科技有限公司高端海洋装备生产线改造项目",
+      "publish_time": "2025-01-14",
+      "update_time": "2025-01-14",
+      "fresh_score": 20,
+      "opportunity_score": 51.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏通光海洋光电科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分51.5，时间新鲜度20分，阶段为环评审批阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏通光海洋光电科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 46,
+      "enterprise_name": "【拟批准公示】南通跃进电机有限公司",
+      "project_name": "【拟批准公示】南通跃进电机有限公司年产500t铝合金机械配件扩建项目",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2024-12-23",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/3bc13171-3ca2-4135-ab6e-aca2f424835a.html",
+      "source_title": "【拟批准公示】南通跃进电机有限公司年产500t铝合金机械配件扩建项目",
+      "publish_time": "2024-12-23",
+      "update_time": "2024-12-23",
+      "fresh_score": 20,
+      "opportunity_score": 51.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通跃进电机有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分51.5，时间新鲜度20分，阶段为环评审批阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通跃进电机有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 47,
+      "enterprise_name": "【拟批准公示】南通益而惠照明有限公司",
+      "project_name": "【拟批准公示】南通益而惠照明有限公司LED照明器件加工流水线自动化改造项目",
+      "industry": "制造业",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2024-12-06",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/44e37813-93ed-4a78-b295-6fc4e2493e12.html",
+      "source_title": "【拟批准公示】南通益而惠照明有限公司LED照明器件加工流水线自动化改造项目",
+      "publish_time": "2024-12-06",
+      "update_time": "2024-12-06",
+      "fresh_score": 20,
+      "opportunity_score": 51.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通益而惠照明有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分51.5，时间新鲜度20分，阶段为环评审批阶段，行业为制造业，金额为未披露。",
+        "confidence": 0.52,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "设备融资",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通益而惠照明有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 48,
+      "enterprise_name": "南通跨播云链纺织品有限公司",
+      "project_name": "南通市海门区数据局关于南通跨播云链纺织品有限公司跨播云链年产200万套家纺用品生产项目的备案",
+      "industry": "纺织服装",
+      "investment_amount": "200万元",
+      "project_address": "海门区数据局关于南通跨播云链纺织品有限公司跨播云链年产200万套家纺用品生产项目的备案 南通市海门区数据局关于南通跨播云链纺织品有限公司跨播云链年产200万套家纺用品",
+      "date": "2026-03-30",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/0411d6da-991f-419a-946c-2d86c9d8ba31.html",
+      "source_title": "南通市海门区数据局关于南通跨播云链纺织品有限公司跨播云链年产200万套家纺用品生产项目的备案",
+      "publish_time": "2026-03-30",
+      "update_time": "2026-03-30",
+      "fresh_score": 40,
+      "opportunity_score": 50.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通跨播云链纺织品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分50.0，时间新鲜度40分，阶段为投资备案阶段，行业为纺织服装，金额为200万元。",
+        "confidence": 0.5,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通跨播云链纺织品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 49,
+      "enterprise_name": "【拟批准公示】南通碧天纺织品有限公司",
+      "project_name": "【拟批准公示】南通碧天纺织品有限公司年产150万个枕头新建项目",
+      "industry": "纺织服装",
+      "investment_amount": "150万元",
+      "project_address": "南通市海门区",
+      "date": "2025-04-02",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/ee3fe692-91e8-4a72-8cf0-95986edb320a.html",
+      "source_title": "【拟批准公示】南通碧天纺织品有限公司年产150万个枕头新建项目",
+      "publish_time": "2025-04-02",
+      "update_time": "2025-04-02",
+      "fresh_score": 20,
+      "opportunity_score": 50.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通碧天纺织品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分50.0，时间新鲜度20分，阶段为环评审批阶段，行业为纺织服装，金额为150万元。",
+        "confidence": 0.5,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通碧天纺织品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 50,
+      "enterprise_name": "未披露",
+      "project_name": "华汇工业绿岛项目建设全速冲刺",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-05-21",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/27565824-0279-40c5-bbd4-ad333592565b.html",
+      "source_title": "华汇工业绿岛项目建设全速冲刺",
+      "publish_time": "2026-05-21",
+      "update_time": "2026-05-21",
+      "fresh_score": 60,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度60分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 51,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]4号 2026-04-17",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-04-17",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/4f8b334b-3d39-4ea1-b377-5bdf50d771a0.html",
+      "source_title": "海门网挂[2026]4号 2026-04-17",
+      "publish_time": "2026-04-17",
+      "update_time": "2026-04-17",
+      "fresh_score": 40,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度40分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 52,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]5号 2026-04-14",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-04-14",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/02187de6-cb84-4b95-aba6-09cbb180d230.html",
+      "source_title": "海门网挂[2026]5号 2026-04-14",
+      "publish_time": "2026-04-14",
+      "update_time": "2026-04-14",
+      "fresh_score": 40,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度40分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 53,
+      "enterprise_name": "未披露",
+      "project_name": "同意南通市海门区住房和城乡建设局民生路北延的行政许可 2026-04-03",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区住房和城乡建设局民生路北延的行政许可 2026-04-03",
+      "date": "2026-04-03",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "许可",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/xzxk/content/2b28992e-74bd-4b06-b537-aa7898ed47c6.html",
+      "source_title": "关于同意南通市海门区住房和城乡建设局民生路北延的行政许可 2026-04-03",
+      "publish_time": "2026-04-03",
+      "update_time": "2026-04-03",
+      "fresh_score": 40,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度40分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 54,
+      "enterprise_name": "未披露",
+      "project_name": "拟批准公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-03-19",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "http://www.haimen.gov.cn/hmszwfwzx/blxmgs/blxmgs.html",
+      "source_title": "拟批准公示",
+      "publish_time": "2026-03-19",
+      "update_time": "2026-03-19",
+      "fresh_score": 40,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度40分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 55,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]2号 2026-02-11",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-02-11",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/45a234f1-a101-4329-a729-d257cd72d303.html",
+      "source_title": "海门网挂[2026]2号 2026-02-11",
+      "publish_time": "2026-02-11",
+      "update_time": "2026-02-11",
+      "fresh_score": 40,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度40分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 56,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2026]1号 2026-02-11",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-02-11",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/7181d036-984a-4c07-8920-969bdc94cb79.html",
+      "source_title": "海门网挂[2026]1号 2026-02-11",
+      "publish_time": "2026-02-11",
+      "update_time": "2026-02-11",
+      "fresh_score": 40,
+      "opportunity_score": 49.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.5，时间新鲜度40分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 57,
+      "enterprise_name": "江苏裕森福弹性元件有限公司",
+      "project_name": "南通市海门区数据局关于江苏裕森福弹性元件有限公司年产5万吨柔性材料及弹性元件研发、制造项目的备案",
+      "industry": "新材料",
+      "investment_amount": "5万元",
+      "project_address": "海门区数据局关于江苏裕森福弹性元件有限公司年产5万吨柔性材料及弹性元件研发、制造项目的备案 南通市海门区数据局关于江苏裕森福弹性元件有限公司年产5万吨柔性材料及弹性元",
+      "date": "2025-12-31",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/c5792c66-eac5-466d-b015-65ee3c9a736f.html",
+      "source_title": "南通市海门区数据局关于江苏裕森福弹性元件有限公司年产5万吨柔性材料及弹性元件研发、制造项目的备案",
+      "publish_time": "2025-12-31",
+      "update_time": "2025-12-31",
+      "fresh_score": 20,
+      "opportunity_score": 49.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系江苏裕森福弹性元件有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.0，时间新鲜度20分，阶段为投资备案阶段，行业为新材料，金额为5万元。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系江苏裕森福弹性元件有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 58,
+      "enterprise_name": "【拟批准公示】江苏慧茂制药有限公司",
+      "project_name": "【拟批准公示】江苏慧茂制药有限公司年产800万瓶泡沫剂，年产1000万袋散剂和年产1000万片膜剂的扩改建项目",
+      "industry": "未披露",
+      "investment_amount": "1000万元",
+      "project_address": "南通市海门区",
+      "date": "2024-12-17",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/bae306bb-946d-4458-a118-c45c441a4be8.html",
+      "source_title": "【拟批准公示】江苏慧茂制药有限公司年产800万瓶泡沫剂，年产1000万袋散剂和年产1000万片膜剂的扩改建项目",
+      "publish_time": "2024-12-17",
+      "update_time": "2024-12-17",
+      "fresh_score": 20,
+      "opportunity_score": 49.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏慧茂制药有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分49.0，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为1000万元。",
+        "confidence": 0.49,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在项目建设和流动资金需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏慧茂制药有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 59,
+      "enterprise_name": "南通市海门区行政中心",
+      "project_name": "南通市海门区行政中心食堂物资采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区行政中心食堂物资采购公告",
+      "date": "2026-04-20",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/b348f2a3-9f17-4bdb-931d-b35954e8d716.html",
+      "source_title": "南通市海门区行政中心食堂物资采购公告",
+      "publish_time": "2026-04-20",
+      "update_time": "2026-04-20",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 60,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目（二次）中标结果公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目（二次）中标结果公告",
+      "date": "2026-04-09",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/915787f8-da20-4394-bd8b-545a205ca853.html",
+      "source_title": "南通市海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目（二次）中标结果公告",
+      "publish_time": "2026-04-09",
+      "update_time": "2026-04-09",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 61,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目（二次）招标采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目（二次）招标采购公告",
+      "date": "2026-04-02",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/e7ae74d2-3658-44db-ab3a-4895b30405c3.html",
+      "source_title": "南通市海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目（二次）招标采购公告",
+      "publish_time": "2026-04-02",
+      "update_time": "2026-04-02",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 62,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目招标采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目招标采购公告",
+      "date": "2026-03-26",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/ff7531c1-2138-4be7-b643-c37335ddf5bd.html",
+      "source_title": "南通市海门区农业农村局采购2025年海门区养殖、屠宰环节“瘦肉精”快速检测试剂卡项目招标采购公告",
+      "publish_time": "2026-03-26",
+      "update_time": "2026-03-26",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 63,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区政府子网站群维护项目中标公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区政府子网站群维护项目中标公示",
+      "date": "2026-03-24",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/ae1c1da4-71cb-45f9-9d84-952bfa5bf90d.html",
+      "source_title": "南通市海门区政府子网站群维护项目中标公示",
+      "publish_time": "2026-03-24",
+      "update_time": "2026-03-24",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 64,
+      "enterprise_name": "南通市海门区农业技术推广中心",
+      "project_name": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目（重新招标）中标结果公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业技术推广中心采购2026年小麦一喷三防物资项目（重新招标）中标结果公告",
+      "date": "2026-03-17",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/3fc05bc4-45ab-4f84-9532-b8e15c3b9382.html",
+      "source_title": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目（重新招标）中标结果公告",
+      "publish_time": "2026-03-17",
+      "update_time": "2026-03-17",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 65,
+      "enterprise_name": "南通市海门区农业技术推广中心",
+      "project_name": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目（重新招标）招标采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业技术推广中心采购2026年小麦一喷三防物资项目（重新招标）招标采购公告",
+      "date": "2026-03-10",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/43356b52-ffe4-480e-9cf2-98f44d6b84b0.html",
+      "source_title": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目（重新招标）招标采购公告",
+      "publish_time": "2026-03-10",
+      "update_time": "2026-03-10",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 66,
+      "enterprise_name": "未披露",
+      "project_name": "海门区数据局采购南通市海门区政府子网站群维护项目单一来源采购公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区数据局采购南通市海门区政府子网站群维护项目单一来源采购公示",
+      "date": "2026-03-10",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/9bc5eef7-4014-48d4-89ea-cf6fe2b5365c.html",
+      "source_title": "海门区数据局采购南通市海门区政府子网站群维护项目单一来源采购公示",
+      "publish_time": "2026-03-10",
+      "update_time": "2026-03-10",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 67,
+      "enterprise_name": "南通市海门区农业技术推广中心",
+      "project_name": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目终止公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业技术推广中心采购2026年小麦一喷三防物资项目终止公告",
+      "date": "2026-03-06",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/13de177e-38aa-4dd9-8b80-0e94c2257180.html",
+      "source_title": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目终止公告",
+      "publish_time": "2026-03-06",
+      "update_time": "2026-03-06",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 68,
+      "enterprise_name": "南通市海门区农业技术推广中心",
+      "project_name": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业技术推广中心采购2026年小麦一喷三防物资项目采购公告",
+      "date": "2026-03-03",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/9494c71b-814d-4467-94af-192bdf0c5201.html",
+      "source_title": "南通市海门区农业技术推广中心采购2026年小麦一喷三防物资项目采购公告",
+      "publish_time": "2026-03-03",
+      "update_time": "2026-03-03",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区农业技术推广中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 69,
+      "enterprise_name": "南通市海门区行政中心",
+      "project_name": "南通市海门区行政中心食堂物资采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区行政中心食堂物资采购公告",
+      "date": "2026-02-24",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/05209500-0bd9-4901-b6fd-c1f5d164d616.html",
+      "source_title": "南通市海门区行政中心食堂物资采购公告",
+      "publish_time": "2026-02-24",
+      "update_time": "2026-02-24",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区行政中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 70,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业农村局采购2025年海门区农产品质量胶体金速测卡项目中标结果公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业农村局采购2025年海门区农产品质量胶体金速测卡项目中标结果公告",
+      "date": "2026-02-10",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/559080ce-6acc-4e83-a6a0-ad21a90aa44e.html",
+      "source_title": "南通市海门区农业农村局采购2025年海门区农产品质量胶体金速测卡项目中标结果公告",
+      "publish_time": "2026-02-10",
+      "update_time": "2026-02-10",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 71,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业农村局采购2025年海门区农产品质量胶体金速测卡项目招标采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业农村局采购2025年海门区农产品质量胶体金速测卡项目招标采购公告",
+      "date": "2026-02-05",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/c3132a97-5ec2-48c2-8700-d401f5b280ef.html",
+      "source_title": "南通市海门区农业农村局采购2025年海门区农产品质量胶体金速测卡项目招标采购公告",
+      "publish_time": "2026-02-05",
+      "update_time": "2026-02-05",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 72,
+      "enterprise_name": "南通市海门区机关事务服务中心",
+      "project_name": "南通市海门区机关事务服务中心采购电动伸缩门项目中标候选人公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区机关事务服务中心采购电动伸缩门项目中标候选人公示",
+      "date": "2026-02-04",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/87a8d2f6-6b20-434c-908e-6e01a83351a2.html",
+      "source_title": "南通市海门区机关事务服务中心采购电动伸缩门项目中标候选人公示",
+      "publish_time": "2026-02-04",
+      "update_time": "2026-02-04",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区机关事务服务中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区机关事务服务中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 73,
+      "enterprise_name": "南通市海门区机关事务服务中心",
+      "project_name": "南通市海门区机关事务服务中心采购电动伸缩门项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区机关事务服务中心采购电动伸缩门项目",
+      "date": "2026-01-29",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/c03afbed-5e0b-4287-b778-844022896335.html",
+      "source_title": "南通市海门区机关事务服务中心采购电动伸缩门项目",
+      "publish_time": "2026-01-29",
+      "update_time": "2026-01-29",
+      "fresh_score": 40,
+      "opportunity_score": 47.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区机关事务服务中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分47.0，时间新鲜度40分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区机关事务服务中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 74,
+      "enterprise_name": "南通嘉富泰电气科技有限公司",
+      "project_name": "南通嘉富泰电气科技有限公司特高压电气设备生产项目",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-09-30",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/641dddd2-2ce5-41d1-86e3-58a419b34d84.html",
+      "source_title": "区数据局关于南通嘉富泰电气科技有限公司特高压电气设备生产项目备案的批复",
+      "publish_time": "2025-09-30",
+      "update_time": "2025-09-30",
+      "fresh_score": 20,
+      "opportunity_score": 46.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通嘉富泰电气科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分46.5，时间新鲜度20分，阶段为投资备案阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通嘉富泰电气科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 75,
+      "enterprise_name": "派纳特矿业（江苏）有限公司",
+      "project_name": "派纳特矿业（江苏）有限公司选矿设备制造和服务产业化项目",
+      "industry": "设备制造",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-03-21",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/2ec32a92-ba09-4f48-b244-9cb92b5fa64c.html",
+      "source_title": "区数据局关于派纳特矿业（江苏）有限公司选矿设备制造和服务产业化项目备案的批复",
+      "publish_time": "2025-03-21",
+      "update_time": "2025-03-21",
+      "fresh_score": 20,
+      "opportunity_score": 46.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系派纳特矿业（江苏）有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分46.5，时间新鲜度20分，阶段为投资备案阶段，行业为设备制造，金额为未披露。",
+        "confidence": 0.47,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "设备融资",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系派纳特矿业（江苏）有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 76,
+      "enterprise_name": "南通海门亦诺纺织科技有限公司",
+      "project_name": "南通海门亦诺纺织科技有限公司年产50万套床上用品新建项目",
+      "industry": "纺织服装",
+      "investment_amount": "50万元",
+      "project_address": "海门",
+      "date": "2024-09-14",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/b92e3313-0b3e-4f5a-b6bf-8f85d4ff6c2d.html",
+      "source_title": "区数据局关于南通海门亦诺纺织科技有限公司年产50万套床上用品新建项目备案的批复",
+      "publish_time": "2024-09-14",
+      "update_time": "2024-09-14",
+      "fresh_score": 20,
+      "opportunity_score": 45.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通海门亦诺纺织科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分45.0，时间新鲜度20分，阶段为投资备案阶段，行业为纺织服装，金额为50万元。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通海门亦诺纺织科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 77,
+      "enterprise_name": "未披露",
+      "project_name": "一刻不松推进重大项目建设 持续做强产业支撑积蓄发展动能",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-04-07",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/231d7244-4055-454a-b9ad-238034272045.html",
+      "source_title": "一刻不松推进重大项目建设 持续做强产业支撑积蓄发展动能",
+      "publish_time": "2026-04-07",
+      "update_time": "2026-04-07",
+      "fresh_score": 40,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度40分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 78,
+      "enterprise_name": "未披露",
+      "project_name": "海门重大项目建设高开高走势头强劲",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2026-03-25",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/320f3806-a1d0-436f-bb46-79e98cb9f02f.html",
+      "source_title": "海门重大项目建设高开高走势头强劲",
+      "publish_time": "2026-03-25",
+      "update_time": "2026-03-25",
+      "fresh_score": 40,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度40分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 79,
+      "enterprise_name": "未披露",
+      "project_name": "2026年海门区重大项目发布暨供需对接会举行",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区重大项目发布暨供需对接会举行 2026年海门区重大项目发布暨供需对接会举行 2026年海门区重大项目发布暨供需对接会举行",
+      "date": "2026-03-21",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/3f989967-2463-43ec-88f2-b0ac277b484a.html",
+      "source_title": "2026年海门区重大项目发布暨供需对接会举行",
+      "publish_time": "2026-03-21",
+      "update_time": "2026-03-21",
+      "fresh_score": 40,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度40分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 80,
+      "enterprise_name": "未披露",
+      "project_name": "謇公湖西山温泉陆地游轮项目开工",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-03-11",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "投资备案阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/xmjz/content/fa113770-7af3-4450-9ffd-8a60c58edada.html",
+      "source_title": "謇公湖西山温泉陆地游轮项目开工",
+      "publish_time": "2026-03-11",
+      "update_time": "2026-03-11",
+      "fresh_score": 40,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度40分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 81,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2025]12号 2025-11-14",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2025-11-14",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/d5214333-aa38-4630-8c71-f79cfb99272d.html",
+      "source_title": "海门网挂[2025]12号 2025-11-14",
+      "publish_time": "2025-11-14",
+      "update_time": "2025-11-14",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 82,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2025]11号 2025-11-14",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2025-11-14",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/828eba65-4c43-423c-a97c-65701fcfb2f9.html",
+      "source_title": "海门网挂[2025]11号 2025-11-14",
+      "publish_time": "2025-11-14",
+      "update_time": "2025-11-14",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 83,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2025]8号 2025-08-28",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2025-08-28",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/66382172-c9b8-407c-80a9-bac68dd37f7f.html",
+      "source_title": "海门网挂[2025]8号 2025-08-28",
+      "publish_time": "2025-08-28",
+      "update_time": "2025-08-28",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 84,
+      "enterprise_name": "未披露",
+      "project_name": "海门区工网挂[2025]5号 2025-08-15",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区工网挂[2025]5号 2025-08-15",
+      "date": "2025-08-15",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/5c813e1a-f186-46f8-96b6-00557d969565.html",
+      "source_title": "海门区工网挂[2025]5号 2025-08-15",
+      "publish_time": "2025-08-15",
+      "update_time": "2025-08-15",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 85,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2025]4号 2025-05-13",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2025-05-13",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/f65a7e5e-988b-4a46-84df-71b74d9ef5e5.html",
+      "source_title": "海门网挂[2025]4号 2025-05-13",
+      "publish_time": "2025-05-13",
+      "update_time": "2025-05-13",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 86,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2025]3号 2025-05-13",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2025-05-13",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/b3c3271f-8140-4a75-a320-8f682dffa1c8.html",
+      "source_title": "海门网挂[2025]3号 2025-05-13",
+      "publish_time": "2025-05-13",
+      "update_time": "2025-05-13",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 87,
+      "enterprise_name": "【拟批准公示】江苏宝建特种电缆有限公司",
+      "project_name": "【拟批准公示】江苏宝建特种电缆有限公司年产1250吨注塑粒子技术改造项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-03-13",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/d9c00e74-4008-4436-aab8-1db901cfdb1c.html",
+      "source_title": "【拟批准公示】江苏宝建特种电缆有限公司年产1250吨注塑粒子技术改造项目",
+      "publish_time": "2025-03-13",
+      "update_time": "2025-03-13",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏宝建特种电缆有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏宝建特种电缆有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 88,
+      "enterprise_name": "未披露",
+      "project_name": "海门区工网挂开[2025] 4号 2025-02-25",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区工网挂开[2025] 4号 2025-02-25",
+      "date": "2025-02-25",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/54d1972c-ea59-4a42-b6b4-d8f0e95308d3.html",
+      "source_title": "海门区工网挂开[2025] 4号 2025-02-25",
+      "publish_time": "2025-02-25",
+      "update_time": "2025-02-25",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 89,
+      "enterprise_name": "【拟批准公示】希诺股份有限公司",
+      "project_name": "【拟批准公示】希诺股份有限公司钛杯金工焊接、抛光综合自动线技改项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-02-12",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/968598ba-89fd-4382-9591-d1d51cf5cf85.html",
+      "source_title": "【拟批准公示】希诺股份有限公司钛杯金工焊接、抛光综合自动线技改项目",
+      "publish_time": "2025-02-12",
+      "update_time": "2025-02-12",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】希诺股份有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】希诺股份有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 90,
+      "enterprise_name": "【拟批准公示】南通慧聚制药有限公司",
+      "project_name": "【拟批准公示】南通慧聚制药有限公司B1实验楼项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-22",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/78f0ea46-50b7-4b3d-8693-7046e611f0fb.html",
+      "source_title": "【拟批准公示】南通慧聚制药有限公司B1实验楼项目",
+      "publish_time": "2025-01-22",
+      "update_time": "2025-01-22",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通慧聚制药有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通慧聚制药有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 91,
+      "enterprise_name": "【拟批准公示】江苏南通乾琨钢结构有限公司",
+      "project_name": "【拟批准公示】江苏南通乾琨钢结构有限公司年产6000吨钢结构项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-22",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/0715c046-5983-4c08-8cdf-8610ab0e1555.html",
+      "source_title": "【拟批准公示】江苏南通乾琨钢结构有限公司年产6000吨钢结构项目",
+      "publish_time": "2025-01-22",
+      "update_time": "2025-01-22",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏南通乾琨钢结构有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】江苏南通乾琨钢结构有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 92,
+      "enterprise_name": "【拟批准公示】南通昇华金属科技有限公司",
+      "project_name": "【拟批准公示】南通昇华金属科技有限公司年产金属制品2000吨项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-21",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/5d3a4371-b89d-4900-af09-8d4ad9dcc72f.html",
+      "source_title": "【拟批准公示】南通昇华金属科技有限公司年产金属制品2000吨项目",
+      "publish_time": "2025-01-21",
+      "update_time": "2025-01-21",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通昇华金属科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通昇华金属科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 93,
+      "enterprise_name": "【拟批准公示】希诺股份有限公司检验检测中心",
+      "project_name": "【拟批准公示】希诺股份有限公司检验检测中心技术改造项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2025-01-07",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/e9e2deb0-7eb5-4243-8703-d6f1a30e621c.html",
+      "source_title": "【拟批准公示】希诺股份有限公司检验检测中心技术改造项目",
+      "publish_time": "2025-01-07",
+      "update_time": "2025-01-07",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】希诺股份有限公司检验检测中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】希诺股份有限公司检验检测中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 94,
+      "enterprise_name": "【拟批准公示】海门市威华铸造有限公司",
+      "project_name": "【拟批准公示】海门市威华铸造有限公司年产5000吨铸件技改项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2024-12-17",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/e7e7c8ac-3dc9-4c5d-a2b7-e78c89b2f5a2.html",
+      "source_title": "【拟批准公示】海门市威华铸造有限公司年产5000吨铸件技改项目",
+      "publish_time": "2024-12-17",
+      "update_time": "2024-12-17",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】海门市威华铸造有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】海门市威华铸造有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 95,
+      "enterprise_name": "未披露",
+      "project_name": "海门区工网挂[2024]17号 2024-11-21",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区工网挂[2024]17号 2024-11-21",
+      "date": "2024-11-21",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/62d88354-0a74-46dc-9beb-f92511862a27.html",
+      "source_title": "海门区工网挂[2024]17号 2024-11-21",
+      "publish_time": "2024-11-21",
+      "update_time": "2024-11-21",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 96,
+      "enterprise_name": "未披露",
+      "project_name": "海门区工网挂[2024]16号 2024-11-21",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区工网挂[2024]16号 2024-11-21",
+      "date": "2024-11-21",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/4707135a-12d3-4c69-8233-ce1ee68b9de4.html",
+      "source_title": "海门区工网挂[2024]16号 2024-11-21",
+      "publish_time": "2024-11-21",
+      "update_time": "2024-11-21",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 97,
+      "enterprise_name": "未披露",
+      "project_name": "海门区工网挂[2024]15号 2024-11-21",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区工网挂[2024]15号 2024-11-21",
+      "date": "2024-11-21",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/6d4cde9b-f296-4825-85c3-3f8abc513111.html",
+      "source_title": "海门区工网挂[2024]15号 2024-11-21",
+      "publish_time": "2024-11-21",
+      "update_time": "2024-11-21",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 98,
+      "enterprise_name": "未披露",
+      "project_name": "海门区工网挂[2024]14号 2024-11-21",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区工网挂[2024]14号 2024-11-21",
+      "date": "2024-11-21",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/305b8c82-32d0-43ac-ac8c-03479bae11dd.html",
+      "source_title": "海门区工网挂[2024]14号 2024-11-21",
+      "publish_time": "2024-11-21",
+      "update_time": "2024-11-21",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 99,
+      "enterprise_name": "未披露",
+      "project_name": "海门网挂[2024]9号 2024-08-23",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门",
+      "date": "2024-08-23",
+      "data_source": "江苏自然资源政务信息检索服务",
+      "approval_item": "土地/规划审批阶段",
+      "source_url": "https://www.haimen.gov.cn/hmsgtj/gytdsyqcr/content/40668b62-b8a1-415b-9024-3de403b60eb4.html",
+      "source_title": "海门网挂[2024]9号 2024-08-23",
+      "publish_time": "2024-08-23",
+      "update_time": "2024-08-23",
+      "fresh_score": 20,
+      "opportunity_score": 44.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分44.5，时间新鲜度20分，阶段为土地/规划审批阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.45,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 100,
+      "enterprise_name": "【拟批准公示】南通多特环保科技有限公司",
+      "project_name": "【拟批准公示】南通多特环保科技有限公司年收集处置再生利用60万立方米一般固废新建项目",
+      "industry": "未披露",
+      "investment_amount": "60万元",
+      "project_address": "南通市海门区",
+      "date": "2025-03-05",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/8ac2425d-32c7-47a3-96d8-3bc968e7b969.html",
+      "source_title": "【拟批准公示】南通多特环保科技有限公司年收集处置再生利用60万立方米一般固废新建项目",
+      "publish_time": "2025-03-05",
+      "update_time": "2025-03-05",
+      "fresh_score": 20,
+      "opportunity_score": 43.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通多特环保科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分43.0，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为60万元。",
+        "confidence": 0.43,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通多特环保科技有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 101,
+      "enterprise_name": "【拟批准公示】美尼诺环境科技(南通)有限公司",
+      "project_name": "【拟批准公示】美尼诺环境科技(南通)有限公司年处置利用10万吨废旧资源新建项目",
+      "industry": "未披露",
+      "investment_amount": "10万元",
+      "project_address": "南通市海门区",
+      "date": "2025-02-25",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/a98603df-eb18-4bcb-8acc-1c658812e41c.html",
+      "source_title": "【拟批准公示】美尼诺环境科技(南通)有限公司年处置利用10万吨废旧资源新建项目",
+      "publish_time": "2025-02-25",
+      "update_time": "2025-02-25",
+      "fresh_score": 20,
+      "opportunity_score": 43.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】美尼诺环境科技(南通)有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分43.0，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为10万元。",
+        "confidence": 0.43,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】美尼诺环境科技(南通)有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 102,
+      "enterprise_name": "【拟批准公示】南通麟源科技发展有限公司",
+      "project_name": "【拟批准公示】南通麟源科技发展有限公司年产记忆枕100万个项目",
+      "industry": "未披露",
+      "investment_amount": "100万元",
+      "project_address": "南通市海门区",
+      "date": "2025-02-24",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/ce457945-5550-4a4e-a332-6348610789a9.html",
+      "source_title": "【拟批准公示】南通麟源科技发展有限公司年产记忆枕100万个项目",
+      "publish_time": "2025-02-24",
+      "update_time": "2025-02-24",
+      "fresh_score": 20,
+      "opportunity_score": 43.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通麟源科技发展有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分43.0，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为100万元。",
+        "confidence": 0.43,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通麟源科技发展有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 103,
+      "enterprise_name": "【拟批准公示】南通市九励发金属制品有限公司",
+      "project_name": "【拟批准公示】南通市九励发金属制品有限公司年产3万吨建筑五金防火制品技改项目",
+      "industry": "未披露",
+      "investment_amount": "3万元",
+      "project_address": "南通市海门区",
+      "date": "2025-02-24",
+      "data_source": "生态环境审批公开信息",
+      "approval_item": "环境影响评价",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/npzgs/content/c477e175-6f80-49a2-b913-24a0f46f21c3.html",
+      "source_title": "【拟批准公示】南通市九励发金属制品有限公司年产3万吨建筑五金防火制品技改项目",
+      "publish_time": "2025-02-24",
+      "update_time": "2025-02-24",
+      "fresh_score": 20,
+      "opportunity_score": 43.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通市九励发金属制品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分43.0，时间新鲜度20分，阶段为环评审批阶段，行业为未披露，金额为3万元。",
+        "confidence": 0.43,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "绿色金融",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系【拟批准公示】南通市九励发金属制品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 104,
+      "enterprise_name": "南通市海门区机关事务服务中心",
+      "project_name": "南通市海门区机关事务服务中心雨伞询价采购中标候选人公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区机关事务服务中心雨伞询价采购中标候选人公示",
+      "date": "2026-01-21",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/965f6a77-868f-448b-bda1-b91f0a1ec9b2.html",
+      "source_title": "南通市海门区机关事务服务中心雨伞询价采购中标候选人公示",
+      "publish_time": "2026-01-21",
+      "update_time": "2026-01-21",
+      "fresh_score": 20,
+      "opportunity_score": 42.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区机关事务服务中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分42.0，时间新鲜度20分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.42,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通市海门区机关事务服务中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 105,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业农村局采购2025年农产品质量胶体金检测卡项目招标采购公告",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业农村局采购2025年农产品质量胶体金检测卡项目招标采购公告",
+      "date": "2026-01-14",
+      "data_source": "公共资源交易信息",
+      "approval_item": "公共资源交易",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/eb7dcf5b-74b7-4fe2-8734-879a04ffe2c8.html",
+      "source_title": "南通市海门区农业农村局采购2025年农产品质量胶体金检测卡项目招标采购公告",
+      "publish_time": "2026-01-14",
+      "update_time": "2026-01-14",
+      "fresh_score": 20,
+      "opportunity_score": 42.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分42.0，时间新鲜度20分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.42,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 106,
+      "enterprise_name": "未披露",
+      "project_name": "南通市海门区农业干部学校报废资产处置成交公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "海门区农业干部学校报废资产处置成交公示",
+      "date": "2026-01-14",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/bd06c8f3-2122-4b9c-b68a-37aadaf7ab5e.html",
+      "source_title": "南通市海门区农业干部学校报废资产处置成交公示",
+      "publish_time": "2026-01-14",
+      "update_time": "2026-01-14",
+      "fresh_score": 20,
+      "opportunity_score": 42.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分42.0，时间新鲜度20分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.42,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 107,
+      "enterprise_name": "未披露",
+      "project_name": "江苏省江海博物馆采购“《红楼梦》主题数字艺术展览服务”项目中标公示",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2026-01-13",
+      "data_source": "公共资源交易信息",
+      "approval_item": "中标公告",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/fscg/content/d3e46722-c243-4717-9c97-d23073a67c9f.html",
+      "source_title": "江苏省江海博物馆采购“《红楼梦》主题数字艺术展览服务”项目中标公示",
+      "publish_time": "2026-01-13",
+      "update_time": "2026-01-13",
+      "fresh_score": 20,
+      "opportunity_score": 42.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分42.0，时间新鲜度20分，阶段为招投标/中标阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.42,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "需进一步核实融资需求",
+        "推荐银行产品": [
+          "流动资金贷款",
+          "保函",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系该企业，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 108,
+      "enterprise_name": "希诺股份有限公司希诺现代杯壶艺术文化展示中心",
+      "project_name": "希诺股份有限公司希诺现代杯壶艺术文化展示中心项目",
+      "industry": "未披露",
+      "investment_amount": "未披露",
+      "project_address": "南通市海门区",
+      "date": "2024-04-09",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/a5c664f9-b291-41f7-ba94-415bf376508a.html",
+      "source_title": "区行政审批局关于希诺股份有限公司希诺现代杯壶艺术文化展示中心项目备案的批复",
+      "publish_time": "2024-04-09",
+      "update_time": "2024-04-09",
+      "fresh_score": 20,
+      "opportunity_score": 39.5,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系希诺股份有限公司希诺现代杯壶艺术文化展示中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分39.5，时间新鲜度20分，阶段为投资备案阶段，行业为未披露，金额为未披露。",
+        "confidence": 0.4,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系希诺股份有限公司希诺现代杯壶艺术文化展示中心，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    },
+    {
+      "index": 109,
+      "enterprise_name": "南通恒科体育用品有限公司",
+      "project_name": "南通恒科体育用品有限公司年产篮球内胆100万个新建项目",
+      "industry": "未披露",
+      "investment_amount": "100万元",
+      "project_address": "南通市海门区",
+      "date": "2025-07-01",
+      "data_source": "发改投资项目备案信息",
+      "approval_item": "企业投资项目备案",
+      "source_url": "https://www.haimen.gov.cn/hmsrmzf/pzfw/content/d96c26ff-be17-4b32-8ced-5b88fd230670.html",
+      "source_title": "区数据局关于南通恒科体育用品有限公司年产篮球内胆100万个新建项目备案的批复",
+      "publish_time": "2025-07-01",
+      "update_time": "2025-07-01",
+      "fresh_score": 20,
+      "opportunity_score": 38.0,
+      "ai_analysis": {
+        "has_financing_need": false,
+        "expected_loan_types": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "customer_value_level": "C",
+        "marketing_advice": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通恒科体育用品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。",
+        "reason": "评分38.0，时间新鲜度20分，阶段为投资备案阶段，行业为未披露，金额为100万元。",
+        "confidence": 0.38,
+        "是否值得拜访": "建议观察",
+        "预计融资需求": "预计存在阶段性建设资金需求",
+        "推荐银行产品": [
+          "固定资产贷款",
+          "项目贷款",
+          "开户结算"
+        ],
+        "拜访话术": "建议以“项目建设资金安排和授信方案预沟通”为切入点联系南通恒科体育用品有限公司，重点了解项目进度、设备采购计划、资本金到位情况和结算账户安排。"
+      }
+    }
+  ]
+}

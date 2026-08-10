@@ -1,20 +1,66 @@
+# Local configuration and secrets
 .env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Virtual environments
 .venv/
 venv/
+env/
+
+# Python cache and tooling
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+~$*
+
+# Runtime logs and browser diagnostics
 *.log
-.streamlit/secrets.toml
-data/excel/
-data/state/
-database/*.db
-database/*.db-shm
-database/*.db-wal
-database/*.db-journal
-*.sqlite
-*.sqlite3
-logs/
-.learnings/
+logs/*
+!logs/.gitkeep
 debug/
 .playwright-cli/
-output/playwright/
+output/
+
+# Generated local crawler state
+data/excel/
+data/state/
+data/cloud/*_pre_phase*.json
+outputs/**/*.inspect.ndjson
+
+# SQLite runtime sidecars and backup databases
+*.db-shm
+*.db-wal
+*.db-journal
+database/backups/
+database/*backup*.db
+database/*before_phase*.db
+database/*pre_phase*.db
+*.backup.db
+*_backup_*.db
+
+# The 236-row Demo database is intentionally kept in the release
+!database/enterprise.db
+
+# Local learning notes
+.learnings/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

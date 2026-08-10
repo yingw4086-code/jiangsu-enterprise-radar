@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "source_key": "nanjing_planning_query",
+      "city": "南京市",
+      "status": "verified",
+      "official_domains": ["ghj.nanjing.gov.cn"],
+      "permit_types": ["建设工程规划许可证"],
+      "entry_url": "https://ghj.nanjing.gov.cn/zhcx/spcx/",
+      "notes": "南京市规划和自然资源局审批查询；仅导入申报阶段为建筑许可且详情页可核对的记录。"
+    },
+    {
+      "source_key": "suzhou_wujiang_planning_publication",
+      "city": "苏州市",
+      "status": "verified",
+      "official_domains": ["www.wujiang.gov.cn"],
+      "permit_types": ["建设工程规划许可证", "建设用地规划许可证"],
+      "entry_url": "https://www.wujiang.gov.cn/zgwj/ggkjgh/",
+      "notes": "苏州市吴江区人民政府自然资源和规划领域批后公布。"
+    },
+    {
+      "source_key": "nantong_approval_publication",
+      "city": "南通市",
+      "status": "verified",
+      "official_domains": ["shuju.nantong.gov.cn"],
+      "permit_types": ["建设工程规划许可证", "建设工程施工许可证"],
+      "entry_url": "https://shuju.nantong.gov.cn/ntsxzspj/sphjgs/",
+      "notes": "南通市数据局审批环节公示；海门数据禁止通过本批量入口覆盖。"
+    }
+  ]
+}

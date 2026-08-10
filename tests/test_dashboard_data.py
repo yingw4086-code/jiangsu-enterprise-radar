@@ -62,6 +62,42 @@ class DashboardDataTest(unittest.TestCase):
             self.assertEqual(summary["a_level_count"], 1)
             self.assertEqual(len(filtered), 1)
 
+    def test_load_records_supports_region_key_and_keeps_legacy_haimen_data(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_dir = Path(temp_dir)
+            (data_dir / "financing_analysis_2026-07-14_083000.json").write_text(
+                json.dumps(
+                    {
+                        "generated_at": "2026-07-14 08:30:00",
+                        "items": [
+                            {
+                                "enterprise_name": "海门旧数据企业",
+                                "project_name": "旧数据项目",
+                            },
+                            {
+                                "enterprise_name": "昆山企业",
+                                "project_name": "昆山项目",
+                                "region_key": "320583",
+                            },
+                        ],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            haimen_records = load_records(data_dir, region_key="320684")
+            kunshan_records = load_records(data_dir, region_key="320583")
+
+            self.assertEqual(
+                [record.enterprise_name for record in haimen_records],
+                ["海门旧数据企业"],
+            )
+            self.assertEqual(
+                [record.enterprise_name for record in kunshan_records],
+                ["昆山企业"],
+            )
+
     def test_format_yuan(self):
         self.assertEqual(format_yuan(0), "未披露")
         self.assertEqual(format_yuan(50_000_000), "5000 万元")

@@ -8,16 +8,22 @@ from pathlib import Path
 
 from app.permit_data import (
     OWNER_FILTER_OPTIONS,
+    PROJECT_TYPE_FILTER_OPTIONS,
     effective_permit_date,
+    filter_permits_by_project_type,
     filter_planning_permits,
     load_planning_permit_dataset,
     select_homepage_opportunities,
+    select_priority_enterprise_opportunities,
     summarize_homepage_permits,
     summarize_planning_permits,
+    summarize_region_opportunities,
 )
 from app.permit_data_runtime import (
     OWNER_FILTER_OPTIONS as RUNTIME_OWNER_FILTER_OPTIONS,
+    PROJECT_TYPE_FILTER_OPTIONS as RUNTIME_PROJECT_TYPE_FILTER_OPTIONS,
     select_homepage_opportunities as runtime_select_homepage_opportunities,
+    select_priority_enterprise_opportunities as runtime_select_priority_opportunities,
 )
 from database.storage import save_permit_ai_analysis
 from database.storage import upsert_planning_construction_permits
@@ -28,10 +34,66 @@ class PermitDataTest(unittest.TestCase):
     def test_runtime_exports_match_permit_data(self):
         self.assertEqual(RUNTIME_OWNER_FILTER_OPTIONS, OWNER_FILTER_OPTIONS)
         self.assertEqual(
+            RUNTIME_PROJECT_TYPE_FILTER_OPTIONS,
+            PROJECT_TYPE_FILTER_OPTIONS,
+        )
+        self.assertEqual(
             runtime_select_homepage_opportunities.__name__,
             select_homepage_opportunities.__name__,
         )
         self.assertTrue(callable(runtime_select_homepage_opportunities))
+        self.assertTrue(callable(runtime_select_priority_opportunities))
+
+    def test_region_opportunity_summary_uses_project_classification(self):
+        items = [
+            {"project_type": "enterprise", "classification_confidence": "high"},
+            {"project_type": "enterprise", "classification_confidence": "medium"},
+            {"project_type": "government", "classification_confidence": "high"},
+            {"project_type": "unknown", "classification_confidence": "low"},
+        ]
+
+        summary = summarize_region_opportunities(items)
+
+        self.assertEqual(
+            summary,
+            {
+                "total_count": 4,
+                "enterprise_count": 2,
+                "government_count": 1,
+                "high_confidence_opportunity_count": 1,
+            },
+        )
+
+    def test_priority_opportunities_are_enterprise_only_and_confidence_first(self):
+        items = [
+            self._cloud_item("中可信新项目", publish_date="2026-07-22")
+            | {"project_type": "enterprise", "classification_confidence": "medium"},
+            self._cloud_item("高可信旧项目", publish_date="2026-07-20")
+            | {"project_type": "enterprise", "classification_confidence": "high"},
+            self._cloud_item("高可信新项目", publish_date="2026-07-21")
+            | {"project_type": "enterprise", "classification_confidence": "high"},
+            self._cloud_item("政府项目", publish_date="2026-07-23")
+            | {"project_type": "government", "classification_confidence": "high"},
+        ]
+
+        selected = select_priority_enterprise_opportunities(items)
+
+        self.assertEqual(
+            [item["project_name"] for item in selected],
+            ["高可信新项目", "高可信旧项目", "中可信新项目"],
+        )
+        self.assertTrue(all(item["project_type"] == "enterprise" for item in selected))
+
+    def test_project_type_filter_supports_enterprise_government_and_all(self):
+        items = [
+            {"project_type": "enterprise"},
+            {"project_type": "government"},
+            {"project_type": "unknown"},
+        ]
+
+        self.assertEqual(len(filter_permits_by_project_type(items, "企业项目")), 1)
+        self.assertEqual(len(filter_permits_by_project_type(items, "政府项目")), 1)
+        self.assertEqual(len(filter_permits_by_project_type(items, "全部")), 3)
 
     def test_sqlite_has_priority_over_cloud_json(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -66,6 +128,42 @@ class PermitDataTest(unittest.TestCase):
             self.assertEqual(dataset.storage_source, "Streamlit Cloud JSON")
             self.assertEqual(dataset.source_path, "permits.json")
             self.assertEqual(dataset.items[0]["project_name"], "云端项目")
+
+    def test_cloud_json_filters_by_region_key_with_legacy_fallback(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            json_path = root / "permits.json"
+            haimen_item = self._cloud_item("海门项目")
+            kunshan_item = self._cloud_item("昆山项目") | {
+                "district": "昆山市",
+                "district_code": "320583",
+                "region_key": "320583",
+                "area_code": "320583",
+            }
+            json_path.write_text(
+                json.dumps([haimen_item, kunshan_item], ensure_ascii=False),
+                encoding="utf-8",
+            )
+
+            haimen = load_planning_permit_dataset(
+                root / "missing.db",
+                json_path,
+                region_key="320684",
+            )
+            kunshan = load_planning_permit_dataset(
+                root / "missing.db",
+                json_path,
+                region_key="320583",
+            )
+
+            self.assertEqual(
+                [item["project_name"] for item in haimen.items],
+                ["海门项目"],
+            )
+            self.assertEqual(
+                [item["project_name"] for item in kunshan.items],
+                ["昆山项目"],
+            )
 
     def test_recent_counts_prefer_permit_date(self):
         items = [

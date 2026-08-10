@@ -9,6 +9,7 @@ from typing import Any
 
 
 UNKNOWN = "未披露"
+DEFAULT_REGION_KEY = "320684"
 LEVEL_SORT_ORDER = {"A": 0, "B": 1, "C": 2}
 
 
@@ -47,11 +48,16 @@ class DashboardRecord:
         }
 
 
-def load_records(ai_data_dir: Path) -> list[DashboardRecord]:
+def load_records(
+    ai_data_dir: Path,
+    *,
+    region_key: str | None = None,
+) -> list[DashboardRecord]:
+    selected_region = _validated_region_key(region_key)
     files = sorted(ai_data_dir.glob("financing_analysis_*.json"))
     records: list[DashboardRecord] = []
     for file_path in files:
-        records.extend(_load_file(file_path))
+        records.extend(_load_file(file_path, selected_region))
     return _dedupe_records(records)
 
 
@@ -276,7 +282,10 @@ def _record_score(record: DashboardRecord) -> float:
         return 0.0
 
 
-def _load_file(file_path: Path) -> list[DashboardRecord]:
+def _load_file(
+    file_path: Path,
+    region_key: str | None,
+) -> list[DashboardRecord]:
     try:
         data = json.loads(file_path.read_text(encoding="utf-8-sig"))
     except (json.JSONDecodeError, OSError):
@@ -288,9 +297,32 @@ def _load_file(file_path: Path) -> list[DashboardRecord]:
 
     records = []
     for item in items:
-        if isinstance(item, dict):
+        if isinstance(item, dict) and _matches_region(item, region_key):
             records.append(_normalize_item(item, data.get("generated_at", "")))
     return records
+
+
+def _validated_region_key(region_key: str | None) -> str | None:
+    if region_key is None:
+        return None
+    value = str(region_key).strip()
+    if not value:
+        raise ValueError("region_key 不能为空")
+    return value
+
+
+def _matches_region(item: dict[str, Any], region_key: str | None) -> bool:
+    if region_key is None:
+        return True
+    item_region = str(
+        item.get("region_key")
+        or item.get("area_code")
+        or item.get("district_code")
+        or ""
+    ).strip()
+    if item_region:
+        return item_region == region_key
+    return region_key == DEFAULT_REGION_KEY
 
 
 def _normalize_item(item: dict[str, Any], generated_at: str) -> DashboardRecord:

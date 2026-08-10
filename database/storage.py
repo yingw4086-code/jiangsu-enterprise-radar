@@ -9,11 +9,15 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable
 
+from app.company_registry import ensure_company_registry_table
+from app.marketing_tracking import ensure_marketing_records_table
 from data_source.base import OpportunityRecord, UNKNOWN
+from data_source.project_classification import classify_project
 
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 13
 PLANNING_CONSTRUCTION_PERMIT_TYPE = "建设工程规划许可证"
+DEFAULT_REGION_KEY = "320684"
 
 
 @dataclass(frozen=True)
@@ -133,6 +137,10 @@ def init_db(db_path: Path) -> None:
                 "issuing_authority": "TEXT NOT NULL DEFAULT '未披露'",
                 "district": "TEXT NOT NULL DEFAULT '未披露'",
                 "district_code": "TEXT NOT NULL DEFAULT '未披露'",
+                "province": "TEXT NOT NULL DEFAULT '江苏省'",
+                "city": "TEXT NOT NULL DEFAULT '南通市'",
+                "region_key": "TEXT NOT NULL DEFAULT '320684'",
+                "area_code": "TEXT NOT NULL DEFAULT '320684'",
                 "source_url": "TEXT NOT NULL DEFAULT ''",
                 "source_name": "TEXT NOT NULL DEFAULT '未披露'",
                 "fresh_score": "INTEGER NOT NULL DEFAULT 0",
@@ -148,6 +156,10 @@ def init_db(db_path: Path) -> None:
                 "exclusion_reason": "TEXT NOT NULL DEFAULT ''",
                 "manual_review_required": "INTEGER NOT NULL DEFAULT 1",
                 "classification_updated_at": "TEXT NOT NULL DEFAULT ''",
+                "project_type": "TEXT NOT NULL DEFAULT 'unknown'",
+                "classification_confidence": "TEXT NOT NULL DEFAULT 'low'",
+                "source_region": "TEXT NOT NULL DEFAULT ''",
+                "source_time": "TEXT NOT NULL DEFAULT ''",
             },
         )
         conn.execute(
@@ -159,6 +171,37 @@ def init_db(db_path: Path) -> None:
         conn.execute(
             "UPDATE construction_permits SET last_seen_at = updated_at WHERE last_seen_at = ''"
         )
+        conn.execute(
+            """
+            UPDATE construction_permits
+            SET province = '江苏省',
+                city = '南通市',
+                district = '海门区',
+                region_key = '320684',
+                area_code = '320684',
+                source_region = CASE
+                    WHEN source_region = '' THEN '江苏省/南通市/海门区'
+                    ELSE source_region
+                END,
+                source_time = CASE
+                    WHEN source_time = '' THEN COALESCE(
+                        NULLIF(last_seen_at, ''),
+                        NULLIF(first_seen_at, ''),
+                        NULLIF(updated_at, ''),
+                        NULLIF(created_at, ''),
+                        ''
+                    )
+                    ELSE source_time
+                END
+            WHERE district_code = '320684'
+               OR district = '海门区'
+               OR region_key = '320684'
+               OR area_code = '320684'
+            """
+        )
+        ensure_marketing_records_table(conn)
+        ensure_company_registry_table(conn)
+        _backfill_project_classification(conn)
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS schema_meta (
@@ -185,6 +228,38 @@ def init_db(db_path: Path) -> None:
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_source_url ON construction_permits(source_url)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_owner_category ON construction_permits(owner_category)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_marketing_eligible ON construction_permits(marketing_eligible)")
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_permit_region_type_date
+            ON construction_permits(region_key, permit_type, permit_date)
+            """
+        )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_permit_area_source
+            ON construction_permits(area_code, source_url)
+            """
+        )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_permit_region_project_type
+            ON construction_permits(region_key, project_type)
+            """
+        )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_permit_region_project_classification
+            ON construction_permits(
+                region_key, project_type, classification_confidence
+            )
+            """
+        )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_permit_region_source_time
+            ON construction_permits(region_key, source_time)
+            """
+        )
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_ai_level ON permit_ai_analyses(ai_opportunity_level)")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_permit_ai_input_hash ON permit_ai_analyses(input_hash)")
 
@@ -198,6 +273,31 @@ def _ensure_columns(
     for column_name, definition in columns.items():
         if column_name not in existing:
             conn.execute(f"ALTER TABLE {table_name} ADD COLUMN {column_name} {definition}")
+
+
+def _backfill_project_classification(conn: sqlite3.Connection) -> None:
+    rows = conn.execute(
+        """
+        SELECT id, company_name, construction_unit, project_name
+        FROM construction_permits
+        """
+    ).fetchall()
+    classified = []
+    for row in rows:
+        result = classify_project(
+            company_name=row["company_name"],
+            construction_unit=row["construction_unit"],
+            project_name=row["project_name"],
+        )
+        classified.append((result.project_type, result.confidence, row["id"]))
+    conn.executemany(
+        """
+        UPDATE construction_permits
+        SET project_type = ?, classification_confidence = ?
+        WHERE id = ?
+        """,
+        classified,
+    )
 
 
 def connect(db_path: Path) -> sqlite3.Connection:
@@ -314,13 +414,15 @@ def upsert_construction_permits(db_path: Path, records: Iterable[Any]) -> Upsert
                     record_hash, company_name, project_name, permit_type, permit_date,
                     address, investment, score, source, construction_unit, permit_number,
                     project_scale, industry, update_time, project_stage, customer_level,
-                    raw_json, created_at, updated_at
+                    raw_json, created_at, updated_at, project_type,
+                    classification_confidence
                 )
                 VALUES (
                     :record_hash, :company_name, :project_name, :permit_type, :permit_date,
                     :address, :investment, :score, :source, :construction_unit, :permit_number,
                     :project_scale, :industry, :update_time, :project_stage, :customer_level,
-                    :raw_json, :created_at, :updated_at
+                    :raw_json, :created_at, :updated_at, :project_type,
+                    :classification_confidence
                 )
                 ON CONFLICT(record_hash) DO UPDATE SET
                     company_name=excluded.company_name,
@@ -339,6 +441,8 @@ def upsert_construction_permits(db_path: Path, records: Iterable[Any]) -> Upsert
                     project_stage=excluded.project_stage,
                     customer_level=excluded.customer_level,
                     raw_json=excluded.raw_json,
+                    project_type=excluded.project_type,
+                    classification_confidence=excluded.classification_confidence,
                     updated_at=excluded.updated_at
                 """,
                 construction_permit_to_params(record, item_hash, now),
@@ -383,14 +487,18 @@ def upsert_planning_construction_permits(db_path: Path, records: Iterable[Any]) 
                         project_scale, industry, update_time, project_stage, customer_level,
                         raw_json, created_at, updated_at, publish_date, issuing_authority,
                         district, district_code, source_url, source_name, fresh_score,
-                        first_seen_at, last_seen_at
+                        first_seen_at, last_seen_at, project_type,
+                        classification_confidence, province, city, region_key,
+                        area_code, source_region, source_time
                     ) VALUES (
                         :record_hash, :company_name, :project_name, :permit_type, :permit_date,
                         :address, :investment, :score, :source, :construction_unit, :permit_number,
                         :project_scale, :industry, :update_time, :project_stage, :customer_level,
                         :raw_json, :created_at, :updated_at, :publish_date, :issuing_authority,
                         :district, :district_code, :source_url, :source_name, :fresh_score,
-                        :first_seen_at, :last_seen_at
+                        :first_seen_at, :last_seen_at, :project_type,
+                        :classification_confidence, :province, :city, :region_key,
+                        :area_code, :source_region, :source_time
                     )
                     """,
                     params,
@@ -427,7 +535,15 @@ def upsert_planning_construction_permits(db_path: Path, records: Iterable[Any]) 
                         source_name=:source_name,
                         fresh_score=:fresh_score,
                         first_seen_at=:first_seen_at,
-                        last_seen_at=:last_seen_at
+                        last_seen_at=:last_seen_at,
+                        project_type=:project_type,
+                        classification_confidence=:classification_confidence,
+                        province=:province,
+                        city=:city,
+                        region_key=:region_key,
+                        area_code=:area_code,
+                        source_region=:source_region,
+                        source_time=:source_time
                     WHERE id=:existing_id
                     """,
                     params,
@@ -471,6 +587,14 @@ _PLANNING_COMPARE_COLUMNS = (
     "source_url",
     "source_name",
     "permit_number",
+    "project_type",
+    "classification_confidence",
+    "province",
+    "city",
+    "region_key",
+    "area_code",
+    "source_region",
+    "source_time",
 )
 
 
@@ -498,9 +622,15 @@ def _find_existing_planning_permit(
         """
         SELECT * FROM construction_permits
         WHERE project_name = ? AND permit_type = ? AND permit_date = ?
+          AND region_key = ?
         ORDER BY id LIMIT 1
         """,
-        (params["project_name"], params["permit_type"], params["permit_date"]),
+        (
+            params["project_name"],
+            params["permit_type"],
+            params["permit_date"],
+            params["region_key"],
+        ),
     ).fetchone()
 
 
@@ -560,16 +690,26 @@ def count_opportunities(db_path: Path) -> int:
         return int(conn.execute("SELECT COUNT(*) AS count FROM enterprise_opportunities").fetchone()["count"])
 
 
-def count_construction_permits(db_path: Path, permit_type: str | None = None) -> int:
+def count_construction_permits(
+    db_path: Path,
+    permit_type: str | None = None,
+    *,
+    region_key: str | None = None,
+) -> int:
     init_db(db_path)
+    conditions: list[str] = []
+    params: list[str] = []
+    if permit_type:
+        conditions.append("permit_type = ?")
+        params.append(permit_type)
+    if region_key:
+        conditions.append("region_key = ?")
+        params.append(region_key)
+    sql = "SELECT COUNT(*) AS count FROM construction_permits"
+    if conditions:
+        sql += " WHERE " + " AND ".join(conditions)
     with db_connection(db_path) as conn:
-        if permit_type:
-            row = conn.execute(
-                "SELECT COUNT(*) AS count FROM construction_permits WHERE permit_type = ?",
-                (permit_type,),
-            ).fetchone()
-        else:
-            row = conn.execute("SELECT COUNT(*) AS count FROM construction_permits").fetchone()
+        row = conn.execute(sql, tuple(params)).fetchone()
         return int(row["count"])
 
 
@@ -695,11 +835,21 @@ def save_permit_ai_analysis(
         )
 
 
-def load_public_planning_construction_permits(db_path: Path) -> list[dict[str, Any]]:
+def load_public_planning_construction_permits(
+    db_path: Path,
+    *,
+    region_key: str | None = DEFAULT_REGION_KEY,
+) -> list[dict[str, Any]]:
     init_db(db_path)
+    region_condition = "" if region_key is None else "AND permits.region_key = ?"
+    params: tuple[Any, ...]
+    if region_key is None:
+        params = (PLANNING_CONSTRUCTION_PERMIT_TYPE, UNKNOWN)
+    else:
+        params = (PLANNING_CONSTRUCTION_PERMIT_TYPE, region_key, UNKNOWN)
     with db_connection(db_path) as conn:
         rows = conn.execute(
-            """
+            f"""
             SELECT
                 company_name,
                 project_name,
@@ -711,8 +861,14 @@ def load_public_planning_construction_permits(db_path: Path) -> list[dict[str, A
                 issuing_authority,
                 district,
                 district_code,
+                province,
+                city,
+                region_key,
+                area_code,
                 source_url,
                 source_name,
+                source_region,
+                source_time,
                 fresh_score,
                 first_seen_at,
                 last_seen_at,
@@ -726,6 +882,8 @@ def load_public_planning_construction_permits(db_path: Path) -> list[dict[str, A
                 exclusion_reason,
                 manual_review_required,
                 classification_updated_at,
+                project_type,
+                classification_confidence,
                 analyses.ai_opportunity_level,
                 analyses.financing_need,
                 analyses.recommended_products_json,
@@ -736,12 +894,12 @@ def load_public_planning_construction_permits(db_path: Path) -> list[dict[str, A
                 analyses.risk_notice
             FROM construction_permits AS permits
             LEFT JOIN permit_ai_analyses AS analyses ON analyses.permit_id = permits.id
-            WHERE permits.permit_type = ?
+            WHERE permits.permit_type = ? {region_condition}
             ORDER BY
                 CASE WHEN permits.permit_date <> ? THEN permits.permit_date ELSE permits.publish_date END DESC,
                 permits.id DESC
             """,
-            (PLANNING_CONSTRUCTION_PERMIT_TYPE, UNKNOWN),
+            params,
         ).fetchall()
     result = []
     for row in rows:
@@ -800,6 +958,7 @@ def construction_permit_hash(record: Any) -> str:
                 normalize_key(getattr(record, "project_name", "")),
                 normalize_key(getattr(record, "permit_type", "")),
                 normalize_key(getattr(record, "permit_date", "")),
+                normalize_key(getattr(record, "region_key", DEFAULT_REGION_KEY)),
             ]
         )
     return hashlib.sha256(key.encode("utf-8")).hexdigest()
@@ -813,17 +972,42 @@ def planning_construction_permit_to_params(
     source_url = getattr(record, "source_url", "") or getattr(record, "detail_url", "") or ""
     permit_date = getattr(record, "permit_date", UNKNOWN) or UNKNOWN
     publish_date = getattr(record, "publish_date", UNKNOWN) or UNKNOWN
+    company_name = getattr(record, "company_name", UNKNOWN) or UNKNOWN
+    construction_unit = getattr(record, "construction_unit", UNKNOWN) or UNKNOWN
+    project_name = getattr(record, "project_name", UNKNOWN) or UNKNOWN
+    classification = classify_project(
+        company_name=company_name,
+        construction_unit=construction_unit,
+        project_name=project_name,
+    )
+    province = getattr(record, "province", "江苏省") or "江苏省"
+    city = getattr(record, "city", "南通市") or "南通市"
+    district = getattr(record, "district", "海门区") or "海门区"
+    region_key = str(
+        getattr(record, "region_key", "")
+        or getattr(record, "district_code", "")
+        or DEFAULT_REGION_KEY
+    )
+    area_code = str(getattr(record, "area_code", "") or region_key)
+    source_region = (
+        getattr(record, "source_region", "")
+        or f"{province}/{city}/{district}"
+    )
+    source_time = getattr(record, "source_time", "") or now
     return {
         "record_hash": item_hash,
-        "company_name": getattr(record, "company_name", UNKNOWN) or UNKNOWN,
-        "project_name": getattr(record, "project_name", UNKNOWN) or UNKNOWN,
-        "permit_type": PLANNING_CONSTRUCTION_PERMIT_TYPE,
+        "company_name": company_name,
+        "project_name": project_name,
+        "permit_type": (
+            getattr(record, "permit_type", "")
+            or PLANNING_CONSTRUCTION_PERMIT_TYPE
+        ),
         "permit_date": permit_date,
         "address": getattr(record, "project_address", UNKNOWN) or UNKNOWN,
         "investment": UNKNOWN,
         "score": 0,
         "source": source_url,
-        "construction_unit": getattr(record, "construction_unit", UNKNOWN) or UNKNOWN,
+        "construction_unit": construction_unit,
         "permit_number": getattr(record, "permit_number", UNKNOWN) or UNKNOWN,
         "project_scale": UNKNOWN,
         "industry": UNKNOWN,
@@ -835,28 +1019,44 @@ def planning_construction_permit_to_params(
         "updated_at": now,
         "publish_date": publish_date,
         "issuing_authority": getattr(record, "issuing_authority", UNKNOWN) or UNKNOWN,
-        "district": "海门区",
-        "district_code": "320684",
+        "district": district,
+        "district_code": region_key,
+        "province": province,
+        "city": city,
+        "region_key": region_key,
+        "area_code": area_code,
+        "source_region": source_region,
+        "source_time": source_time,
         "source_url": source_url,
         "source_name": getattr(record, "source_name", UNKNOWN) or UNKNOWN,
         "fresh_score": int(getattr(record, "fresh_score", 0) or 0),
         "first_seen_at": now,
         "last_seen_at": now,
+        "project_type": classification.project_type,
+        "classification_confidence": classification.confidence,
     }
 
 
 def construction_permit_to_params(record: Any, item_hash: str, now: str) -> dict[str, Any]:
+    company_name = getattr(record, "company_name", UNKNOWN) or UNKNOWN
+    construction_unit = getattr(record, "construction_unit", UNKNOWN) or UNKNOWN
+    project_name = getattr(record, "project_name", UNKNOWN) or UNKNOWN
+    classification = classify_project(
+        company_name=company_name,
+        construction_unit=construction_unit,
+        project_name=project_name,
+    )
     return {
         "record_hash": item_hash,
-        "company_name": getattr(record, "company_name", UNKNOWN) or UNKNOWN,
-        "project_name": getattr(record, "project_name", UNKNOWN) or UNKNOWN,
+        "company_name": company_name,
+        "project_name": project_name,
         "permit_type": getattr(record, "permit_type", UNKNOWN) or UNKNOWN,
         "permit_date": getattr(record, "permit_date", UNKNOWN) or UNKNOWN,
         "address": getattr(record, "project_address", UNKNOWN) or UNKNOWN,
         "investment": getattr(record, "investment_amount", UNKNOWN) or UNKNOWN,
         "score": int(getattr(record, "loan_opportunity_score", 0) or 0),
         "source": getattr(record, "source_url", "") or "",
-        "construction_unit": getattr(record, "construction_unit", UNKNOWN) or UNKNOWN,
+        "construction_unit": construction_unit,
         "permit_number": getattr(record, "permit_number", UNKNOWN) or UNKNOWN,
         "project_scale": getattr(record, "project_scale", UNKNOWN) or UNKNOWN,
         "industry": getattr(record, "industry", UNKNOWN) or UNKNOWN,
@@ -866,6 +1066,8 @@ def construction_permit_to_params(record: Any, item_hash: str, now: str) -> dict
         "raw_json": json.dumps(getattr(record, "raw", {}) or {}, ensure_ascii=False),
         "created_at": now,
         "updated_at": now,
+        "project_type": classification.project_type,
+        "classification_confidence": classification.confidence,
     }
 
 

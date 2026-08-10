@@ -52,6 +52,8 @@ class PlanningPermitStorageTest(unittest.TestCase):
             self.assertEqual(changed.updated_count, 1)
             self.assertEqual(changed.total_count, 1)
             self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["project_type"], "enterprise")
+            self.assertEqual(rows[0]["classification_confidence"], "high")
             self.assertEqual(rows[0]["district"], "海门区")
             self.assertEqual(rows[0]["district_code"], "320684")
             self.assertEqual(rows[0]["project_address"], "海门区三星镇产业园")

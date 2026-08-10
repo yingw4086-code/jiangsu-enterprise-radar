@@ -1,0 +1,61 @@
+﻿{
+  "generated_at": "2026-07-21 13:26:34",
+  "record_count": 109,
+  "min_records_target": 50,
+  "target_met": true,
+  "source_reports": [
+    {
+      "source": "江苏自然资源政务信息检索服务",
+      "source_type": "自然资源",
+      "records": 30,
+      "errors": [
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008",
+        "江苏自然资源政务信息检索服务 HTTP 403: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?classID=8a908254409a391f01409a4b28500008"
+      ],
+      "duration_seconds": 20.5
+    },
+    {
+      "source": "发改投资项目备案信息",
+      "source_type": "投资备案",
+      "records": 23,
+      "errors": [],
+      "duration_seconds": 8.68
+    },
+    {
+      "source": "生态环境审批公开信息",
+      "source_type": "生态环境",
+      "records": 30,
+      "errors": [],
+      "duration_seconds": 1.49
+    },
+    {
+      "source": "住建施工许可证信息",
+      "source_type": "施工许可",
+      "records": 0,
+      "errors": [
+        "住建施工许可证信息 访问失败: http://www.haimen.gov.cn/hmszjj/xzxk/xzxk.html; <urlopen error _ssl.c:993: The handshake operation timed out>"
+      ],
+      "duration_seconds": 4.8
+    },
+    {
+      "source": "公共资源交易信息",
+      "source_type": "公共资源交易",
+      "records": 26,
+      "errors": [
+        "公共资源交易信息 访问失败: https://www.haimen.gov.cn/hmsgtj/zfcg/zfcg.html; <urlopen error _ssl.c:993: The handshake operation timed out>"
+      ],
+      "duration_seconds": 10.67
+    }
+  ],
+  "outputs": {
+    "opportunity_json": "C:\\Users\\Administrator\\Documents\\包装agent实验1\\project-radar\\data\\opportunities\\enterprise_opportunities_2026-07-21_132634.json",
+    "dashboard_ai_json": "C:\\Users\\Administrator\\Documents\\包装agent实验1\\project-radar\\data\\ai\\financing_analysis_2026-07-21_132634.json"
+  }
+}

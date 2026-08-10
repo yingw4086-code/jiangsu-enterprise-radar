@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from database.storage import load_public_planning_construction_permits
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB_PATH = PROJECT_ROOT / "database" / "enterprise.db"
 DEFAULT_OUTPUT_PATH = PROJECT_ROOT / "data" / "cloud" / "planning_construction_permits.json"
 PUBLIC_FIELDS = (
@@ -22,8 +26,14 @@ PUBLIC_FIELDS = (
     "issuing_authority",
     "district",
     "district_code",
+    "province",
+    "city",
+    "region_key",
+    "area_code",
     "source_url",
     "source_name",
+    "source_region",
+    "source_time",
     "fresh_score",
     "first_seen_at",
     "last_seen_at",
@@ -37,6 +47,8 @@ PUBLIC_FIELDS = (
     "exclusion_reason",
     "manual_review_required",
     "classification_updated_at",
+    "project_type",
+    "classification_confidence",
     "ai_opportunity_level",
     "financing_need",
     "recommended_products",
@@ -49,7 +61,7 @@ PUBLIC_FIELDS = (
 
 
 def export_cloud_data(db_path: Path, output_path: Path) -> dict[str, Any]:
-    rows = load_public_planning_construction_permits(db_path)
+    rows = load_public_planning_construction_permits(db_path, region_key=None)
     if not rows:
         return {
             "export_count": 0,

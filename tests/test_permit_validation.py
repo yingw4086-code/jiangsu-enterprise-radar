@@ -32,7 +32,9 @@ class PermitValidationTest(unittest.TestCase):
             ("official_construction_start_permit_list.jsonp", "https://shuju.nantong.gov.cn", 835),
         )
         for filename, base_url, expected_total in cases:
-            payload = (PROJECT_ROOT / "debug" / filename).read_text(encoding="utf-8")
+            payload = (PROJECT_ROOT / "tests" / "fixtures" / filename).read_text(
+                encoding="utf-8"
+            )
             total, items = parse_truecms_payload(payload, base_url)
             self.assertEqual(total, expected_total)
             self.assertEqual(len(items), 30)

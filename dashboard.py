@@ -1,11 +1,26 @@
 from __future__ import annotations
 
+import hashlib
+import sqlite3
 from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 
+from app.company_registry import (
+    CompanyRegistryValidationError,
+    enrich_items_with_company_registry,
+    enrich_registry_completeness,
+    summarize_registry_coverage,
+)
+from app.company_data_provider import CompanyDataProviderError
+from app.company_import import (
+    CompanyImportConfirmationError,
+    execute_company_registry_excel_import,
+    list_company_import_logs,
+    preview_company_registry_excel,
+)
 from app.dashboard_data import (
     DashboardRecord,
     filter_records,
@@ -22,27 +37,77 @@ from app.dashboard_data import (
     sort_marketing_tasks,
     suggest_visit_time,
 )
+from app.credit_analysis import (
+    analyze_credit_opportunity,
+    build_financing_report,
+    enrich_credit_opportunity,
+)
+from app.enterprise_profile import EnterpriseProfile, build_enterprise_profile
+from app.enterprise_profile_enhance import (
+    ALL_FILTER as ALL_ENTERPRISE_PROFILE_FILTER,
+    COMPANY_SCALE_OPTIONS,
+    OWNERSHIP_TYPE_OPTIONS,
+    EnhancedEnterpriseProfile,
+    assess_company_strength,
+    build_enhanced_enterprise_profile,
+    enrich_company_strength,
+)
 from app.enterprise_map import render_enterprise_map
+from app.finance_estimation import (
+    FinanceEstimation,
+    enrich_finance_estimations,
+    estimate_finance_need,
+    estimation_confidence_label,
+)
+from app.finance_scoring import (
+    FINANCE_LEVEL_LABELS,
+    FINANCE_LEVEL_OPTIONS,
+    enrich_finance_opportunities,
+    rank_finance_opportunities,
+)
+from app.industry_classification import enrich_industry_assessment
+from app.marketing_report import (
+    build_marketing_report,
+    marketing_report_filename,
+    render_marketing_report_pdf,
+)
+from app.marketing_tracking import (
+    ALL_STATUS_FILTER,
+    MARKETING_STATUSES,
+    MarketingRecord,
+    MarketingTrackingValidationError,
+    add_marketing_record,
+    get_marketing_record,
+    list_marketing_records,
+    update_marketing_record,
+)
 from app.official_permit_data import (
     OfficialPermitDataset,
     load_official_permit_dataset,
     sort_official_permits,
     summarize_official_permits,
 )
-from app.permit_ownership import owner_category_label
+from app.permit_ownership import (
+    GOVERNMENT_AGENCY,
+    PUBLIC_INSTITUTION,
+    owner_category_label,
+)
 from app.permit_data_runtime import (
     OWNER_FILTER_OPTIONS,
+    PROJECT_TYPE_FILTER_OPTIONS,
     PermitDataset,
     effective_permit_date,
     filter_permits_by_ownership,
+    filter_permits_by_project_type,
     filter_planning_permits,
     load_planning_permit_dataset,
-    select_homepage_opportunities,
+    select_priority_enterprise_opportunities,
     sort_classified_opportunities,
-    summarize_homepage_permits,
-    summarize_ownership_permits,
     summarize_planning_permits,
+    summarize_region_opportunities,
 )
+from app.region_service import RegionConfig, RegionConfigError, RegionQueryService
+from app.region_permit_summary import load_region_permit_summary
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -51,6 +116,13 @@ DATABASE_PATH = PROJECT_ROOT / "database" / "enterprise.db"
 CLOUD_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "planning_construction_permits.json"
 CLOUD_LAND_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "planning_land_permits.json"
 CLOUD_START_PERMIT_PATH = PROJECT_ROOT / "data" / "cloud" / "construction_start_permits.json"
+REGION_CONFIG_PATH = PROJECT_ROOT / "config" / "regions.json"
+COMPANY_REGISTRY_TEMPLATE_PATH = (
+    PROJECT_ROOT
+    / "outputs"
+    / "phase3_10"
+    / "company_registry_import_template.xlsx"
+)
 PLANNING_SOURCE_URL = (
     "http://zrzy.jiangsu.gov.cn/elsearch/search/index?"
     "areaCode=320684&content=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81"
@@ -62,7 +134,7 @@ START_SOURCE_URL = "https://shuju.nantong.gov.cn/ntsxzspj/pzjg/pzjg.html"
 
 
 st.set_page_config(
-    page_title="海门企业雷达",
+    page_title="区域企业融资机会雷达",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -72,25 +144,22 @@ def main() -> None:
     inject_styles()
     records = load_records(AI_DATA_DIR)
     files = latest_json_files(AI_DATA_DIR)
-    permit_dataset = load_planning_permit_dataset(DATABASE_PATH, CLOUD_PERMIT_PATH)
-    land_permit_dataset = load_official_permit_dataset(
-        DATABASE_PATH,
-        CLOUD_LAND_PERMIT_PATH,
-        permit_type=LAND_PERMIT_TYPE,
-    )
-    start_permit_dataset = load_official_permit_dataset(
-        DATABASE_PATH,
-        CLOUD_START_PERMIT_PATH,
-        permit_type=START_PERMIT_TYPE,
-    )
+    try:
+        region_service = RegionQueryService.from_file(REGION_CONFIG_PATH)
+    except RegionConfigError as exc:
+        st.error(f"区域配置加载失败：{exc}")
+        st.stop()
 
     with st.sidebar:
-        st.markdown("## 海门企业雷达")
-        st.caption("区域企业融资机会驾驶舱")
+        st.markdown("## 区域企业融资机会雷达")
+        st.caption("银行客户经理融资机会驾驶舱")
         page = st.radio(
             "导航",
             [
                 "首页 Dashboard",
+                "AI授信分析",
+                "企业画像",
+                "我的客户列表",
                 "海门建设工程规划许可证",
                 "海门建设用地规划许可证",
                 "海门建设工程施工许可证",
@@ -103,7 +172,13 @@ def main() -> None:
                 "旧版项目数据",
             ],
             label_visibility="collapsed",
+            key="navigation_page",
         )
+        selected_region = _default_region(region_service)
+        if page in {"首页 Dashboard", "企业画像"}:
+            st.divider()
+            st.markdown("### 区域选择")
+            selected_region = render_region_selector(region_service)
         st.divider()
         st.caption("旧版项目数据文件")
         if files:
@@ -112,11 +187,53 @@ def main() -> None:
         else:
             st.caption("尚未发现旧版JSON文件")
 
-    st.markdown('<div class="app-title">海门企业雷达</div>', unsafe_allow_html=True)
+    permit_dataset = load_planning_permit_dataset(
+        DATABASE_PATH,
+        CLOUD_PERMIT_PATH,
+        region_key=selected_region.region_key,
+    )
+    land_permit_dataset = load_official_permit_dataset(
+        DATABASE_PATH,
+        CLOUD_LAND_PERMIT_PATH,
+        permit_type=LAND_PERMIT_TYPE,
+        region_key=selected_region.region_key,
+    )
+    start_permit_dataset = load_official_permit_dataset(
+        DATABASE_PATH,
+        CLOUD_START_PERMIT_PATH,
+        permit_type=START_PERMIT_TYPE,
+        region_key=selected_region.region_key,
+    )
+    region_dataset = combine_region_datasets(
+        permit_dataset,
+        land_permit_dataset,
+        start_permit_dataset,
+    )
+
+    if page == "首页 Dashboard":
+        title = f"{selected_region.district}企业融资机会雷达"
+    elif page == "AI授信分析":
+        title = f"{selected_region.district}企业授信机会分析"
+    elif page == "企业画像":
+        title = f"{selected_region.district}企业工商画像"
+    elif page == "我的客户列表":
+        title = "客户经理跟进管理"
+    else:
+        title = "海门企业雷达"
+    st.markdown(f'<div class="app-title">{title}</div>', unsafe_allow_html=True)
     st.markdown('<div class="app-subtitle">面向银行客户经理的区域企业融资机会监测系统</div>', unsafe_allow_html=True)
 
     if page == "首页 Dashboard":
-        render_dashboard(permit_dataset)
+        render_dashboard(region_dataset, selected_region)
+        return
+    if page == "AI授信分析":
+        render_enterprise_analysis_page(region_dataset, selected_region)
+        return
+    if page == "企业画像":
+        render_enhanced_enterprise_profile_page(region_dataset, selected_region)
+        return
+    if page == "我的客户列表":
+        render_my_customer_list(DATABASE_PATH)
         return
     if page == "海门建设工程规划许可证":
         render_planning_construction_permits(permit_dataset)
@@ -163,103 +280,227 @@ def main() -> None:
         render_risk_page(records)
 
 
-def render_dashboard(dataset: PermitDataset) -> None:
-    summary = summarize_homepage_permits(dataset.items)
-    ownership_summary = summarize_ownership_permits(dataset.items)
-    st.markdown("### 真实许可证概览")
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("今日新增许可证数量", summary["today_count"])
-    col2.metric("最近30天新增许可证数量", summary["recent_30_days_count"])
-    col3.metric("最近90天新增许可证数量", summary["recent_90_days_count"])
-    col4.metric("当前真实许可证总数", summary["total_count"])
+def render_region_selector(region_service: RegionQueryService) -> RegionConfig:
+    default_region = _default_region(region_service)
+    provinces = list(region_service.list_provinces())
+    if str(st.session_state.get("region_province") or "") not in provinces:
+        st.session_state["region_province"] = default_region.province
+    province = st.selectbox("省", provinces, key="region_province")
 
-    st.markdown("### 项目主体性质")
-    owner_col1, owner_col2, owner_col3 = st.columns(3)
-    owner_col1.metric("民营企业项目数", ownership_summary["private_count"])
-    owner_col2.metric("国有商业企业项目数", ownership_summary["state_owned_count"])
-    owner_col3.metric("政府公益项目数", ownership_summary["government_public_count"])
-    owner_col4, owner_col5 = st.columns(2)
-    owner_col4.metric("待核验项目数", ownership_summary["unknown_count"])
-    owner_col5.metric(
-        "最近30天民营企业项目数",
-        ownership_summary["recent_30_private_count"],
+    cities = list(region_service.list_cities(province))
+    default_city = (
+        default_region.city if default_region.province == province else cities[0]
     )
+    if str(st.session_state.get("region_city") or "") not in cities:
+        st.session_state["region_city"] = default_city
+    city = st.selectbox("市", cities, key="region_city")
 
-    st.markdown("### 重点机会")
-    ownership_view = st.selectbox(
-        "主体性质筛选",
-        OWNER_FILTER_OPTIONS,
-        index=0,
-        key="homepage_owner_filter",
+    districts = list(region_service.list_districts(province, city))
+    default_district = (
+        default_region.district
+        if default_region.province == province and default_region.city == city
+        else districts[0]
     )
-    top_items = select_homepage_opportunities(
-        dataset.items,
-        recent_days=90,
-        limit=15,
-        ownership_view=ownership_view,
-    )
-    if top_items:
-        rows = []
-        for item in top_items:
-            products = item.get("recommended_products") or []
-            if isinstance(products, str):
-                products = [products] if products.strip() else []
-            effective_date = effective_permit_date(item)
-            rows.append(
-                {
-                    "企业或建设单位": _homepage_company_name(
-                        item.get("owner_name") or item.get("company_name")
-                    ),
-                    "项目名称": item.get("project_name") or "项目名称暂未披露",
-                    "主体性质": owner_category_label(item.get("owner_category")),
-                    "营销优先级": item.get("marketing_priority") or "待核验",
-                    "许可证类型": item.get("permit_type") or "建设工程规划许可证",
-                    "许可证编号": item.get("permit_number") or "未披露",
-                    "发现时间": effective_date.isoformat() if effective_date else "未披露",
-                    "数据来源": item.get("source_name") or "政府公开信息",
-                    "官方来源": item.get("source_url") or "",
-                    "新鲜度": int(item.get("fresh_score") or 0),
-                    "AI机会等级": item.get("ai_opportunity_level") or "待分析",
-                    "推荐产品": "、".join(products) if products else "待分析",
-                }
-            )
+    if str(st.session_state.get("region_district") or "") not in districts:
+        st.session_state["region_district"] = default_district
+    district = st.selectbox("区县", districts, key="region_district")
+    region_key = region_service.resolve_region_key(province, city, district)
+    st.session_state["selected_region_key"] = region_key
+    selected_region = region_service.get_by_region_key(region_key)
+    if selected_region.administrative_code != region_key:
         st.caption(
-            f"当前筛选：{ownership_view}。仅展示最近90天真实许可证，"
-            "按主体性质、营销优先级、近期程度、日期、新鲜度和AI机会等级排序。"
-        )
-        st.dataframe(
-            pd.DataFrame(rows),
-            use_container_width=True,
-            hide_index=True,
-            column_config={
-                "官方来源": st.column_config.LinkColumn(
-                    "官方来源",
-                    display_text="查看原文",
-                ),
-                "新鲜度": st.column_config.NumberColumn(
-                    "新鲜度",
-                    min_value=0,
-                    max_value=100,
-                ),
-            },
+            f"数据查询键：{region_key}；"
+            f"现行行政区划代码：{selected_region.administrative_code}"
         )
     else:
-        st.info(f"最近90天没有符合“{ownership_view}”条件的许可证记录。")
+        st.caption(f"区域代码：{region_key}")
+    return selected_region
+
+
+def _default_region(region_service: RegionQueryService) -> RegionConfig:
+    selected_region_key = str(
+        st.session_state.get("selected_region_key") or "320684"
+    )
+    try:
+        return region_service.get_by_region_key(selected_region_key)
+    except LookupError:
+        return region_service.list_regions()[0]
+
+
+def combine_region_datasets(
+    planning_dataset: PermitDataset,
+    land_dataset: OfficialPermitDataset,
+    start_dataset: OfficialPermitDataset,
+) -> PermitDataset:
+    registry_items = enrich_items_with_company_registry(
+        [
+            *planning_dataset.items,
+            *land_dataset.items,
+            *start_dataset.items,
+        ],
+        DATABASE_PATH,
+    )
+    completeness_items = [
+        enrich_registry_completeness(item) for item in registry_items
+    ]
+    industry_items = [
+        enrich_industry_assessment(item) for item in completeness_items
+    ]
+    strength_items = [enrich_company_strength(item) for item in industry_items]
+    finance_items = enrich_finance_opportunities(strength_items)
+    estimated_items = enrich_finance_estimations(finance_items)
+    items = [enrich_credit_opportunity(item) for item in estimated_items]
+    storage_sources = list(
+        dict.fromkeys(
+            source
+            for source in (
+                planning_dataset.storage_source,
+                land_dataset.storage_source,
+                start_dataset.storage_source,
+            )
+            if source
+        )
+    )
+    last_updated = max(
+        (
+            value
+            for value in (
+                planning_dataset.last_updated,
+                land_dataset.last_updated,
+                start_dataset.last_updated,
+            )
+            if value and value != "未披露"
+        ),
+        default="未披露",
+    )
+    return PermitDataset(
+        items=items,
+        storage_source=" + ".join(storage_sources) or "暂无正式数据",
+        last_updated=last_updated,
+        source_path=planning_dataset.source_path,
+    )
+
+
+def render_dashboard(dataset: PermitDataset, region: RegionConfig) -> None:
+    summary = summarize_region_opportunities(dataset.items)
+    st.markdown(f"### {region.province} / {region.city} / {region.district}")
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("当前区域项目总数", summary["total_count"])
+    col2.metric("企业项目数量", summary["enterprise_count"])
+    col3.metric("政府项目数量", summary["government_count"])
+    col4.metric(
+        "高可信机会数量",
+        summary["high_confidence_opportunity_count"],
+    )
+
+    regional_counts = load_region_permit_summary(
+        DATABASE_PATH,
+        REGION_CONFIG_PATH,
+        province=region.province,
+    )
+    st.markdown("### 区域数据数量")
+    province_col, nanjing_col, suzhou_col, nantong_col = st.columns(4)
+    province_col.metric(
+        f"{region.province}项目总数",
+        regional_counts.province_total,
+    )
+    nanjing_col.metric("南京市", regional_counts.city_count("南京市"))
+    suzhou_col.metric("苏州市", regional_counts.city_count("苏州市"))
+    nantong_col.metric("南通市", regional_counts.city_count("南通市"))
+    st.caption(
+        "以上为当前数据库已导入记录数；未导入或来源尚未验证的区域不代表官方项目数为零。"
+    )
+
+    st.markdown("### 重点融资机会排行榜")
+    available_finance_levels = {
+        str(item.get("finance_level") or "")
+        for item in dataset.items
+        if bool(item.get("eligible_for_recommendation"))
+    }
+    default_finance_level = next(
+        (
+            level
+            for level in FINANCE_LEVEL_OPTIONS
+            if level in available_finance_levels
+        ),
+        "A",
+    )
+    finance_level = st.selectbox(
+        "融资等级筛选",
+        FINANCE_LEVEL_OPTIONS,
+        index=FINANCE_LEVEL_OPTIONS.index(default_finance_level),
+        key="homepage_finance_level_filter",
+        format_func=lambda value: FINANCE_LEVEL_LABELS[value],
+    )
+    finance_items = rank_finance_opportunities(
+        dataset.items,
+        finance_level=finance_level,
+    )
+    st.caption(
+        f"当前等级：{FINANCE_LEVEL_LABELS[finance_level]}，共 {len(finance_items)} 条；"
+        "政府项目不进入融资推荐。"
+    )
+    if finance_items:
+        st.dataframe(
+            pd.DataFrame(_finance_opportunity_rows(finance_items)),
+            use_container_width=True,
+            hide_index=True,
+        )
+        render_finance_profile_links(finance_items)
+    else:
+        st.info(f"当前区域暂无 {FINANCE_LEVEL_LABELS[finance_level]}。")
+
+    st.markdown("### 重点机会")
+    priority_items = select_priority_enterprise_opportunities(dataset.items)
+    st.caption(
+        "仅展示企业项目；按分类置信度 high、medium、low 排序，"
+        "同一置信度内按发布时间倒序。"
+    )
+    if priority_items:
+        st.dataframe(
+            pd.DataFrame(_opportunity_rows(priority_items)),
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("当前区域暂无已识别的企业融资机会。")
+
+    st.markdown("### 区域项目筛选")
+    project_type_view = st.selectbox(
+        "项目类型筛选",
+        PROJECT_TYPE_FILTER_OPTIONS,
+        index=0,
+        key="homepage_project_type_filter",
+    )
+    filtered_items = filter_permits_by_project_type(dataset.items, project_type_view)
+    if project_type_view == "企业项目":
+        filtered_items = select_priority_enterprise_opportunities(filtered_items)
+    else:
+        filtered_items = sorted(
+            filtered_items,
+            key=lambda item: str(item.get("publish_date") or ""),
+            reverse=True,
+        )
+    st.caption(f"当前筛选：{project_type_view}，共 {len(filtered_items)} 条。")
+    if filtered_items:
+        st.dataframe(
+            pd.DataFrame(_opportunity_rows(filtered_items)),
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info(f"当前区域没有“{project_type_view}”记录。")
 
     with st.expander("数据诊断", expanded=False):
         diagnostics = {
+            "region_key": region.region_key,
             "当前数据源": dataset.storage_source,
             "实际读取文件": dataset.source_path,
             "实际读取记录数": summary["total_count"],
-            "最新记录日期": summary["latest_date"],
-            "最近30天数量": summary["recent_30_days_count"],
-            "最近90天数量": summary["recent_90_days_count"],
-            "可营销企业项目数": sum(
-                bool(item.get("marketing_eligible")) for item in dataset.items
-            ),
-            "最近30天可营销企业数": ownership_summary[
-                "recent_30_marketing_eligible_count"
-            ],
+            "最新同步时间": dataset.last_updated,
+            "企业项目数": summary["enterprise_count"],
+            "政府项目数": summary["government_count"],
+            "高可信企业机会数": summary["high_confidence_opportunity_count"],
         }
         st.dataframe(
             pd.DataFrame(
@@ -268,7 +509,874 @@ def render_dashboard(dataset: PermitDataset) -> None:
             use_container_width=True,
             hide_index=True,
         )
-    st.caption("数据来源于政府公开信息，AI分析仅用于营销线索筛选，不作为授信审批依据。")
+    st.caption("数据来源于政府公开信息，分类仅用于营销线索筛选，不作为授信审批依据。")
+
+
+def _opportunity_rows(items: list[dict[str, object]]) -> list[dict[str, object]]:
+    project_type_labels = {
+        "enterprise": "企业项目",
+        "government": "政府项目",
+        "unknown": "待识别",
+    }
+    confidence_labels = {"high": "高", "medium": "中", "low": "低"}
+    return [
+        {
+            "企业名称": _homepage_company_name(
+                item.get("company_name") or item.get("construction_unit")
+            ),
+            "项目名称": item.get("project_name") or "项目名称暂未披露",
+            "所属行业": item.get("industry") or "未披露",
+            "发布时间": item.get("publish_date") or "未披露",
+            "项目类型": project_type_labels.get(
+                str(item.get("project_type") or "unknown"),
+                "待识别",
+            ),
+            "置信度": confidence_labels.get(
+                str(item.get("classification_confidence") or "low"),
+                "低",
+            ),
+        }
+        for item in items
+    ]
+
+
+def _finance_opportunity_rows(
+    items: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    return [
+        {
+            "企业名称": _homepage_company_name(
+                item.get("company_name") or item.get("construction_unit")
+            ),
+            "项目名称": item.get("project_name") or "项目名称暂未披露",
+            "行业": item.get("industry") or "未披露",
+            "融资评分": int(item.get("finance_score") or 0),
+            "推荐贷款类型": item.get("loan_type") or "待核验",
+            "建议联系时间": item.get("suggested_contact_time") or "建议30天内复核",
+        }
+        for item in items
+    ]
+
+
+def render_finance_profile_links(items: list[dict[str, object]]) -> None:
+    with st.expander("点击企业名称进入详情页", expanded=False):
+        st.caption("选择企业后将进入独立的企业画像与 AI 授信分析页面。")
+        for index, item in enumerate(items[:20]):
+            company_name = _homepage_company_name(
+                item.get("company_name") or item.get("construction_unit")
+            )
+            columns = st.columns([2, 3, 1, 1])
+            columns[0].button(
+                company_name,
+                key=f"open_enterprise_profile_{index}",
+                on_click=_select_enterprise_for_analysis,
+                args=(item,),
+                use_container_width=True,
+            )
+            columns[1].write(item.get("project_name") or "项目名称暂未披露")
+            columns[2].write(f"{int(item.get('finance_score') or 0)}分")
+            columns[3].write(str(item.get("finance_level") or "C"))
+
+
+def render_enterprise_analysis_page(
+    dataset: PermitDataset,
+    region: RegionConfig,
+) -> None:
+    st.markdown("### 企业画像与 AI 授信分析")
+    st.caption(
+        f"当前区域：{region.province} / {region.city} / {region.district}。"
+        "分析基于公开许可证和现有融资评分，由本地规则生成，不调用外部 AI API。"
+    )
+    eligible_items = sorted(
+        (
+            item
+            for item in dataset.items
+            if bool(item.get("eligible_for_recommendation"))
+            and _homepage_company_name(
+                item.get("company_name") or item.get("construction_unit")
+            )
+            != "建设单位暂未披露"
+        ),
+        key=lambda item: (
+            -int(item.get("finance_score") or 0),
+            str(item.get("company_name") or ""),
+            str(item.get("project_name") or ""),
+        ),
+    )
+    if not eligible_items:
+        st.info("当前区域暂无可生成企业画像的融资线索。")
+        return
+
+    items_by_key = {
+        _enterprise_selection_key(item): item for item in eligible_items
+    }
+    selection_options = list(items_by_key)
+    selected_key = str(
+        st.session_state.get("analysis_enterprise_selector")
+        or st.session_state.get("selected_enterprise_key")
+        or ""
+    )
+    if selected_key not in items_by_key:
+        selected_key = selection_options[0]
+        st.session_state["analysis_enterprise_selector"] = selected_key
+
+    selected_key = st.selectbox(
+        "选择企业项目",
+        selection_options,
+        key="analysis_enterprise_selector",
+        format_func=lambda value: _enterprise_option_label(items_by_key[value]),
+    )
+    st.session_state["selected_enterprise_key"] = selected_key
+    selected_item = items_by_key[selected_key]
+    profile = build_enterprise_profile(selected_item)
+    analysis = analyze_credit_opportunity(selected_item, profile=profile)
+    estimation = estimate_finance_need(selected_item)
+
+    score_col, level_col, product_col = st.columns(3)
+    score_col.metric("融资评分", int(selected_item.get("finance_score") or 0))
+    level_col.metric("机会等级", str(selected_item.get("finance_level") or "C"))
+    product_col.metric(
+        "推荐贷款产品",
+        "、".join(analysis.recommended_products) or "待核验",
+    )
+
+    investment_col, credit_col, estimated_product_col = st.columns(3)
+    investment_col.metric("预计投资规模", estimation.estimated_investment)
+    credit_col.metric("预计融资需求", estimation.estimated_credit_need)
+    estimated_product_col.metric(
+        "金额预测推荐产品",
+        estimation.recommended_product,
+    )
+    st.caption(
+        "金额预测置信度："
+        f"{estimation_confidence_label(estimation.estimation_confidence)}。"
+        "规则区间仅用于营销线索筛选，不代表企业实际投资或可授信额度。"
+    )
+    with st.expander("查看融资金额预测依据", expanded=False):
+        for basis in estimation.estimation_basis:
+            st.write(f"- {basis}")
+
+    st.markdown("#### 企业画像")
+    st.dataframe(
+        pd.DataFrame(_enterprise_profile_rows(profile)),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    st.markdown("#### 授信机会初步判断")
+    st.write(f"**预计资金需求：** {analysis.estimated_financing_need}")
+    st.write(
+        "**推荐贷款产品：** "
+        + ("、".join(analysis.recommended_products) or "待核验")
+    )
+    st.write(f"**建议营销时间：** {analysis.suggested_marketing_time}")
+
+    render_marketing_tracking_action(selected_item, profile)
+
+    if st.button(
+        "生成 AI 分析报告",
+        type="primary",
+        key=f"generate_ai_report_{selected_key}",
+    ):
+        st.session_state["generated_report_key"] = selected_key
+
+    if st.session_state.get("generated_report_key") == selected_key:
+        report = build_financing_report(selected_item, profile=profile)
+        st.markdown(f"### {report.title}")
+        st.caption(f"生成方式：{report.analysis_method}")
+        for section in report.sections:
+            st.markdown(f"#### {section.title}")
+            st.write(section.content)
+        st.warning(
+            "本报告仅基于政府公开项目信息进行营销线索分析；成立时间、注册资本、"
+            "征信、财务数据等未披露内容仍需客户经理尽调，不作为授信审批依据。"
+        )
+
+    st.markdown("#### 客户经理营销建议报告")
+    if st.button(
+        "生成营销报告",
+        type="primary",
+        key=f"generate_marketing_report_{selected_key}",
+    ):
+        st.session_state["generated_marketing_report_key"] = selected_key
+
+    if st.session_state.get("generated_marketing_report_key") == selected_key:
+        marketing_report = build_marketing_report(selected_item, profile=profile)
+        st.markdown(f"### {marketing_report.title}")
+        st.caption(
+            f"生成方式：{marketing_report.analysis_method}　"
+            f"报告日期：{marketing_report.generated_date}"
+        )
+        for section in marketing_report.sections:
+            st.markdown(f"#### {section.title}")
+            st.write(section.content)
+
+        with st.expander("查看规则生成依据", expanded=False):
+            for basis in marketing_report.explanation_basis:
+                st.write(f"- {basis}")
+
+        try:
+            pdf_bytes = render_marketing_report_pdf(marketing_report)
+        except RuntimeError as exc:
+            st.error(str(exc))
+        else:
+            st.download_button(
+                "下载PDF",
+                data=pdf_bytes,
+                file_name=marketing_report_filename(marketing_report),
+                mime="application/pdf",
+                key=f"download_marketing_report_{selected_key}",
+                use_container_width=True,
+            )
+        st.warning(
+            "营销报告仅基于政府公开信息和本地规则生成；未披露的工商、征信、"
+            "财务和担保信息需要另行尽调，不作为授信审批依据。"
+        )
+
+
+def render_enhanced_enterprise_profile_page(
+    dataset: PermitDataset,
+    region: RegionConfig,
+) -> None:
+    st.markdown("### 企业工商画像")
+    st.caption(
+        f"当前区域：{region.province} / {region.city} / {region.district}。"
+        "工商字段仅展示现有数据；未披露内容不推测、不补造。"
+    )
+    with st.expander("导入企业工商信息 Excel", expanded=False):
+        import_flash = st.session_state.pop("company_registry_import_flash", "")
+        if import_flash:
+            st.success(import_flash)
+        if COMPANY_REGISTRY_TEMPLATE_PATH.exists():
+            st.download_button(
+                "下载工商信息导入模板",
+                data=COMPANY_REGISTRY_TEMPLATE_PATH.read_bytes(),
+                file_name="company_registry_import_template.xlsx",
+                mime=(
+                    "application/vnd.openxmlformats-officedocument."
+                    "spreadsheetml.sheet"
+                ),
+                key="download_company_registry_import_template",
+            )
+        else:
+            st.warning("工商信息导入模板暂不可用，请联系系统管理员。")
+        st.caption(
+            "支持 .xlsx；表头必须包含：企业名称、统一社会信用代码、法人、"
+            "注册资本、成立日期、注册地址、经营范围、企业状态、行业分类（兼容行业）。"
+            "空字段不会覆盖已有工商信息。"
+        )
+        registry_excel = st.file_uploader(
+            "上传企业名单.xlsx",
+            type=("xlsx",),
+            key="company_registry_excel_uploader",
+        )
+        preview_state_key = "company_registry_import_preview"
+        preview = None
+        if registry_excel is not None:
+            uploaded_bytes = registry_excel.getvalue()
+            uploaded_sha256 = hashlib.sha256(uploaded_bytes).hexdigest().upper()
+            preview_state = st.session_state.get(preview_state_key)
+            if (
+                preview_state
+                and preview_state.get("file_sha256") != uploaded_sha256
+            ):
+                st.session_state.pop(preview_state_key, None)
+                preview_state = None
+            if st.button(
+                "确认文件并生成预览",
+                key="preview_company_registry_excel",
+            ):
+                try:
+                    preview = preview_company_registry_excel(
+                        DATABASE_PATH,
+                        uploaded_bytes,
+                        file_name=registry_excel.name,
+                        permit_items=dataset.items,
+                    )
+                except (
+                    OSError,
+                    sqlite3.Error,
+                    CompanyDataProviderError,
+                    CompanyRegistryValidationError,
+                ) as exc:
+                    st.session_state.pop(preview_state_key, None)
+                    st.error(f"工商信息预览失败：{exc}")
+                else:
+                    st.session_state[preview_state_key] = {
+                        "file_name": preview.file_name,
+                        "file_sha256": preview.file_sha256,
+                        "total_count": preview.total_count,
+                    }
+
+            preview_state = st.session_state.get(preview_state_key)
+            if preview_state and preview is None:
+                try:
+                    preview = preview_company_registry_excel(
+                        DATABASE_PATH,
+                        uploaded_bytes,
+                        file_name=registry_excel.name,
+                        permit_items=dataset.items,
+                    )
+                except (
+                    OSError,
+                    sqlite3.Error,
+                    CompanyDataProviderError,
+                    CompanyRegistryValidationError,
+                ) as exc:
+                    st.session_state.pop(preview_state_key, None)
+                    st.error(f"工商信息预览已失效：{exc}")
+                    preview = None
+
+        if preview is not None:
+            st.markdown("#### 数据预览")
+            preview_col1, preview_col2, preview_col3, preview_col4 = st.columns(4)
+            preview_col1.metric("待导入记录", preview.total_count)
+            preview_col2.metric("预计新增", preview.inserted_count)
+            preview_col3.metric("预计更新", preview.updated_count)
+            preview_col4.metric(
+                "匹配许可证企业",
+                preview.permit_matched_company_count,
+            )
+            st.caption(
+                f"文件：{preview.file_name}；预计匹配许可证项目 "
+                f"{preview.permit_matched_project_count} 个。"
+            )
+            st.dataframe(
+                pd.DataFrame(preview.to_display_rows()),
+                use_container_width=True,
+                hide_index=True,
+            )
+            unmatched_count = (
+                preview.total_count - preview.permit_matched_company_count
+            )
+            if unmatched_count:
+                st.warning(
+                    f"有 {unmatched_count} 家企业未匹配当前区域许可证名称，"
+                    "请确认名称后再导入。"
+                )
+            confirmed = st.checkbox(
+                "我已核对预览内容，并确认写入 company_registry",
+                key="confirm_company_registry_import",
+            )
+            if st.button(
+                "确认导入 company_registry",
+                key="execute_company_registry_excel_import",
+                disabled=not confirmed,
+                type="primary",
+            ):
+                try:
+                    result = execute_company_registry_excel_import(
+                        DATABASE_PATH,
+                        uploaded_bytes,
+                        file_name=preview.file_name,
+                        expected_sha256=preview.file_sha256,
+                        expected_total_count=preview.total_count,
+                    )
+                except (
+                    OSError,
+                    sqlite3.Error,
+                    CompanyImportConfirmationError,
+                    CompanyDataProviderError,
+                    CompanyRegistryValidationError,
+                ) as exc:
+                    st.error(f"工商信息导入失败：{exc}")
+                else:
+                    st.session_state.pop(preview_state_key, None)
+                    st.session_state["company_registry_import_flash"] = (
+                        f"导入完成：成功 {result.total_count} 条，失败 0 条；"
+                        f"新增 {result.inserted_count} 条，更新 "
+                        f"{result.updated_count} 条。企业画像、融资评分和"
+                        "营销报告已重新计算。"
+                    )
+                    st.cache_data.clear()
+                    st.rerun()
+
+    coverage = summarize_registry_coverage(dataset.items)
+    coverage_col1, coverage_col2, coverage_col3, coverage_col4 = st.columns(4)
+    coverage_col1.metric("当前区域项目总数", coverage.total_project_count)
+    coverage_col2.metric("已匹配企业项目", coverage.matched_project_count)
+    coverage_col3.metric("已匹配企业数", coverage.matched_company_count)
+    coverage_col4.metric("工商信息覆盖率", f"{coverage.coverage_percentage:.1f}%")
+
+    entries = []
+    for item in dataset.items:
+        company_name = _homepage_company_name(
+            item.get("company_name") or item.get("construction_unit")
+        )
+        if (
+            str(item.get("project_type") or "unknown") != "enterprise"
+            or str(item.get("owner_category") or "")
+            in {GOVERNMENT_AGENCY, PUBLIC_INSTITUTION}
+            or company_name == "建设单位暂未披露"
+        ):
+            continue
+        profile = build_enhanced_enterprise_profile(item)
+        estimation = estimate_finance_need(item)
+        entries.append((item, profile, estimation))
+
+    ownership_filter_col, scale_filter_col = st.columns(2)
+    ownership_filter = ownership_filter_col.selectbox(
+        "按企业性质筛选",
+        (ALL_ENTERPRISE_PROFILE_FILTER, *OWNERSHIP_TYPE_OPTIONS),
+        key="enhanced_profile_ownership_filter",
+    )
+    scale_filter = scale_filter_col.selectbox(
+        "按规模筛选",
+        (ALL_ENTERPRISE_PROFILE_FILTER, *COMPANY_SCALE_OPTIONS),
+        key="enhanced_profile_scale_filter",
+    )
+    filtered_entries = [
+        entry
+        for entry in entries
+        if (
+            ownership_filter == ALL_ENTERPRISE_PROFILE_FILTER
+            or entry[1].ownership_type == ownership_filter
+        )
+        and (
+            scale_filter == ALL_ENTERPRISE_PROFILE_FILTER
+            or entry[1].company_scale == scale_filter
+        )
+    ]
+    filtered_entries.sort(
+        key=lambda entry: (
+            -int(entry[0].get("finance_score") or 0),
+            entry[1].company_name,
+            str(entry[0].get("project_name") or ""),
+        )
+    )
+
+    company_count = len({entry[1].company_name for entry in filtered_entries})
+    disclosed_business_count = sum(
+        any(
+            value != "未披露"
+            for value in (
+                entry[1].legal_person,
+                entry[1].registered_capital,
+                entry[1].establish_date,
+                entry[1].company_address,
+                entry[1].business_scope,
+                entry[1].company_status,
+            )
+        )
+        for entry in filtered_entries
+    )
+    metric1, metric2, metric3 = st.columns(3)
+    metric1.metric("企业数量", company_count)
+    metric2.metric("企业项目数量", len(filtered_entries))
+    metric3.metric("有工商字段项目数", disclosed_business_count)
+
+    if not filtered_entries:
+        st.info("当前筛选条件下没有企业画像记录。")
+        return
+
+    st.dataframe(
+        pd.DataFrame(
+            [
+                _enhanced_enterprise_profile_row(item, profile, estimation)
+                for item, profile, estimation in filtered_entries
+            ]
+        ),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    entries_by_key = {
+        _enterprise_selection_key(item): (item, profile, estimation)
+        for item, profile, estimation in filtered_entries
+    }
+    selected_key = st.selectbox(
+        "查看企业画像详情",
+        list(entries_by_key),
+        key="enhanced_profile_detail_selector",
+        format_func=lambda value: _enterprise_option_label(entries_by_key[value][0]),
+    )
+    selected_item, selected_profile, selected_estimation = entries_by_key[selected_key]
+    base_profile = build_enterprise_profile(selected_item)
+
+    st.markdown("#### 企业基本信息")
+    st.dataframe(
+        pd.DataFrame(_enhanced_enterprise_basic_rows(selected_profile)),
+        use_container_width=True,
+        hide_index=True,
+    )
+    st.caption(
+        f"企业性质依据：{selected_profile.ownership_basis}；"
+        f"企业规模依据：{selected_profile.company_scale_basis}。"
+    )
+
+    st.markdown("#### 项目情况")
+    st.dataframe(
+        pd.DataFrame(
+            [
+                {"项目字段": "项目名称", "内容": base_profile.project_name},
+                {"项目字段": "所属行业", "内容": base_profile.industry},
+                {"项目字段": "项目阶段", "内容": base_profile.project_stage},
+                {
+                    "项目字段": "许可证类型",
+                    "内容": str(selected_item.get("permit_type") or "未披露"),
+                },
+                {
+                    "项目字段": "所属地区",
+                    "内容": base_profile.region,
+                },
+            ]
+        ),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    selected_strength = assess_company_strength(
+        selected_item,
+        profile=selected_profile,
+    )
+    score_col, strength_col, completeness_col, scale_col, industry_col = st.columns(5)
+    score_col.metric("融资评分", int(selected_item.get("finance_score") or 0))
+    strength_col.metric("企业实力等级", selected_strength.strength_label)
+    completeness_col.metric(
+        "工商信息完整度",
+        f"{int(selected_item.get('registry_completeness_percentage') or 0)}% "
+        f"{str(selected_item.get('registry_completeness_level') or 'D')}",
+    )
+    scale_col.metric("企业规模判断", selected_profile.company_scale)
+    industry_col.metric(
+        "行业判断",
+        str(selected_item.get("industry_classification") or "待判断"),
+    )
+    st.caption(
+        "行业判断依据："
+        f"{str(selected_item.get('industry_classification_basis') or '当前信息不足')}；"
+        "企业规模判断依据："
+        f"{selected_profile.company_scale_basis}。"
+    )
+    amount_col, product_col = st.columns(2)
+    amount_col.metric("预计融资金额", selected_estimation.estimated_credit_need)
+    product_col.metric("推荐产品", selected_estimation.recommended_product)
+    st.markdown("#### 融资评分构成")
+    st.dataframe(
+        pd.DataFrame(
+            [
+                {
+                    "评分维度": "项目价值（40%）",
+                    "得分": int(selected_item.get("project_value_score") or 0),
+                    "满分": 40,
+                },
+                {
+                    "评分维度": "企业实力（20%）",
+                    "得分": int(selected_item.get("enterprise_strength_score") or 0),
+                    "满分": 20,
+                },
+                {
+                    "评分维度": "工商信息完整度（10%）",
+                    "得分": int(selected_item.get("registry_completeness_score") or 0),
+                    "满分": 10,
+                },
+                {
+                    "评分维度": "融资需求（20%）",
+                    "得分": int(selected_item.get("financing_need_score") or 0),
+                    "满分": 20,
+                },
+                {
+                    "评分维度": "时间窗口（10%）",
+                    "得分": int(selected_item.get("time_window_score") or 0),
+                    "满分": 10,
+                },
+            ]
+        ),
+        use_container_width=True,
+        hide_index=True,
+    )
+    with st.expander("查看企业实力判断依据"):
+        for basis in selected_strength.assessment_basis:
+            st.write(f"- {basis}")
+    st.warning(
+        "工商画像和规模分类仅基于当前已有公开字段；未知项需通过工商登记、"
+        "征信、财务报表和客户访谈核验，不作为授信审批依据。"
+    )
+    import_logs = list_company_import_logs(DATABASE_PATH, limit=10)
+    with st.expander("最近工商数据导入日志", expanded=False):
+        if import_logs:
+            st.dataframe(
+                pd.DataFrame([record.to_display_row() for record in import_logs]),
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.info("暂无工商数据导入日志。")
+
+
+def _enhanced_enterprise_profile_row(
+    item: dict[str, object],
+    profile: EnhancedEnterpriseProfile,
+    estimation: FinanceEstimation,
+) -> dict[str, object]:
+    return {
+        "企业名称": profile.company_name,
+        "统一社会信用代码": profile.unified_social_credit_code,
+        "法人": profile.legal_person,
+        "注册资本": profile.registered_capital,
+        "成立年份": _establish_year(profile.establish_date),
+        "注册地址": profile.company_address,
+        "经营范围": profile.business_scope,
+        "企业状态": profile.company_status,
+        "所属行业": profile.industry,
+        "行业判断": str(item.get("industry_classification") or "待判断"),
+        "行业判断置信度": str(
+            item.get("industry_classification_confidence") or "low"
+        ),
+        "企业性质": profile.ownership_type,
+        "企业规模": profile.company_scale,
+        "企业实力等级": str(item.get("enterprise_strength_label") or "D 信息不足"),
+        "工商信息完整度": (
+            f"{int(item.get('registry_completeness_percentage') or 0)}% "
+            f"{str(item.get('registry_completeness_level') or 'D')}"
+        ),
+        "项目名称": item.get("project_name") or "未披露",
+        "融资评分": int(item.get("finance_score") or 0),
+        "预计融资金额": estimation.estimated_credit_need,
+        "推荐产品": estimation.recommended_product,
+    }
+
+
+def _enhanced_enterprise_basic_rows(
+    profile: EnhancedEnterpriseProfile,
+) -> list[dict[str, str]]:
+    return [
+        {"企业字段": "企业名称", "内容": profile.company_name},
+        {
+            "企业字段": "统一社会信用代码",
+            "内容": profile.unified_social_credit_code,
+        },
+        {"企业字段": "法人", "内容": profile.legal_person},
+        {"企业字段": "注册资本", "内容": profile.registered_capital},
+        {"企业字段": "成立年份", "内容": _establish_year(profile.establish_date)},
+        {"企业字段": "注册地址", "内容": profile.company_address},
+        {"企业字段": "经营范围", "内容": profile.business_scope},
+        {"企业字段": "企业状态", "内容": profile.company_status},
+        {"企业字段": "所属行业", "内容": profile.industry},
+        {"企业字段": "企业性质", "内容": profile.ownership_type},
+        {"企业字段": "企业规模", "内容": profile.company_scale},
+    ]
+
+
+def _establish_year(establish_date: str) -> str:
+    text = str(establish_date or "").strip()
+    if len(text) >= 4 and text[:4].isdigit():
+        return text[:4]
+    return "未披露"
+
+
+def render_marketing_tracking_action(
+    item: dict[str, object],
+    profile: EnterpriseProfile,
+) -> None:
+    st.markdown("#### 营销跟踪")
+    try:
+        record = get_marketing_record(
+            DATABASE_PATH,
+            enterprise_name=profile.company_name,
+            project_name=profile.project_name,
+            region=profile.region,
+        )
+    except (OSError, RuntimeError, sqlite3.Error, MarketingTrackingValidationError) as exc:
+        st.warning(f"营销跟踪暂不可用：{exc}")
+        return
+
+    if record is None and st.button(
+        "加入营销跟踪",
+        key=f"add_marketing_tracking_{_enterprise_selection_key(item)}",
+    ):
+        try:
+            record = add_marketing_record(
+                DATABASE_PATH,
+                enterprise_name=profile.company_name,
+                project_name=profile.project_name,
+                region=profile.region,
+            )
+        except (OSError, RuntimeError, sqlite3.Error, MarketingTrackingValidationError) as exc:
+            st.error(f"加入营销跟踪失败：{exc}")
+            return
+        st.success("已加入营销跟踪，可在“我的客户列表”中更新进度。")
+
+    if record is None:
+        st.caption("当前项目尚未加入营销跟踪。")
+    else:
+        st.info(
+            f"当前状态：{record.status}　客户经理：{record.customer_manager}　"
+            f"最近跟进时间：{record.latest_follow_time}"
+        )
+
+
+def render_my_customer_list(db_path: Path) -> None:
+    st.markdown("### 我的客户列表")
+    st.caption("管理已加入营销跟踪的企业项目，并记录最近跟进时间和授信进度。")
+    status_filter = st.selectbox(
+        "跟进状态筛选",
+        (ALL_STATUS_FILTER, *MARKETING_STATUSES),
+        key="marketing_status_filter",
+    )
+    try:
+        records = list_marketing_records(db_path, status=status_filter)
+    except (OSError, RuntimeError, sqlite3.Error, MarketingTrackingValidationError) as exc:
+        st.error(f"营销跟踪数据读取失败：{exc}")
+        return
+
+    followed_dates = [record.follow_date for record in records if record.follow_date]
+    metric1, metric2 = st.columns(2)
+    metric1.metric("客户项目数量", len(records))
+    metric2.metric(
+        "最近跟进时间",
+        max(followed_dates) if followed_dates else "尚未跟进",
+    )
+
+    if not records:
+        st.info(f"当前没有“{status_filter}”营销跟踪记录。")
+        return
+
+    st.dataframe(
+        pd.DataFrame(_marketing_record_rows(records)),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    records_by_id = {record.id: record for record in records}
+    selected_id = st.selectbox(
+        "选择客户记录",
+        list(records_by_id),
+        key="marketing_record_selector",
+        format_func=lambda record_id: _marketing_record_label(
+            records_by_id[record_id]
+        ),
+    )
+    selected = records_by_id[selected_id]
+    st.markdown("#### 更新跟进记录")
+    manager = st.text_input(
+        "客户经理",
+        value=selected.customer_manager,
+        key=f"marketing_manager_{selected.id}",
+    )
+    status = st.selectbox(
+        "更新跟进状态",
+        MARKETING_STATUSES,
+        index=MARKETING_STATUSES.index(selected.status),
+        key=f"marketing_update_status_{selected.id}",
+    )
+    follow_day = st.date_input(
+        "最近跟进时间",
+        value=_tracking_date_value(selected.follow_date),
+        key=f"marketing_follow_date_{selected.id}",
+    )
+    estimated_amount = st.number_input(
+        "预计授信金额（元）",
+        min_value=0.0,
+        value=float(selected.estimated_credit_amount),
+        step=100_000.0,
+        key=f"marketing_credit_amount_{selected.id}",
+    )
+    notes = st.text_area(
+        "跟进备注",
+        value=selected.notes,
+        key=f"marketing_notes_{selected.id}",
+    )
+    if st.button("保存跟进记录", key=f"save_marketing_record_{selected.id}"):
+        try:
+            update_marketing_record(
+                db_path,
+                selected.id,
+                customer_manager=manager,
+                status=status,
+                follow_date=follow_day.isoformat(),
+                estimated_credit_amount=estimated_amount,
+                notes=notes,
+            )
+        except (
+            OSError,
+            LookupError,
+            RuntimeError,
+            sqlite3.Error,
+            MarketingTrackingValidationError,
+        ) as exc:
+            st.error(f"保存跟进记录失败：{exc}")
+        else:
+            st.success("跟进记录已更新。")
+            st.rerun()
+
+
+def _marketing_record_rows(
+    records: list[MarketingRecord],
+) -> list[dict[str, object]]:
+    return [
+        {
+            "企业名称": record.enterprise_name,
+            "项目名称": record.project_name,
+            "所属地区": record.region,
+            "发现日期": record.discovery_date,
+            "客户经理": record.customer_manager,
+            "跟进状态": record.status,
+            "最近跟进时间": record.latest_follow_time,
+            "预计授信金额（元）": record.estimated_credit_amount,
+            "备注": record.notes,
+        }
+        for record in records
+    ]
+
+
+def _marketing_record_label(record: MarketingRecord) -> str:
+    return f"{record.enterprise_name}｜{record.project_name}｜{record.status}"
+
+
+def _tracking_date_value(value: str) -> date:
+    if value:
+        try:
+            return date.fromisoformat(value)
+        except ValueError:
+            pass
+    return date.today()
+
+
+def _select_enterprise_for_analysis(item: dict[str, object]) -> None:
+    selection_key = _enterprise_selection_key(item)
+    st.session_state["selected_enterprise_key"] = selection_key
+    st.session_state["analysis_enterprise_selector"] = selection_key
+    st.session_state["navigation_page"] = "AI授信分析"
+
+
+def _enterprise_selection_key(item: dict[str, object]) -> str:
+    return "|".join(
+        str(item.get(field) or "")
+        for field in (
+            "region_key",
+            "permit_type",
+            "permit_number",
+            "company_name",
+            "project_name",
+            "source_url",
+        )
+    )
+
+
+def _enterprise_option_label(item: dict[str, object]) -> str:
+    company_name = _homepage_company_name(
+        item.get("company_name") or item.get("construction_unit")
+    )
+    project_name = str(item.get("project_name") or "项目名称暂未披露")
+    return f"{company_name}｜{project_name}"
+
+
+def _enterprise_profile_rows(profile: EnterpriseProfile) -> list[dict[str, str]]:
+    return [
+        {"画像字段": "企业名称", "内容": profile.company_name},
+        {"画像字段": "企业类型", "内容": profile.enterprise_type},
+        {"画像字段": "所属地区", "内容": profile.region},
+        {"画像字段": "所属行业", "内容": profile.industry},
+        {"画像字段": "项目名称", "内容": profile.project_name},
+        {"画像字段": "项目阶段", "内容": profile.project_stage},
+        {"画像字段": "成立时间", "内容": profile.established_time},
+        {"画像字段": "注册资本", "内容": profile.registered_capital},
+        {
+            "画像字段": "企业信用等级",
+            "内容": profile.enterprise_credit_level,
+        },
+    ]
 
 
 def render_government_public_projects(dataset: PermitDataset) -> None:
