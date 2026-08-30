@@ -1,0 +1,15 @@
+﻿{
+  "generated_at": "2026-08-30 20:31:54",
+  "source": "江苏自然资源建设项目许可证",
+  "record_count": 0,
+  "db_total_count": 0,
+  "inserted_count": 0,
+  "updated_count": 0,
+  "crawler_errors": [
+    "江苏自然资源建设项目许可证 首页预访问失败: https://zrzy.jiangsu.gov.cn/; HTTPSConnectionPool(host='zrzy.jiangsu.gov.cn', port=443): Max retries exceeded with url: / (Caused by NewConnectionError(\"HTTPSConnection(host='zrzy.jiangsu.gov.cn', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))",
+    "江苏自然资源建设项目许可证 requests访问失败: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?catalogID=2c90825471c8dd7a0171c90aec380001&type=1&title=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E6%96%BD%E5%B7%A5%E8%AE%B8%E5%8F%AF%E8%AF%81; HTTPSConnectionPool(host='zrzy.jiangsu.gov.cn', port=443): Max retries exceeded with url: /gtxxgk/nrglIndex.action?catalogID=2c90825471c8dd7a0171c90aec380001&type=1&title=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E6%96%BD%E5%B7%A5%E8%AE%B8%E5%8F%AF%E8%AF%81 (Caused by NewConnectionError(\"HTTPSConnection(host='zrzy.jiangsu.gov.cn', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))",
+    "江苏自然资源建设项目许可证 requests访问失败: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?catalogID=2c90825471c8dd7a0171c90aec380001&type=1&title=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81; HTTPSConnectionPool(host='zrzy.jiangsu.gov.cn', port=443): Max retries exceeded with url: /gtxxgk/nrglIndex.action?catalogID=2c90825471c8dd7a0171c90aec380001&type=1&title=%E5%BB%BA%E8%AE%BE%E5%B7%A5%E7%A8%8B%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81 (Caused by NewConnectionError(\"HTTPSConnection(host='zrzy.jiangsu.gov.cn', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))",
+    "江苏自然资源建设项目许可证 requests访问失败: https://zrzy.jiangsu.gov.cn/gtxxgk/nrglIndex.action?catalogID=2c90825471c8dd7a0171c90aec380001&type=1&title=%E5%BB%BA%E8%AE%BE%E7%94%A8%E5%9C%B0%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81; HTTPSConnectionPool(host='zrzy.jiangsu.gov.cn', port=443): Max retries exceeded with url: /gtxxgk/nrglIndex.action?catalogID=2c90825471c8dd7a0171c90aec380001&type=1&title=%E5%BB%BA%E8%AE%BE%E7%94%A8%E5%9C%B0%E8%A7%84%E5%88%92%E8%AE%B8%E5%8F%AF%E8%AF%81 (Caused by NewConnectionError(\"HTTPSConnection(host='zrzy.jiangsu.gov.cn', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))"
+  ],
+  "items": []
+}
